@@ -9,7 +9,6 @@ export default function startTourney(
 ): Tournament {
   // execute function pairOpponents to pair opponents
   tourney = pairOpponentsFirstRound(tourney, seed);
-
   //Number of rounds and validity of places.
   // Swiss is in general good to decide who ends up at the top spot. (The one player who wins all her games), unfortunedly it is not always clear who should get the 2nd and third place prize. there are many different tiebreakers for doing this
   // An old rule to approximately decide on the number of rounds, number of players and number of validated places was invented by Mr. Model, his formula was:

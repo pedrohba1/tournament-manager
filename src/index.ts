@@ -3,6 +3,7 @@ import startTourney from './Tournament/startTourney';
 import setResult from './Tournament/setResult';
 import { Options } from './types/Options';
 import { Player } from './types/Player';
+import nextRound from './Tournament/nextRound';
 
 const options = <Options>{
   format: 'swiss',
@@ -37,11 +38,6 @@ const players = <Player[]>[
     name: 'user_3',
     nickname: 'user_3',
   },
-  {
-    id: '4',
-    name: 'user_4',
-    nickname: 'user_4',
-  },
   //   {
   //     id: '5',
   //     name: 'user_5',
@@ -51,5 +47,13 @@ const players = <Player[]>[
 
 let tourney = createTourney(options, players);
 tourney = startTourney(tourney, 1233451);
+
+for (const match of tourney.matches) {
+  console.log(match.matchNumber);
+}
+
 tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
+tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
+
+tourney = nextRound(tourney);
 console.log(tourney.matches);
