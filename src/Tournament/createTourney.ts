@@ -8,6 +8,7 @@ export default function createTourney(
 ): Tournament {
   const tourney = <Tournament>{};
   tourney.options = options;
+  tourney.lastMatchNumber = 1;
   tourney.players = players.map((p) => ({
     ...p,
     tiebreakers: {

@@ -17,12 +17,13 @@ export default function pairOpponentsFirstRound(
       playerTwo: players[i + 1] ? players[i + 1] : { bye: true },
       active: true,
       draws: 0,
-      matchNumber: i,
+      matchNumber: tourney.lastMatchNumber,
       playerOneWins: 0,
       playerTwoWins: 0,
       round: 1,
       result: null,
     };
+    tourney.lastMatchNumber += 1;
     matches.push(match);
   }
   console.log(matches);
