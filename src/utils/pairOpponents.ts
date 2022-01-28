@@ -26,6 +26,6 @@ export default function pairOpponents(
   //   matches.push(match);
   // }
 
-  tourney.matches = matches;
+  // tourney.matches = matches;
   return tourney;
 }
