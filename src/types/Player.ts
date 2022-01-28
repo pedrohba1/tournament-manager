@@ -15,5 +15,6 @@ export type TieBreakers = {
   gwp: number;
   pgw: number; // player game wins
   matchPoints: number;
+  gamePoints: number;
   summary: { w: number; d: number; l: number }; // retirar gamePoints de dentro do summary
 };
