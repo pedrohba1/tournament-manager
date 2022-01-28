@@ -8,6 +8,20 @@ export default function createTourney(
 ): Tournament {
   const tourney = <Tournament>{};
   tourney.options = options;
-  tourney.players = players;
+  tourney.players = players.map((p) => ({
+    ...p,
+    tiebreakers: {
+      gwp: 0,
+      matchPoints: 0,
+      ogwp: 0,
+      summary: { d: 0, l: 0, w: 0 },
+      omwp: 0.33,
+      mwp: 0.33,
+      ogw: 0.33,
+      omw: 0,
+      pgw: 0,
+    },
+  }));
+
   return tourney;
 }
