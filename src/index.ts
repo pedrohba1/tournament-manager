@@ -36,11 +36,11 @@ const players = <Player[]>[
     name: 'user_3',
     nickname: 'user_3',
   },
-  //   {
-  //     id: '4',
-  //     name: 'user_4',
-  //     nickname: 'user_4',
-  //   },
+  {
+    id: '4',
+    name: 'user_4',
+    nickname: 'user_4',
+  },
   //   {
   //     id: '5',
   //     name: 'user_5',
@@ -48,4 +48,5 @@ const players = <Player[]>[
   //   },
 ];
 
-const tourney = createTourney(options, players);
+let tourney = createTourney(options, players);
+tourney = startTourney(tourney, 1233451);
