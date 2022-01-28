@@ -23,6 +23,9 @@ export default function pairOpponentsFirstRound(
       round: 1,
       result: null,
     };
+    if (match.playerTwo.bye) {
+      match.result = { d: 0, p1: 2, p2: 0 };
+    }
     tourney.lastMatchNumber += 1;
     matches.push(match);
   }
