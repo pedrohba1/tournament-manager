@@ -1,0 +1,13 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+    "cSpell.words": [
+        "Evos",
+        "Staker",
+        "stakers",
+        "tronweb",
+        "unstake",
+        "Unstaked"
+    ]
+}
