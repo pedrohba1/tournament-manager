@@ -26,8 +26,6 @@ export default function pairOpponentsFirstRound(
     tourney.lastMatchNumber += 1;
     matches.push(match);
   }
-  console.log(matches);
-
   tourney.matches = matches;
   return tourney;
 }

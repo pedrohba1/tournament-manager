@@ -1,5 +1,6 @@
 import createTourney from './Tournament/createTourney';
 import startTourney from './Tournament/startTourney';
+import setResult from './Tournament/setResult';
 import { Options } from './types/Options';
 import { Player } from './types/Player';
 
@@ -50,3 +51,5 @@ const players = <Player[]>[
 
 let tourney = createTourney(options, players);
 tourney = startTourney(tourney, 1233451);
+tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
+console.log(tourney.matches);
