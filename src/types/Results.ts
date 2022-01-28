@@ -1,7 +1,6 @@
 export type matchResult = 0 | 1 | 2;
 
 export type Result = {
-  matchNumber: number;
   draws: number;
   matchResult: {
     p1: matchResult;

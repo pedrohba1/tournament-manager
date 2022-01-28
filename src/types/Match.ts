@@ -4,8 +4,8 @@ import { Result } from './Results';
 export type Match = {
   matchNumber: number;
   round: number;
-  playerOne: Player;
-  playerTwo: Player;
+  playerOne: Player | 'bye';
+  playerTwo: Player | 'bye';
   active: boolean;
   result: Result;
   playerOneWins: number;
@@ -13,3 +13,5 @@ export type Match = {
   draws: number;
   etc: unknown;
 };
+
+export type Matches = Match[];
