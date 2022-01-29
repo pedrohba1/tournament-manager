@@ -14,6 +14,7 @@ export default function setResult(
     (m) => m.matchNumber === matchNumber
   );
   if (!tourney.matches[matchIndex]) throw Error('match does not exist');
+
   if (tourney.matches[matchIndex].round !== tourney.currentRound)
     throw Error("can't change result of a past match");
   tourney.matches[matchIndex].result = result;
