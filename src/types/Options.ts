@@ -6,7 +6,7 @@ export type Options = {
   cutLimit: 8;
   bestOf: 3;
   winValue: 3;
-  maxRound: null | number;
+  maxRounds: null | number;
   drawValue: 1;
   lossValue: 0;
 };

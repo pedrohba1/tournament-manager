@@ -8,5 +8,4 @@ export type Tournament = {
   matches: Match[];
   options: Options;
   currentRound: number;
-  maxRounds: number;
 };
