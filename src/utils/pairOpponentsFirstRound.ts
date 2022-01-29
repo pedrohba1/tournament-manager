@@ -16,10 +16,7 @@ export default function pairOpponentsFirstRound(
       // last will contain bye. Assign bye to player.
       playerTwo: players[i + 1] ? players[i + 1] : { bye: true },
       active: true,
-      draws: 0,
       matchNumber: tourney.lastMatchNumber,
-      playerOneWins: 0,
-      playerTwoWins: 0,
       round: 1,
       result: null,
     };
