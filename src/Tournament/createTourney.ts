@@ -15,7 +15,8 @@ export default function createTourney(
     tiebreakers: {
       gamePoints: 0,
       matchPoints: 0,
-      summary: { d: 0, l: 0, w: 0 },
+      matchesSummary: { d: 0, l: 0, w: 0 },
+      gamesSummary: { d: 0, l: 0, w: 0 },
       gwp: 0,
       ogwp: 0,
       omwp: 0.33,

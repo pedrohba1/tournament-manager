@@ -7,7 +7,9 @@ export default function setPlayersPoints(tourney: Tournament) {
       (m) => m.playerOne.id === player.id || m.playerTwo.id === player.id
     );
 
-    let [win, lose, draw] = [0, 0, 0];
+    let [mWin, mLose, mDraw] = [0, 0, 0];
+    let [gWin, gLose, gDraw] = [0, 0, 0];
+
     let gamePoints = 0;
     let matchPoints = 0;
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
@@ -18,34 +20,42 @@ export default function setPlayersPoints(tourney: Tournament) {
 
       if (player.id === match.playerOne.id) {
         gamePoints += p1 * 3 + d * 1;
+        gWin += p1;
+        gLose += p2;
+        gDraw += d;
+
         if (p1 > p2) {
           matchPoints += 3;
-          win += 1;
+          mWin += 1;
         } else if (p1 < p2) {
-          lose += 1;
+          mLose += 1;
           matchPoints += 0;
         } else if (p1 == p2) {
-          draw += 1;
+          mDraw += 1;
           matchPoints += 1;
         } else if (p1 == p2 && d === 1) {
           matchPoints += 1;
-          draw += 1;
+          mDraw += 1;
         }
       }
       if (player.id === match.playerTwo.id) {
         gamePoints = p2 * 3 + d * 1;
+
+        gWin += p2;
+        gLose += p1;
+        gDraw += d;
         if (p2 > p1) {
           matchPoints += 3;
-          win += 1;
+          mWin += 1;
         } else if (p2 < p1) {
           matchPoints += 0;
-          lose += 1;
+          mLose += 1;
         } else if (p1 == p2) {
           matchPoints += 1;
-          draw += 1;
+          mDraw += 1;
         } else if (p1 == p2 && d === 1) {
           matchPoints += 1;
-          draw += 1;
+          mDraw += 1;
         }
       }
     }
@@ -53,10 +63,15 @@ export default function setPlayersPoints(tourney: Tournament) {
       ...player,
       tiebreakers: {
         ...player.tiebreakers,
-        summary: {
-          w: win,
-          l: lose,
-          d: draw,
+        matchesSummary: {
+          w: mWin,
+          l: mLose,
+          d: mDraw,
+        },
+        gamesSummary: {
+          w: gWin,
+          l: gLose,
+          d: gDraw,
         },
         gamePoints,
         matchPoints,
