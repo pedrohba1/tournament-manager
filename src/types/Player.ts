@@ -2,6 +2,7 @@ import { Results } from './Results';
 export type Player = {
   id: string;
   name: string;
+  active: boolean;
   nickname: string;
   tiebreakers: TieBreakers;
   etc: unknown;
