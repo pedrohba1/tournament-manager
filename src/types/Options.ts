@@ -1,12 +1,12 @@
 export type Options = {
   seed: number;
-  format: string;
-  gameType: string;
+  format: string; //'swiss';
+  gameType: string; // 'magic' | 'lol' | 'csgo' | 'pokemon';
   playoffs: boolean;
-  cutLimit: 8;
-  bestOf: 3;
-  winValue: 3;
+  cutLimit: number; // 8
+  bestOf: number; // 3
+  winValue: number; //3
   maxRounds: null | number;
-  drawValue: 1;
-  lossValue: 0;
+  drawValue: number; //1
+  lossValue: number; //0
 };
