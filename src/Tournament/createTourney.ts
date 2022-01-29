@@ -12,6 +12,7 @@ export default function createTourney(
   tourney.currentRound = 1;
   tourney.players = players.map((p) => ({
     ...p,
+    active: true,
     tiebreakers: {
       gamePoints: 0,
       matchPoints: 0,

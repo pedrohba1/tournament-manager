@@ -1,10 +1,10 @@
-import createTourney from './Tournament/createTourney';
-import startTourney from './Tournament/startTourney';
-import setResult from './Tournament/setResult';
-import { Options } from './types/Options';
-import { Player } from './types/Player';
-import nextRound from './Tournament/nextRound';
-import calculateTiebreakers from './utils/calculateTiebreakers';
+import createTourney from '../src/Tournament/createTourney';
+import startTourney from '../src/Tournament/startTourney';
+import setResult from '../src/Tournament/setResult';
+import { Options } from '../src/types/Options';
+import { Player } from '../src/types/Player';
+import nextRound from '../src/Tournament/nextRound';
+import calculateTiebreakers from '../src/utils/calculateTiebreakers';
 
 const options = <Options>{
   seed: 1,
