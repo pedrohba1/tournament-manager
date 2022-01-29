@@ -37,8 +37,8 @@ console.log(tourney.matches);
 
 tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
-tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 0 });
 
+tourney = nextRound(tourney);
 console.log(tourney.options.maxRounds);
 
 for (const player of tourney.players) {
