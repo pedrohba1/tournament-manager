@@ -1,4 +1,5 @@
 export type Options = {
+  seed: number;
   format: 'swiss';
   gameType: 'magic' | 'lol' | 'csgo' | 'pokemon';
   playoffs: boolean;

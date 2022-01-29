@@ -2,10 +2,7 @@ import { Match, Matches } from '../types/Match';
 import { Tournament } from '../types/Tournament';
 import shuffle from './shuffle';
 
-export default function pairOpponents(
-  tourney: Tournament,
-  seed: number
-): Tournament {
+export default function pairOpponents(tourney: Tournament): Tournament {
   // // Shuffle players with seed
   // const players = shuffle(tourney.players, seed);
   // // create and assign matches

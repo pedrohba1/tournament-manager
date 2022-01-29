@@ -7,6 +7,7 @@ import nextRound from './Tournament/nextRound';
 import calculateTiebreakers from './utils/calculateTiebreakers';
 
 const options = <Options>{
+  seed: 123120938,
   format: 'swiss',
   gameType: 'magic',
   playoffs: false,
@@ -52,7 +53,7 @@ const players = <Player[]>[
 ];
 
 let tourney = createTourney(options, players);
-tourney = startTourney(tourney, 1233451);
+tourney = startTourney(tourney);
 
 // for (const match of tourney.matches) {
 //   console.log(match);
@@ -61,7 +62,6 @@ tourney = startTourney(tourney, 1233451);
 tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 0 });
-
 tourney = nextRound(tourney);
 
 for (const player of tourney.players) {
