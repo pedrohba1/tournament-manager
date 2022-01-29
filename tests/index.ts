@@ -5,7 +5,7 @@ import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import calculateTiebreakers from '../src/utils/calculateTiebreakers';
-import end from './Tournament/end';
+import end from '../src/Tournament/end';
 
 const options = <Options>{
   seed: 3,
