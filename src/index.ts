@@ -46,5 +46,7 @@ const newMatches = tourney.matches.filter(
   (m) => m.round === tourney.currentRound
 );
 
+console.log('new matches', newMatches);
+
 for (const player of tourney.players) {
 }

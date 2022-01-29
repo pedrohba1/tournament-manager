@@ -51,6 +51,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       playerTwo: bests[i + 1],
       round: tourney.currentRound,
     };
+    tourney.lastMatchNumber += 1;
     tourney.matches.push(match);
   }
 
@@ -70,7 +71,6 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       })
       .sort((a, b) => (a.byes > b.byes ? 1 : -1));
 
-    tourney.lastMatchNumber += 1;
     const playerLessBye = tourney.players.find(
       (p) => p.id === worstMapByes[0].id
     );
@@ -83,6 +83,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       round: tourney.currentRound,
       etc: {},
     };
+    tourney.lastMatchNumber += 1;
     tourney.matches.push(byeMatch);
     worsts = worsts.filter((item) => item.id != playerLessBye.id);
   }
@@ -95,6 +96,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       playerTwo: worsts[i + 1],
       round: tourney.currentRound,
     };
+    tourney.lastMatchNumber += 1;
     tourney.matches.push(match);
   }
 
