@@ -66,6 +66,5 @@ tourney = nextRound(tourney);
 
 for (const player of tourney.players) {
   console.log(player.id);
-  console.log(player.tiebreakers.summary);
   console.log(player.tiebreakers);
 }
