@@ -5,9 +5,10 @@ import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import calculateTiebreakers from '../src/utils/calculateTiebreakers';
+import end from './Tournament/end';
 
 const options = <Options>{
-  seed: 1,
+  seed: 3,
   format: 'swiss',
   gameType: 'magic',
   playoffs: false,
@@ -33,18 +34,29 @@ for (let i = 0; i < amount; i++) {
 
 let tourney = createTourney(options, players);
 
-
 tourney = startTourney(tourney);
 
-
-
-
-
-tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
-tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
-console.lo(tourney.matches)
+tourney = setResult(tourney, 1, { d: 0, p1: 0, p2: 2 });
+tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 1 });
+console.log('last matches', tourney.matches);
 
 tourney = nextRound(tourney);
 
-for (const player of tourney.players) {
+tourney = setResult(tourney, 3, { d: 0, p1: 0, p2: 2 });
+tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 1 });
+
+console.log(
+  'new matches round 2',
+  tourney.matches.filter((m) => m.round === tourney.currentRound)
+);
+
+const standings = end(tourney);
+
+const newMatches = tourney.matches.filter(
+  (m) => m.round === tourney.currentRound
+);
+
+console.log('standings');
+for (const player of standings) {
+  console.log(player);
 }
