@@ -33,15 +33,15 @@ export default function pairOpponents(tourney: Tournament): Tournament {
     return a.tiebreakers.matchPoints < b.tiebreakers.matchPoints ? 1 : -1;
   });
 
-  // from pairingPlayers, create new matches were the best are paired with the best and the worst with the worst
+  // increment round
+  tourney.currentRound += 1;
 
+  // from pairingPlayers, create new matches were the best are paired with the best and the worst with the worst
   const bests = pairingPlayers.slice(0, Math.floor(pairingPlayers.length / 2));
   let worsts = pairingPlayers.slice(
     Math.floor(pairingPlayers.length / 2),
     pairingPlayers.length
   );
-
-  tourney.currentRound += 1;
 
   for (let i = 0; i < bests.length; i += 2) {
     const match = <Match>{
@@ -56,35 +56,37 @@ export default function pairOpponents(tourney: Tournament): Tournament {
 
   // from the worsts, the one with less byes should receive a bye
   // find byes of each of the worsts
-  const worstMapByes = worsts
-    .map((player, index) => {
-      const byes = tourney.matches.reduce((acc, m) => {
-        if (m.playerOne.id === player.id || m.playerTwo.id === player.id) {
-          if (m.playerOne.bye === true) return (acc += 1);
-          if (m.playerTwo.bye === true) return (acc += 1);
-        }
-        return (acc += 0);
-      }, 0);
-      return { id: player.id, byes };
-    })
-    .sort((a, b) => (a.byes > b.byes ? 1 : -1));
+  if (worsts.length % 2 !== 0) {
+    const worstMapByes = worsts
+      .map((player, index) => {
+        const byes = tourney.matches.reduce((acc, m) => {
+          if (m.playerOne.id === player.id || m.playerTwo.id === player.id) {
+            if (m.playerOne.bye === true) return (acc += 1);
+            if (m.playerTwo.bye === true) return (acc += 1);
+          }
+          return (acc += 0);
+        }, 0);
+        return { id: player.id, byes };
+      })
+      .sort((a, b) => (a.byes > b.byes ? 1 : -1));
 
-  tourney.lastMatchNumber += 1;
-  const playerLessBye = tourney.players.find(
-    (p) => p.id === worstMapByes[0].id
-  );
-  const byeMatch = <Match>{
-    active: false,
-    playerOne: playerLessBye,
-    playerTwo: { bye: true },
-    matchNumber: tourney.lastMatchNumber,
-    result: { p1: 2, p2: 0, d: 0 },
-    round: tourney.currentRound,
-    etc: {},
-  };
-  tourney.matches.push(byeMatch);
+    tourney.lastMatchNumber += 1;
+    const playerLessBye = tourney.players.find(
+      (p) => p.id === worstMapByes[0].id
+    );
+    const byeMatch = <Match>{
+      active: false,
+      playerOne: playerLessBye,
+      playerTwo: { bye: true },
+      matchNumber: tourney.lastMatchNumber,
+      result: { p1: 2, p2: 0, d: 0 },
+      round: tourney.currentRound,
+      etc: {},
+    };
+    tourney.matches.push(byeMatch);
+    worsts = worsts.filter((item) => item.id != playerLessBye.id);
+  }
 
-  worsts = worsts.filter((item) => item.id != playerLessBye.id);
   for (let i = 0; i < worsts.length; i += 2) {
     const match = <Match>{
       active: true,
