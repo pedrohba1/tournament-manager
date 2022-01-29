@@ -5,7 +5,7 @@ import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import calculateTiebreakers from '../src/utils/calculateTiebreakers';
-import end from '../src/Tournament/end';
+import tournamentEnd from '../src/Tournament/tournamentEnd';
 
 const options = <Options>{
   seed: 3,
@@ -50,7 +50,7 @@ console.log(
   tourney.matches.filter((m) => m.round === tourney.currentRound)
 );
 
-const standings = end(tourney);
+const standings = tournamentEnd(tourney);
 
 const newMatches = tourney.matches.filter(
   (m) => m.round === tourney.currentRound

@@ -9,7 +9,7 @@ import { Results } from './types/Results';
 import { Result } from './types/Results';
 import nextRound from '../src/Tournament/nextRound';
 import dropPlayer from './Tournament/dropPlayer';
-import end from './Tournament/end';
+import tournamentEnd from './Tournament/tournamentEnd';
 
 export {
   Player,
@@ -23,5 +23,5 @@ export {
   startTourney,
   setResult,
   dropPlayer,
-  end,
+  tournamentEnd,
 };
