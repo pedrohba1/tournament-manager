@@ -1,7 +1,7 @@
 export type Options = {
   seed: number;
-  format: 'swiss';
-  gameType: 'magic' | 'lol' | 'csgo' | 'pokemon';
+  format: string;
+  gameType: string;
   playoffs: boolean;
   cutLimit: 8;
   bestOf: 3;
