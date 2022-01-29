@@ -12,6 +12,7 @@ const options = <Options>{
   gameType: 'magic',
   playoffs: false,
   cutLimit: 8,
+  maxRounds: null,
   bestOf: 3,
   winValue: 3,
   maxRound: null,
@@ -19,52 +20,26 @@ const options = <Options>{
   lossValue: 0,
 };
 
-const players = <Player[]>[
-  {
-    id: '0',
-    name: 'user_0',
-    nickname: 'user_0',
-  },
-  {
-    id: '1',
-    name: 'user_1',
-    nickname: 'user_1',
-  },
-  {
-    id: '2',
-    name: 'user_2',
-    nickname: 'user_2',
-  },
-  {
-    id: '3',
-    name: 'user_3',
-    nickname: 'user_3',
-  },
-  {
-    id: '4',
-    name: 'user_4',
-    nickname: 'user_4',
-  },
-  {
-    id: '5',
-    name: 'user_5',
-    nickname: 'user_5',
-  },
-];
+const players = <Player[]>[];
+const amount = 5;
+for (let i = 0; i < amount; i++) {
+  const player = <Player>{
+    id: `${i}`,
+    nickname: `user_${i}`,
+    name: `name_${i}`,
+  };
+  players.push(player);
+}
 
 let tourney = createTourney(options, players);
 tourney = startTourney(tourney);
-
-// for (const match of tourney.matches) {
-//   console.log(match);
-// }
+console.log(tourney.matches);
 
 tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 0 });
-tourney = nextRound(tourney);
+
+console.log(tourney.options.maxRounds);
 
 for (const player of tourney.players) {
-  console.log(player.id);
-  console.log(player.tiebreakers);
 }
