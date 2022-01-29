@@ -10,6 +10,9 @@ export default function nextRound(tourney: Tournament): Tournament {
   if (tourney.matches.find((m) => m.result === null))
     throw Error('cant start next round if match has no result');
 
+  if (tourney.currentRound === tourney.options.maxRounds)
+    throw Error('tourney ended already');
+
   //checks if there is some match of the current round that does not have a reuslt.
   // if there is a match without result throw an error:
   const noResult = tourney.matches.some(
@@ -17,6 +20,8 @@ export default function nextRound(tourney: Tournament): Tournament {
   );
   if (noResult) throw Error('there are unfinished matches');
 
+  //increment round
+  tourney.currentRound += 1;
   // set points first
   tourney = setPlayersPoints(tourney);
   // calculate tiebreakers for each player based on points set
@@ -26,6 +31,8 @@ export default function nextRound(tourney: Tournament): Tournament {
   }
 
   tourney = pairOpponents(tourney);
+
+  // increment round
   // pairs players according to
 
   return tourney;
