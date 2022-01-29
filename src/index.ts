@@ -63,4 +63,9 @@ tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
 tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 0 });
 
 tourney = nextRound(tourney);
-console.log(tourney.players);
+
+for (const player of tourney.players) {
+  console.log(player.id);
+  console.log(player.tiebreakers.summary);
+  console.log(player.tiebreakers);
+}
