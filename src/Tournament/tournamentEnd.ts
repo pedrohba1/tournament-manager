@@ -5,7 +5,7 @@ import { Result } from '../types/Results';
 import { Tournament } from '../types/Tournament';
 import getStandings from '../utils/getStandings';
 
-export default function end(tourney: Tournament): Player[] {
+export default function tournamentEnd(tourney: Tournament): Player[] {
   if (tourney.currentRound !== tourney.options.maxRounds)
     throw Error('not in final round');
 
