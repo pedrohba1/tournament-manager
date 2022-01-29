@@ -29,7 +29,7 @@ export default function calculateTiebreakers(
       : matchPoints / (playerMatches.length * 3);
 
   /**
-   * Opponent match-win percentage: A players opponents match-win percentage
+   * Opponent's match-win percentage: A players opponents match-win percentage
    * is the average match-win percentage of each opponent that
    * player faced (ignoring those rounds for which the player received a bye)
    */
@@ -68,7 +68,7 @@ export default function calculateTiebreakers(
     gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
 
   /**
-   *  Opponents game-win percentages:
+   *  Opponent's game-win percentages:
    * Similar to opponents’ match-win percentage, a player’s opponents’ game-win percentage is sim-
    * ply the average game-win percentage of all of that player’s opponents. And, as with opponents’
    * match-win percentage, each opponent has a minimum game-win percentage of 0.33.
@@ -80,18 +80,12 @@ export default function calculateTiebreakers(
       match.playerOne.id !== player.id ? match.playerOne : match.playerTwo;
     if (opponent.bye === true) continue;
 
-    // get opponent matches
-    const opponentMatches = tourney.matches.filter(
-      (m) => m.playerOne.id === player.id || m.playerTwo.id === player.id
-    );
-
     // calculate opponent game win percentage and sum in the accumulator
     const {
       tiebreakers: { gamesSummary, gamePoints },
     } = tourney.players.find((p) => p.id === opponent.id);
     const { w, l, d } = gamesSummary;
     const allGames = w + l + d;
-
     acc2 +=
       gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
   }
