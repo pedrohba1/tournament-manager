@@ -25,7 +25,7 @@ export default function getStandings(players: Player[]): Player[] {
         return a.tiebreakers.ogwp > b.tiebreakers.ogwp ? 1 : -1;
       }
       // if none of the above work, order them in any way
-      return 1;
+      return -1;
     }
 
     return a.tiebreakers.matchPoints < b.tiebreakers.matchPoints ? 1 : -1;

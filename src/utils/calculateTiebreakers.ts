@@ -64,8 +64,7 @@ export default function calculateTiebreakers(
    */
   const { w, l, d } = player.tiebreakers.gamesSummary;
   const allGames = w + l + d;
-  const gwp =
-    gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
+  const gwp = gamePoints / (allGames * 3);
 
   /**
    *  Opponent's game-win percentages:
