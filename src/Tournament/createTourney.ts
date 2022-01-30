@@ -22,7 +22,6 @@ export default function createTourney(
       ogwp: 0,
       omwp: 0.33,
       mwp: 0.33,
-      ogw: 0.33,
     },
   }));
 
