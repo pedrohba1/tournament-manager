@@ -39,7 +39,7 @@ export default function setPlayersPoints(tourney: Tournament) {
         }
       }
       if (player.id === match.playerTwo.id) {
-        gamePoints = p2 * 3 + d * 1;
+        gamePoints += p2 * 3 + d * 1;
 
         gWin += p2;
         gLose += p1;
