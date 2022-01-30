@@ -1,12 +1,3 @@
-# Swiss Tournament Organizer for magic TGC
-
-
-
-## Getting Started
-
-Simple usage:
-
-```ts
 import {
   Options,
   Player,
@@ -62,9 +53,3 @@ const standings = tournamentEnd(tourney);
 for (const standing of standings) {
   console.table({ ...standing.tiebreakers, nickname: standing.nickname });
 }
-```
-
-
-Install node modules: `npm install`
-
-Run the code with auto restart: `npm run dev`

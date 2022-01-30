@@ -4,7 +4,6 @@ import setResult from '../src/Tournament/setResult';
 import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
-import calculateTiebreakers from '../src/utils/calculateTiebreakers';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
 import { Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
