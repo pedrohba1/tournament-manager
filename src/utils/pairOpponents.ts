@@ -17,19 +17,8 @@ export default function pairOpponents(tourney: Tournament): Tournament {
     pairingPlayers.length
   );
 
-  for (let i = 0; i < bests.length; i += 2) {
-    const match = <Match>{
-      active: true,
-      matchNumber: tourney.lastMatchNumber,
-      playerOne: bests[i],
-      playerTwo: bests[i + 1],
-      round: tourney.currentRound,
-    };
-    tourney.lastMatchNumber += 1;
-    tourney.matches.push(match);
-  }
-
-  // from the worsts, the one with less byes should receive a bye
+  // from the worsts, the one with less byes should receive a bye, if
+  // the amount of worst players is odd
   // find byes of each of the worsts
   if (worsts.length % 2 !== 0) {
     const worstMapByes = worsts
@@ -62,6 +51,20 @@ export default function pairOpponents(tourney: Tournament): Tournament {
     worsts = worsts.filter((item) => item.id != playerLessBye.id);
   }
 
+  //pair the best against themselves
+  for (let i = 0; i < bests.length; i += 2) {
+    const match = <Match>{
+      active: true,
+      matchNumber: tourney.lastMatchNumber,
+      playerOne: bests[i],
+      playerTwo: bests[i + 1],
+      round: tourney.currentRound,
+    };
+    tourney.lastMatchNumber += 1;
+    tourney.matches.push(match);
+  }
+
+  // pair the worsts against themselves
   for (let i = 0; i < worsts.length; i += 2) {
     const match = <Match>{
       active: true,
