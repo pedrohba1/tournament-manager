@@ -24,7 +24,7 @@ describe('Filter function', () => {
 
   it('should configurate a tournament', () => {
     const options = <Options>{
-      seed: 3,
+      seed: 10,
       format: 'swiss',
       gameType: 'magic',
       playoffs: false,
@@ -79,7 +79,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings', () => {
-    const standings = getStandings(tourney);
+    const standings = getStandings(tourney.players);
     console.log('round 1 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
