@@ -95,9 +95,8 @@ export default function calculateTiebreakers(
     ...tiebreakers,
     mwp,
     omwp,
-    gwp,
     ogwp,
-    pgw: 0,
+    gwp,
   };
 
   return player;
