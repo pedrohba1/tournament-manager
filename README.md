@@ -1,6 +1,7 @@
 # Swiss Tournament Organizer for magic TGC
 
-
+Under development. Do not trust this organzier 100% (yet).
+Feel free to contribute.
 
 ## Getting Started
 
@@ -64,7 +65,3 @@ for (const standing of standings) {
 }
 ```
 
-
-Install node modules: `npm install`
-
-Run the code with auto restart: `npm run dev`
