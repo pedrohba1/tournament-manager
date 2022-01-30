@@ -1,7 +1,7 @@
 # Swiss Tournament Organizer for magic TGC
 
 Under development. Do not trust this organzier 100% (yet).
-Feel free to contribute.
+Feel free to contribute. There are test files that can be run with `npm run test`.
 
 ## Getting Started
 
