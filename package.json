@@ -4,25 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "tsc && node dist/index.js",
-    "test": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' tests/index.ts",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pedro Henrique Bufulin de Almeida",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "3.3.0",
     "@typescript-eslint/parser": "3.3.0",
-    "eslint": "7.3.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-prettier": "3.1.4",
+    "jest": "^27.4.7",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
+    "ts-jest": "^27.1.3",
     "ts-node": "8.10.2",
-    "typescript": "3.9.5"
+    "typescript": "^3.9.5"
   }
 }
