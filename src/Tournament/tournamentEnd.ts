@@ -18,6 +18,6 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
     tourney.players[playerIndex] = calculateTiebreakers(player, tourney);
   }
 
-  const standings = getStandings(tourney);
+  const standings = getStandings(tourney.players);
   return standings;
 }

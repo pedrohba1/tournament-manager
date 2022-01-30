@@ -1,10 +1,13 @@
 import { Player } from '../types/Player';
 import { Tournament } from '../types/Tournament';
 
-export default function getStandings(tourney: Tournament): Player[] {
-  const sortedPlayers = tourney.players;
+export default function getStandings(players: Player[]): Player[] {
+  const sortedPlayers = players;
   sortedPlayers.sort((a, b) => {
     if (a.tiebreakers.matchPoints === b.tiebreakers.matchPoints) {
+      if (a.tiebreakers.gamePoints !== b.tiebreakers.gamePoints) {
+        return a.tiebreakers.gamePoints < b.tiebreakers.gamePoints ? 1 : -1;
+      }
       // if match points are the same, calculate based on opmwp's
       // omwp the lesser the better
       if (a.tiebreakers.omwp !== b.tiebreakers.omwp) {
