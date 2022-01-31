@@ -1,7 +1,17 @@
+import { nextRound } from '..';
 import { Match, Matches } from '../types/Match';
 import { Tournament } from '../types/Tournament';
 import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
+
+const DEBUG = false;
+
+function debug(...args) {
+  if (DEBUG) {
+    console.log.apply(this, args);
+  }
+}
+
 export default function pairOpponents(tourney: Tournament): Tournament {
   let pairingPlayers = tourney.players;
 
@@ -59,29 +69,25 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   // pairing needs to respect forbidden pairings rules.
 
   for (const player of orderedByGreatness) {
-    const forbiddenPairings = getForbiddenPairings(player, tourney);
+    debug('pairing of ', player.id);
+
     if (
       tourney.matches.find(
         (m) =>
           m.round === tourney.currentRound &&
-          (m.playerOne.id === player.id || m.playerTwo.id === player.id)
+          (player.id === m.playerOne.id || player.id === m.playerTwo.id)
       )
     )
       continue;
     for (const opponent of orderedByGreatness) {
+      debug('trying opponent', opponent.id);
       // do not allow a pairing if forbidden
+      debug('first filter');
+      const forbiddenPairings = getForbiddenPairings(player, tourney);
+      debug(forbiddenPairings);
       if (forbiddenPairings.has(opponent.id)) continue;
-      // do not allow pairing if either opponent or player already were paired
+      // do not allow pairing if either orderedByGreatness[j] or player already were paired
       // in this round
-      if (
-        tourney.matches.find(
-          (m) =>
-            (m.round === tourney.currentRound &&
-              m.playerOne.id === opponent.id) ||
-            m.playerTwo.id === opponent.id
-        )
-      )
-        continue;
       else {
         const match = <Match>{
           active: true,
@@ -92,6 +98,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
         };
         tourney.lastMatchNumber += 1;
         tourney.matches.push(match);
+        debug(player.id, 'paired with', opponent.id);
         break;
       }
     }

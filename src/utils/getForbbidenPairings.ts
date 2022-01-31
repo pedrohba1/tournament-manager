@@ -9,7 +9,7 @@ export default function getForbiddenPairings(
   //player cant be paired with himself:
   forbiddenPairings.add(player.id);
   //player can't be paired with anyone else that it has faced
-  // get all players this player has played against:
+  // get all players this player HAS played against:
   const allPlayerPastMatches = tourney.matches.filter(
     (m) =>
       m.playerOne.id === player.id ||
@@ -22,5 +22,16 @@ export default function getForbiddenPairings(
     if (match.playerTwo.id !== player.id && !match.playerTwo.bye)
       forbiddenPairings.add(match.playerTwo.id);
   }
+
+  //get all players from current round matches, they cant be paired with:
+
+  const currentMatchPairs = tourney.matches.filter(
+    (m) => m.round === tourney.currentRound
+  );
+  for (const match of currentMatchPairs) {
+    forbiddenPairings.add(match.playerOne.id);
+    forbiddenPairings.add(match.playerTwo.id);
+  }
+
   return forbiddenPairings;
 }
