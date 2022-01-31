@@ -1,5 +1,6 @@
 import { Match, Matches } from '../types/Match';
 import { Tournament } from '../types/Tournament';
+import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
 export default function pairOpponents(tourney: Tournament): Tournament {
   let pairingPlayers = tourney.players;
@@ -48,33 +49,52 @@ export default function pairOpponents(tourney: Tournament): Tournament {
     };
     tourney.lastMatchNumber += 1;
     tourney.matches.push(byeMatch);
+    //remove the worst player that received a bye from the worsts group
     worsts = worsts.filter((item) => item.id != playerLessBye.id);
   }
 
-  //pair the best against themselves
-  for (let i = 0; i < bests.length; i += 2) {
-    const match = <Match>{
-      active: true,
-      matchNumber: tourney.lastMatchNumber,
-      playerOne: bests[i],
-      playerTwo: bests[i + 1],
-      round: tourney.currentRound,
-    };
-    tourney.lastMatchNumber += 1;
-    tourney.matches.push(match);
-  }
+  const orderedByGreatness = [...bests, ...worsts];
 
-  // pair the worsts against themselves
-  for (let i = 0; i < worsts.length; i += 2) {
-    const match = <Match>{
-      active: true,
-      matchNumber: tourney.lastMatchNumber,
-      playerOne: worsts[i],
-      playerTwo: worsts[i + 1],
-      round: tourney.currentRound,
-    };
-    tourney.lastMatchNumber += 1;
-    tourney.matches.push(match);
+  //pair the players (bests against bests and worst against worsts)
+  // pairing needs to respect forbidden pairings rules.
+
+  for (const player of orderedByGreatness) {
+    const forbiddenPairings = getForbiddenPairings(player, tourney);
+    if (
+      tourney.matches.find(
+        (m) =>
+          m.round === tourney.currentRound &&
+          (m.playerOne.id === player.id || m.playerTwo.id === player.id)
+      )
+    )
+      continue;
+    for (const opponent of orderedByGreatness) {
+      // do not allow a pairing if forbidden
+      if (forbiddenPairings.has(opponent.id)) continue;
+      // do not allow pairing if either opponent or player already were paired
+      // in this round
+      if (
+        tourney.matches.find(
+          (m) =>
+            (m.round === tourney.currentRound &&
+              m.playerOne.id === opponent.id) ||
+            m.playerTwo.id === opponent.id
+        )
+      )
+        continue;
+      else {
+        const match = <Match>{
+          active: true,
+          matchNumber: tourney.lastMatchNumber,
+          playerOne: player,
+          playerTwo: opponent,
+          round: tourney.currentRound,
+        };
+        tourney.lastMatchNumber += 1;
+        tourney.matches.push(match);
+        break;
+      }
+    }
   }
 
   return tourney;
