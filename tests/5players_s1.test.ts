@@ -111,8 +111,8 @@ describe('Filter function', () => {
   });
 
   it('should set reuslts for round 3', () => {
-    tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
-    tourney = setResult(tourney, 7, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 1 });
     console.log('third round matches with results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
@@ -133,9 +133,10 @@ describe('Filter function', () => {
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-    expect(standings[0].nickname).toBe('user_0');
+    expect(standings[0].nickname).toBe('user_2');
     expect(standings[1].nickname).toBe('user_3');
-    expect(standings[2].nickname).toBe('user_2');
-    expect(standings[3].nickname).toBe('user_1');
+    expect(standings[2].nickname).toBe('user_1');
+    expect(standings[3].nickname).toBe('user_4');
+    expect(standings[4].nickname).toBe('user_0');
   });
 });
