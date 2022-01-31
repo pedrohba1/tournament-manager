@@ -22,6 +22,7 @@ export default function pairOpponentsFirstRound(
     };
     if (match.playerTwo.bye) {
       match.result = { d: 0, p1: 2, p2: 0 };
+      match.active = false;
     }
     tourney.lastMatchNumber += 1;
     matches.push(match);

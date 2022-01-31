@@ -31,7 +31,6 @@ describe('Filter function', () => {
       maxRounds: null,
       bestOf: 3,
       winValue: 3,
-      maxRound: null,
       drawValue: 1,
       lossValue: 0,
     };
@@ -48,6 +47,7 @@ describe('Filter function', () => {
     }
 
     tourney = createTourney(options, players);
+    console.log(tourney.options);
     expect(tourney.options.maxRounds).toBe(2);
   });
 });
