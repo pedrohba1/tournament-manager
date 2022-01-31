@@ -16,7 +16,7 @@ export default function getStandings(players: Player[]): Player[] {
       // if match points are the same, calculate based on opmwp's
       // omwp the lesser the better
       if (a.tiebreakers.omwp !== b.tiebreakers.omwp) {
-        return a.tiebreakers.omwp > b.tiebreakers.omwp ? 1 : -1;
+        return a.tiebreakers.omwp < b.tiebreakers.omwp ? 1 : -1;
       }
 
       // if both match points and omwp's are the same, calculate based on gwp's
@@ -27,7 +27,7 @@ export default function getStandings(players: Player[]): Player[] {
 
       // if it ties on matchPpoints, omwp's and gwp's, try to order by ogwp's
       if (a.tiebreakers.ogwp !== b.tiebreakers.ogwp) {
-        return a.tiebreakers.ogwp > b.tiebreakers.ogwp ? 1 : -1;
+        return a.tiebreakers.ogwp < b.tiebreakers.ogwp ? 1 : -1;
       }
       // if none of the above work, order them in any way
       return -1;
