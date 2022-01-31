@@ -113,6 +113,8 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       round: tourney.currentRound,
       etc: {},
     };
+    const playerByIndex = tourney.players.findIndex((p) => p.id === chosen.id);
+    tourney.players[playerByIndex].tiebreakers.byes += 1;
     tourney.lastMatchNumber += 1;
     tourney.matches.push(byeMatch);
   }

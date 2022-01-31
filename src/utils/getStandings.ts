@@ -8,6 +8,11 @@ export default function getStandings(players: Player[]): Player[] {
       if (a.tiebreakers.gamePoints !== b.tiebreakers.gamePoints) {
         return a.tiebreakers.gamePoints < b.tiebreakers.gamePoints ? 1 : -1;
       }
+      // if player byes are greater then others, put down in the list on same gamePoints and MatchPoints.
+      if (a.tiebreakers.byes !== b.tiebreakers.byes) {
+        return a.tiebreakers.byes > b.tiebreakers.byes ? 1 : -1;
+      }
+
       // if match points are the same, calculate based on opmwp's
       // omwp the lesser the better
       if (a.tiebreakers.omwp !== b.tiebreakers.omwp) {

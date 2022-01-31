@@ -10,6 +10,7 @@ export type Player = {
 };
 
 export type TieBreakers = {
+  byes: number;
   mwp: number; //match-win percetnage
   omwp: number; //opponent match wins percentage
   ogwp: number; // opponent game wins percentage

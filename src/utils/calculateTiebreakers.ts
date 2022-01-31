@@ -1,7 +1,7 @@
 import { Tournament } from '../types/Tournament';
 import { Player } from '../types/Player';
 
-const DEBUG = true;
+const DEBUG = false;
 
 function debug(...args) {
   if (DEBUG) {
@@ -22,14 +22,8 @@ export default function calculateTiebreakers(
 
   // filter matches that his player participated
   // filter byes
-  // const playerMatches = tourney.matches.filter(
-  //   (item) => item.playerOne.id === player.id || item.playerTwo.id === player.id
-  // );
-
   const playerMatches = tourney.matches.filter(
-    (item) =>
-      (item.playerOne.id === player.id && !item.playerTwo.bye) ||
-      (item.playerTwo.id === player.id && !item.playerOne.bye)
+    (item) => item.playerOne.id === player.id || item.playerTwo.id === player.id
   );
 
   /**
@@ -38,6 +32,7 @@ export default function calculateTiebreakers(
    * play accumulated match points divided by 3 times
    * the number of rounds in which he or she competed, or 0.33
    */
+
   const mwp =
     matchPoints / (playerMatches.length * 3) < 0.33
       ? 0.33
@@ -51,10 +46,14 @@ export default function calculateTiebreakers(
   debug('omwp of player', player.id);
   let acc = 0;
   for (const match of playerMatches) {
+    debug('match of player', match.matchNumber);
     // get single oppopnet (desconsider byes)
     const opponent =
       match.playerOne.id !== player.id ? match.playerOne : match.playerTwo;
-    if (opponent.bye === true) continue;
+    if (opponent.bye) {
+      acc += 0;
+      continue;
+    }
 
     // get opponent matches
     const opponentMatches = tourney.matches.filter(
@@ -65,6 +64,7 @@ export default function calculateTiebreakers(
     const {
       tiebreakers: { matchPoints },
     } = tourney.players.find((p) => p.id === opponent.id);
+    debug('result of acc', matchPoints / (opponentMatches.length * 3));
     acc +=
       matchPoints / (opponentMatches.length * 3) < 0.33
         ? 0.33
@@ -80,8 +80,10 @@ export default function calculateTiebreakers(
    */
   const { w, l, d } = player.tiebreakers.gamesSummary;
   const allGames = w + l + d;
+  debug('gwp of ', player.id);
   const gwp =
     gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
+  debug('gwp = ', gamePoints, '/', allGames * 3);
 
   /**
    *  Opponent's game-win percentages:
@@ -95,8 +97,11 @@ export default function calculateTiebreakers(
     // get single oppopnet (desconsider byes)
     const opponent =
       match.playerOne.id !== player.id ? match.playerOne : match.playerTwo;
-    if (opponent.bye === true) continue;
 
+    if (opponent.bye) {
+      acc += 0;
+      continue;
+    }
     // calculate opponent game win percentage and sum in the accumulator
     const {
       tiebreakers: { gamesSummary, gamePoints },

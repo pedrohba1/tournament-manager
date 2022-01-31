@@ -16,6 +16,7 @@ export default function createTourney(
     ...p,
     active: true,
     tiebreakers: {
+      byes: 0,
       gamePoints: 0,
       matchPoints: 0,
       matchesSummary: { d: 0, l: 0, w: 0 },
