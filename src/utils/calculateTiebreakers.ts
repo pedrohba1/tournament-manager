@@ -48,6 +48,7 @@ export default function calculateTiebreakers(
    * is the average match-win percentage of each opponent that
    * player faced (ignoring those rounds for which the player received a bye)
    */
+  debug('omwp of player', player.id);
   let acc = 0;
   for (const match of playerMatches) {
     // get single oppopnet (desconsider byes)
