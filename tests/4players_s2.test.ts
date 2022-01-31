@@ -69,7 +69,7 @@ describe('Filter function', () => {
 
   it('should set results', () => {
     tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
-    tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
+    tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 1 });
 
     console.log('first round results setted');
     const currentMatches = tourney.matches.filter(
@@ -95,15 +95,15 @@ describe('Filter function', () => {
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-    expect(standings[0].nickname).toBe('user_2');
-    expect(standings[1].nickname).toBe('user_0');
+    expect(standings[0].nickname).toBe('user_0');
+    expect(standings[1].nickname).toBe('user_2');
     expect(standings[2].nickname).toBe('user_3');
     expect(standings[3].nickname).toBe('user_1');
   });
 
   it('should set results for round 2', () => {
-    tourney = setResult(tourney, 3, { d: 0, p1: 0, p2: 2 });
-    tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 0 });
+    tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 0 });
 
     console.log('second round matches with results setted');
     const currentMatches = tourney.matches.filter(
@@ -125,9 +125,5 @@ describe('Filter function', () => {
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-    expect(standings[0].nickname).toBe('user_0');
-    expect(standings[1].nickname).toBe('user_3');
-    expect(standings[2].nickname).toBe('user_2');
-    expect(standings[3].nickname).toBe('user_1');
   });
 });
