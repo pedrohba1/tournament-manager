@@ -26,7 +26,8 @@ export default function createTourney(
     },
   }));
 
-  tourney = setMaxRound(tourney);
-
+  if (!options.maxRounds) {
+    tourney = setMaxRound(tourney);
+  } else tourney.options.maxRounds = options.maxRounds;
   return tourney;
 }
