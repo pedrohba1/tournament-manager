@@ -132,4 +132,41 @@ describe('Filter function', () => {
     expect(isPair('3', '0', tourney)).toBe(true);
     expect(isPair('6', '4', tourney)).toBe(true);
   });
+
+  it('should set results for round 2', () => {
+    //user7 2x0 user5
+    tourney = setResult(tourney, 5, { p1: 2, p2: 0, d: 0 });
+    //user1 1x1 1draw user2
+    tourney = setResult(tourney, 6, { p1: 2, p2: 0, d: 0 });
+    //user3 2x1 user0
+    tourney = setResult(tourney, 7, { p1: 2, p2: 0, d: 0 });
+    //user6 0x2 user4
+    tourney = setResult(tourney, 8, { p1: 0, p2: 2, d: 0 });
+  });
+
+  it('should start next round', () => {
+    tourney = nextRound(tourney);
+  });
+
+  it('should get standings for round 1', () => {
+    const standings = getStandings(tourney.players);
+    console.log('round 1 standings:');
+    for (const standing of standings) {
+      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
+    }
+  });
+
+  it('should get the correct pairings for round 2', () => {
+    const activeMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+    for (const match of activeMatches) {
+      console.table({
+        '#': match.matchNumber,
+        playerOne: match.playerOne.nickname,
+        playerTwo: match.playerTwo.nickname,
+        results: match.result,
+      });
+    }
+  });
 });
