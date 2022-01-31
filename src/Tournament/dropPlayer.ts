@@ -1,8 +1,5 @@
-import { Match } from '../types/Match';
-import { Options } from '../types/Options';
-import { Player } from '../types/Player';
-import { Result } from '../types/Results';
 import { Tournament } from '../types/Tournament';
+import setMaxRound from './setMaxRound';
 
 export default function dropPlayer(
   tourney: Tournament,
@@ -12,5 +9,6 @@ export default function dropPlayer(
   if (tourney.players[playerIndex].active === false)
     throw Error('player already dropped');
   tourney.players[playerIndex].active = false;
+  tourney = setMaxRound(tourney);
   return tourney;
 }
