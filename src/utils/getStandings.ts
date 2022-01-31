@@ -5,10 +5,10 @@ export default function getStandings(players: Player[]): Player[] {
   const sortedPlayers = players;
   sortedPlayers.sort((a, b) => {
     if (a.tiebreakers.matchPoints === b.tiebreakers.matchPoints) {
-      if (a.tiebreakers.gamePoints !== b.tiebreakers.gamePoints) {
-        return a.tiebreakers.gamePoints < b.tiebreakers.gamePoints ? 1 : -1;
-      }
-      // if player byes are greater then others, put down in the list on same gamePoints and MatchPoints.
+      // if (a.tiebreakers.gamePoints !== b.tiebreakers.gamePoints) {
+      //   return a.tiebreakers.gamePoints < b.tiebreakers.gamePoints ? 1 : -1;
+      // }
+      // if player byes are greater then others, it goes down.
       if (a.tiebreakers.byes !== b.tiebreakers.byes) {
         return a.tiebreakers.byes > b.tiebreakers.byes ? 1 : -1;
       }
