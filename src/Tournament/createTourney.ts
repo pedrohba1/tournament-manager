@@ -20,7 +20,7 @@ export default function createTourney(
       matchesSummary: { d: 0, l: 0, w: 0 },
       gamesSummary: { d: 0, l: 0, w: 0 },
       omwp: 0.33,
-      gwp: 0,
+      gwp: 0.33,
       ogwp: 0.33,
       mwp: 0.33,
     },
