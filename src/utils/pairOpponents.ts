@@ -72,7 +72,9 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   // from the worsts, the one with less byes should receive a bye, if
   // the amount of worst players is odd
   // find byes of each of the worsts
-  if (worsts.length % 2 !== 0) {
+
+  if (orderedByGreatness.length % 2 !== 0) {
+    debug('giving bye to left players');
     const worstMapByes = worsts
       .map((player, index) => {
         const byes = tourney.matches.reduce((acc, m) => {
