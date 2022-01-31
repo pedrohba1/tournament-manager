@@ -9,6 +9,7 @@ import { Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
+import isPair from './utils/isPair';
 
 describe('Filter function', () => {
   beforeEach(() => {
@@ -103,7 +104,6 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 3, { p1: 2, p2: 1, d: 0 });
     //user6 0x2 user7
     tourney = setResult(tourney, 4, { p1: 0, p2: 2, d: 0 });
-    console.log(tourney.matches);
   });
 
   it('should start next round', () => {
@@ -124,5 +124,12 @@ describe('Filter function', () => {
     expect(standings[5].nickname).toBe('user_0');
     expect(standings[6].nickname).toBe('user_6');
     expect(standings[7].nickname).toBe('user_4');
+  });
+
+  it('should get the correct pairings for round 2', () => {
+    expect(isPair('7', '5', tourney)).toBe(true);
+    expect(isPair('1', '2', tourney)).toBe(true);
+    expect(isPair('3', '0', tourney)).toBe(true);
+    expect(isPair('6', '4', tourney)).toBe(true);
   });
 });
