@@ -16,6 +16,9 @@ export default function setResult(
   if (!tourney.matches[matchIndex]) throw Error('match does not exist');
   if (tourney.matches[matchIndex].round !== tourney.currentRound)
     throw Error("can't change result of a past match");
+
+  const { playerOne, playerTwo } = tourney.matches[matchIndex];
+  if (playerOne.bye || playerTwo.bye) throw Error('cant set result of bye');
   tourney.matches[matchIndex].result = result;
   tourney.matches[matchIndex].active = false;
   // sets a result of a match
