@@ -47,6 +47,13 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       matchNumber: tourney.lastMatchNumber,
       round: tourney.currentRound,
       etc: {},
+      result: player2.bye
+        ? {
+            d: 0,
+            p1: 2,
+            p2: 0,
+          }
+        : undefined,
     });
     tourney.lastMatchNumber += 1;
   });

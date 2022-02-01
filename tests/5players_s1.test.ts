@@ -111,35 +111,35 @@ describe('Filter function', () => {
     tourney = nextRound(tourney);
   });
 
-  // it('should set reuslts for round 3', () => {
-  //   tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
-  //   tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 1 });
-  //   console.log('third round matches with results setted');
-  //   const currentMatches = tourney.matches.filter(
-  //     (m) => m.round === tourney.currentRound
-  //   );
-  //   for (const match of currentMatches) {
-  //     console.table({
-  //       '#': match.matchNumber,
-  //       playerOne: match.playerOne.nickname,
-  //       playerTwo: match.playerTwo.nickname,
-  //       results: match.result,
-  //     });
-  //   }
-  // });
+  it('should set reuslts for round 3', () => {
+    tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 1 });
+    console.log('third round matches with results setted');
+    const currentMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+    for (const match of currentMatches) {
+      console.table({
+        '#': match.matchNumber,
+        playerOne: match.playerOne.nickname,
+        playerTwo: match.playerTwo.nickname,
+        results: match.result,
+      });
+    }
+  });
 
-  // it('should get final standings', () => {
-  //   console.log('final standings');
-  //   const standings = tournamentEnd(tourney);
-  //   for (const standing of standings) {
-  //     console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-  //   }
-  //   expect(standings[0].nickname).toBe('user_4');
-  //   expect(standings[1].nickname).toBe('user_0');
-  //   expect(standings[2].nickname).toBe('user_2');
-  //   expect(standings[3].nickname).toBe('user_3');
-  //   expect(standings[4].nickname).toBe('user_1');
-  // });
+  it('should get final standings', () => {
+    console.log('final standings');
+    const standings = tournamentEnd(tourney);
+    for (const standing of standings) {
+      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
+    }
+    expect(standings[0].nickname).toBe('user_2');
+    expect(standings[1].nickname).toBe('user_1');
+    expect(standings[2].nickname).toBe('user_3');
+    expect(standings[3].nickname).toBe('user_4');
+    expect(standings[4].nickname).toBe('user_0');
+  });
 });
 
 //user2 2 x 0  user5
