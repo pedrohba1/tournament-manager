@@ -89,7 +89,9 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 10, { p1: 2, p2: 0, d: 0 });
   });
 
-  it('should drop player5 ', () => {});
+  it('should drop player5 ', () => {
+    tourney = dropPlayer(tourney, '5');
+  });
 
   it('get standings before rund 3 ', () => {
     console.log('before round 3 standings');
