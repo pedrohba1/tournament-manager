@@ -1,5 +1,6 @@
 import { Results } from './Results';
 export type Player = {
+  blossomId: number;
   id: string;
   name: string;
   active: boolean;

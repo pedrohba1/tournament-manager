@@ -26,10 +26,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   // pairing needs to respect forbidden pairings rules.
 
   const possiblePairings = getPossiblePairings(tourney);
-  // if (tourney.currentRound === 3) {
-  //   console.log('ordenado por greatness');
-  //   readableStandings(orderedByGreatness);
-  // }
+
   const pairings = choosePossibility(possiblePairings);
   const paired = <Match[]>[];
   const added = new Set();

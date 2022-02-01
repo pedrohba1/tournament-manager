@@ -14,9 +14,13 @@ export default function getPossiblePairngs(tourney: Tournament) {
     const forbidden = getForbiddenPairings(player, tourney);
     for (const opponent of standings) {
       if (!opponent.active) continue;
-      if (forbidden.has(opponent.id)) continue;
-      const playerIndex = standings.findIndex((p) => p.id === player.id);
-      const opponentIndex = standings.findIndex((p) => p.id === opponent.id);
+      if (forbidden.has(opponent.blossomId)) continue;
+      const playerIndex = standings.findIndex(
+        (p) => p.blossomId === player.blossomId
+      );
+      const opponentIndex = standings.findIndex(
+        (p) => p.blossomId === opponent.blossomId
+      );
 
       //pairings on top need to have a higher value, so they have priority in being paired.
       for (const standing of standings) {
@@ -24,8 +28,8 @@ export default function getPossiblePairngs(tourney: Tournament) {
       if (
         possible.find(
           (ps) =>
-            (ps[0] === player.id && ps[1] === opponent.id) ||
-            (ps[1] === player.id && ps[0] === opponent.id)
+            (ps[0] === player.blossomId && ps[1] === opponent.blossomId) ||
+            (ps[1] === player.blossomId && ps[0] === opponent.blossomId)
         )
       )
         continue;
@@ -45,7 +49,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
         player.tiebreakers.byes * 10 +
         (pScore + oppScore);
 
-      possible.push([player.id, opponent.id, min]);
+      possible.push([player.blossomId, opponent.blossomId, min]);
     }
   }
   return possible;

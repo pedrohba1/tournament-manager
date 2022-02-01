@@ -12,8 +12,9 @@ export default function createTourney(
   tourney.lastMatchNumber = 1;
   tourney.currentRound = 1;
   tourney.etc = {};
-  tourney.players = players.map((p) => ({
+  tourney.players = players.map((p, index) => ({
     ...p,
+    blossomId: index,
     active: true,
     tiebreakers: {
       byes: 0,
