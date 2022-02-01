@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const blossom = require('edmonds-blossom');
 
 const DEBUG = false;
