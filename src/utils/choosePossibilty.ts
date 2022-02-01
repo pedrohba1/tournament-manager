@@ -13,7 +13,6 @@ export default function choosePossibility(possibilities: unknown[]): number[] {
 
   debug(possibilities);
 
-  // console.log('possibiliteis', possibilities);
   const toBlossom = possibilities.map((p) => [
     Number(p[0]),
     Number(p[1]),

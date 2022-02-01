@@ -48,6 +48,5 @@ export default function getPossiblePairngs(tourney: Tournament) {
       possible.push([player.id, opponent.id, min]);
     }
   }
-  console.log(possible);
   return possible;
 }
