@@ -41,7 +41,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       added.add(index);
     }
     paired.push(<Match>{
-      active: true,
+      active: player2.bye ? false : true,
       playerOne: player1,
       playerTwo: player2,
       matchNumber: tourney.lastMatchNumber,
