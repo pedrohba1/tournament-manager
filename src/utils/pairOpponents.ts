@@ -35,7 +35,9 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   const added = new Set();
   pairings.forEach((item, index) => {
     if (added.has(item) && added.has(index)) return;
+    const player1 = tourney.players.find((p) => Number(p.id) === index);
     let player2 = tourney.players.find((p) => Number(p.id) === item);
+    if (!player1.active || player2?.active === false) return;
     player2 = player2 ? player2 : <Player>{ bye: true };
     if (!player2.bye) {
       added.add(Number(player2.id));
@@ -43,7 +45,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
     }
     paired.push(<Match>{
       active: true,
-      playerOne: tourney.players.find((p) => Number(p.id) === index),
+      playerOne: player1,
       playerTwo: player2,
       matchNumber: tourney.lastMatchNumber,
       round: tourney.currentRound,

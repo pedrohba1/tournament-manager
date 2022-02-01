@@ -10,8 +10,10 @@ export default function getPossiblePairngs(tourney: Tournament) {
   readableStandings(getStandings(tourney.players));
 
   for (const player of tourney.players) {
+    if (!player.active) continue;
     const forbidden = getForbiddenPairings(player, tourney);
     for (const opponent of standings) {
+      if (!opponent.active) continue;
       if (forbidden.has(opponent.id)) continue;
       const playerIndex = standings.findIndex((p) => p.id === player.id);
       const opponentIndex = standings.findIndex((p) => p.id === opponent.id);
@@ -30,14 +32,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
 
       const pScore =
         player.tiebreakers.matchPoints && player.tiebreakers.gamePoints
-          ? player.tiebreakers.matchPoints * player.tiebreakers.gamePoints
-          : 1;
-
-      // byes on same matchPoints and gamePoints are greater than compared player, down grade him
-      const pByes =
-        player.tiebreakers.byes > opponent.tiebreakers.byes
-          ? -(player.tiebreakers.matchPoints * player.tiebreakers.gamePoints) /
-            4
+          ? player.tiebreakers.matchPoints + player.tiebreakers.gamePoints
           : 1;
 
       const oppScore =
@@ -47,12 +42,12 @@ export default function getPossiblePairngs(tourney: Tournament) {
 
       const min =
         Math.abs(100 / (playerIndex - opponentIndex)) * 20 +
-        player.tiebreakers.byes * 10;
+        player.tiebreakers.byes * 10 +
+        (pScore + oppScore);
 
       possible.push([player.id, opponent.id, min]);
     }
   }
-
   console.log(possible);
   return possible;
 }
