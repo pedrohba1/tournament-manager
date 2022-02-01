@@ -32,12 +32,12 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   const added = new Set();
   pairings.forEach((item, index) => {
     if (added.has(item) && added.has(index)) return;
-    const player1 = tourney.players.find((p) => Number(p.id) === index);
-    let player2 = tourney.players.find((p) => Number(p.id) === item);
+    const player1 = tourney.players.find((p) => Number(p.blossomId) === index);
+    let player2 = tourney.players.find((p) => Number(p.blossomId) === item);
     if (!player1?.active || player2?.active === false) return;
     player2 = player2 ? player2 : <Player>{ bye: true };
     if (!player2.bye) {
-      added.add(Number(player2.id));
+      added.add(Number(player2.blossomId));
       added.add(index);
     }
     paired.push(<Match>{

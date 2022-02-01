@@ -40,7 +40,7 @@ describe('Filter function', () => {
     const amount = 4;
     for (let i = 0; i < amount; i++) {
       const player = <Player>{
-        id: `${i}`,
+        id: `testest${i}`,
         nickname: `user_${i}`,
         name: `name_${i}`,
       };
