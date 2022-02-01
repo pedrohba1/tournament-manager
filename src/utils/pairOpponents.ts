@@ -30,93 +30,28 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   //   console.log('ordenado por greatness');
   //   readableStandings(orderedByGreatness);
   // }
-  choosePossibility(possiblePairings);
-
-  for (const player of orderedByGreatness) {
-    debug('pairing of ', player.id);
-
-    if (
-      tourney.matches.find(
-        (m) =>
-          m.round === tourney.currentRound &&
-          (player.id === m.playerOne.id || player.id === m.playerTwo.id)
-      )
-    )
-      continue;
-    for (const opponent of orderedByGreatness) {
-      debug('trying opponent', opponent.id);
-      // do not allow a pairing if forbidden
-      debug('first filter');
-      const forbiddenPairings = getForbiddenPairings(player, tourney);
-      debug(forbiddenPairings);
-      if (forbiddenPairings.has(opponent.id)) continue;
-      // do not allow pairing if either orderedByGreatness[j] or player already were paired
-      // in this round
-      else {
-        const match = <Match>{
-          active: true,
-          matchNumber: tourney.lastMatchNumber,
-          playerOne: player,
-          playerTwo: opponent,
-          round: tourney.currentRound,
-        };
-        tourney.lastMatchNumber += 1;
-        tourney.matches.push(match);
-        debug(player.id, 'paired with', opponent.id);
-        break;
-      }
+  const pairings = choosePossibility(possiblePairings);
+  const paired = <Match[]>[];
+  const added = new Set();
+  pairings.forEach((item, index) => {
+    if (added.has(item) && added.has(index)) return;
+    let player2 = tourney.players.find((p) => Number(p.id) === item);
+    player2 = player2 ? player2 : <Player>{ bye: true };
+    if (!player2.bye) {
+      added.add(Number(player2.id));
+      added.add(index);
     }
-  }
-
-  // from the worsts, the one with less byes should receive a bye, if
-  // the amount of worst players is odd
-  // find byes of each of the worsts
-
-  if (orderedByGreatness.length % 2 !== 0) {
-    debug('giving bye to left players');
-    const worstMapByes = orderedByGreatness
-      .map((player, index) => {
-        const byes = tourney.matches.reduce((acc, m) => {
-          if (m.playerOne.id === player.id || m.playerTwo.id === player.id) {
-            if (m.playerOne.bye === true) return (acc += 1);
-            if (m.playerTwo.bye === true) return (acc += 1);
-          }
-          return (acc += 0);
-        }, 0);
-        return { id: player.id, byes };
-      })
-      .sort((a, b) => (a.byes > b.byes ? 1 : -1));
-
-    //the player with less byes that wasn't paired will receive a bye
-    let chosen: Player;
-    for (const playerToBye of worstMapByes) {
-      if (
-        tourney.matches.find(
-          (m) =>
-            m.round === tourney.currentRound &&
-            (playerToBye.id === m.playerOne?.id ||
-              playerToBye.id === m.playerTwo?.id)
-        )
-      )
-        continue;
-      chosen = tourney.players.find((p) => p.id === playerToBye.id);
-      break;
-    }
-
-    const byeMatch = <Match>{
-      active: false,
-      playerOne: chosen,
-      playerTwo: { bye: true },
+    paired.push(<Match>{
+      active: true,
+      playerOne: tourney.players.find((p) => Number(p.id) === index),
+      playerTwo: player2,
       matchNumber: tourney.lastMatchNumber,
-      result: { p1: 2, p2: 0, d: 0 },
       round: tourney.currentRound,
       etc: {},
-    };
-    const playerByIndex = tourney.players.findIndex((p) => p.id === chosen.id);
-    tourney.players[playerByIndex].tiebreakers.byes += 1;
+    });
     tourney.lastMatchNumber += 1;
-    tourney.matches.push(byeMatch);
-  }
+  });
 
+  tourney.matches = [...tourney.matches, ...paired];
   return tourney;
 }

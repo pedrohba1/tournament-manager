@@ -1,18 +1,24 @@
-export default function choosePossibility(possibilities: unknown[]) {
+import blossom from 'edmonds-blossom';
+
+const DEBUG = false;
+
+function debug(...args) {
+  if (DEBUG) {
+    console.log.apply(this, args);
+  }
+}
+
+export default function choosePossibility(possibilities: unknown[]): number[] {
   const possiblePairings = [];
 
-  for (const poss of possibilities) {
-    let leftPos = possibilities.filter(
-      (p) => p[0] !== poss[0] && p[0] !== poss[1]
-    );
-    console.log('left pos from', poss);
-    console.log(leftPos);
-    for (const left of leftPos) {
-      leftPos = possibilities.filter(
-        (p) => p[0] !== poss[0] && p[0] !== poss[1]
-      );
-    }
-  }
+  debug(possibilities);
 
-  return;
+  // console.log('possibiliteis', possibilities);
+  const toBlossom = possibilities.map((p) => [
+    Number(p[0]),
+    Number(p[1]),
+    p[2],
+  ]);
+
+  return blossom(toBlossom);
 }

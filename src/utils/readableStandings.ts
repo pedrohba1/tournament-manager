@@ -1,4 +1,4 @@
-import { Player } from '../../src';
+import { Player } from '..';
 
 export default function readableStandings(standings: Player[]) {
   for (const standing of standings) {

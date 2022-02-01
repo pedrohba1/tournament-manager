@@ -113,9 +113,9 @@ describe('Filter function', () => {
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-    expect(standings[0].nickname).toBe('user_0');
-    expect(standings[1].nickname).toBe('user_3');
-    expect(standings[2].nickname).toBe('user_2');
-    expect(standings[3].nickname).toBe('user_1');
+    expect(standings[0].nickname).toBe('user_2');
+    expect(standings[1].nickname).toBe('user_1');
+    expect(standings[2].nickname).toBe('user_0');
+    expect(standings[3].nickname).toBe('user_3');
   });
 });

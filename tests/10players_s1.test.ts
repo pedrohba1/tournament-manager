@@ -10,7 +10,7 @@ import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
 import isPair from './utils/isPair';
-import readableStandings from './utils/readableStandings';
+import readableStandings from '../src/utils/readableStandings';
 
 describe('Filter function', () => {
   beforeEach(() => {

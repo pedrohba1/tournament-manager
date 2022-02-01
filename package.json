@@ -14,6 +14,7 @@
   "author": "Pedro Henrique Bufulin de Almeida",
   "license": "ISC",
   "devDependencies": {
+    "@types/edmonds-blossom": "^1.0.2",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "3.3.0",
     "@typescript-eslint/parser": "3.3.0",
