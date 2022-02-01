@@ -7,7 +7,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
   const possible = [];
   const standings = getStandings(tourney.players);
 
-  readableStandings(getStandings(tourney.players));
+  // readableStandings(getStandings(tourney.players));
 
   for (const player of tourney.players) {
     if (!player.active) continue;
