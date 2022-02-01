@@ -1,4 +1,4 @@
-import blossom from 'edmonds-blossom';
+const blossom = require('edmonds-blossom');
 
 const DEBUG = false;
 
