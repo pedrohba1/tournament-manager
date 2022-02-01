@@ -26,5 +26,8 @@
     "ts-jest": "^27.1.3",
     "ts-node": "8.10.2",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "edmonds-blossom": "^1.0.0"
   }
 }

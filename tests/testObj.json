@@ -1,0 +1,1263 @@
+{
+    "options": {
+      "lossValue": 0,
+      "drawValue": 1,
+      "winValue": 3,
+      "bestOf": 3,
+      "cutLimit": 8,
+      "playoffs": null,
+      "gameType": "magic",
+      "format": "swiss",
+      "_id": "61f87347da382d89640c4db9",
+      "maxRounds": 4
+    },
+    "lastMatchNumber": 16,
+    "currentRound": 3,
+    "etc": {
+  
+    },
+    "players": [
+      {
+        "id": "61ca77ed4d83860d482bacd9",
+        "nickname": "user_1",
+        "name": "usuário 1",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_1"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 12,
+          "matchPoints": 6,
+          "matchesSummary": {
+            "w": 2,
+            "l": 0,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 4,
+            "l": 0,
+            "d": 0
+          },
+          "omwp": 0.41500000000000004,
+          "gwp": 1,
+          "ogwp": 0.365,
+          "mwp": 1
+        }
+      },
+      {
+        "id": "61ca77ee4d83860d482bacf5",
+        "nickname": "user_3",
+        "etc": {
+          "deckId": "61d47d80288407f46ecbc323",
+          "arenaAlias": "user_3"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 12,
+          "matchPoints": 6,
+          "matchesSummary": {
+            "w": 2,
+            "l": 0,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 4,
+            "l": 0,
+            "d": 0
+          },
+          "omwp": 0.5,
+          "gwp": 1,
+          "ogwp": 0.5,
+          "mwp": 1
+        }
+      },
+      {
+        "id": "61ca77ee4d83860d482bad03",
+        "nickname": "user_4",
+        "etc": {
+          "deckId": "61d47982288407f46ecbacc1",
+          "arenaAlias": "user_4"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 6,
+          "matchPoints": 3,
+          "matchesSummary": {
+            "w": 1,
+            "l": 1,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 2,
+            "l": 2,
+            "d": 0
+          },
+          "omwp": 0.665,
+          "gwp": 0.5,
+          "ogwp": 0.665,
+          "mwp": 0.5
+        }
+      },
+      {
+        "id": "61eff058a79d1ae92a16018b",
+        "nickname": "user_7",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_7"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 12,
+          "matchPoints": 6,
+          "matchesSummary": {
+            "w": 2,
+            "l": 0,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 4,
+            "l": 2,
+            "d": 0
+          },
+          "omwp": 0.41500000000000004,
+          "gwp": 0.6666666666666666,
+          "ogwp": 0.4666666666666667,
+          "mwp": 1
+        }
+      },
+      {
+        "id": "61eff059a79d1ae92a1601a9",
+        "nickname": "user_9",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_9"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 6,
+          "matchPoints": 3,
+          "matchesSummary": {
+            "w": 1,
+            "l": 1,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 2,
+            "l": 3,
+            "d": 0
+          },
+          "omwp": 0.665,
+          "gwp": 0.4,
+          "ogwp": 0.6666666666666666,
+          "mwp": 0.5
+        }
+      },
+      {
+        "id": "61eff057a79d1ae92a16017c",
+        "nickname": "user_6",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_6"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 9,
+          "matchPoints": 3,
+          "matchesSummary": {
+            "w": 1,
+            "l": 1,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 3,
+            "l": 2,
+            "d": 0
+          },
+          "omwp": 0.665,
+          "gwp": 0.6,
+          "ogwp": 0.4983333333333333,
+          "mwp": 0.5
+        }
+      },
+      {
+        "id": "61eff059a79d1ae92a16019a",
+        "nickname": "user_8",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_8"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 1,
+          "gamePoints": 6,
+          "matchPoints": 0,
+          "matchesSummary": {
+            "w": 0,
+            "l": 2,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 2,
+            "l": 4,
+            "d": 0
+          },
+          "omwp": 0.75,
+          "gwp": 0.3333333333333333,
+          "ogwp": 0.5333333333333333,
+          "mwp": 0.33
+        }
+      },
+      {
+        "id": "61eff057a79d1ae92a16015e",
+        "nickname": "user_0",
+        "name": "usuário 0",
+        "etc": {
+          "deckId": null,
+          "arenaAlias": "user_0"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 0,
+          "matchPoints": 0,
+          "matchesSummary": {
+            "w": 0,
+            "l": 2,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 0,
+            "l": 4,
+            "d": 0
+          },
+          "omwp": 0.75,
+          "gwp": 0.33,
+          "ogwp": 0.75,
+          "mwp": 0.33
+        }
+      },
+      {
+        "id": "61ca77ed4d83860d482bace7",
+        "nickname": "user_2",
+        "name": "user_2",
+        "etc": {
+          "deckId": "61d372b886cc67caa79e8e0a",
+          "arenaAlias": "user_2"
+        },
+        "active": true,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 6,
+          "matchPoints": 3,
+          "matchesSummary": {
+            "w": 1,
+            "l": 1,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 2,
+            "l": 2,
+            "d": 0
+          },
+          "omwp": 0.665,
+          "gwp": 0.5,
+          "ogwp": 0.665,
+          "mwp": 0.5
+        }
+      },
+      {
+        "id": "61dc72c8e0904c8221c846a1",
+        "nickname": "user_5",
+        "etc": {
+          "deckId": "61dc85c7e0904c8221c8b25b",
+          "arenaAlias": "user_5"
+        },
+        "active": false,
+        "tiebreakers": {
+          "byes": 0,
+          "gamePoints": 0,
+          "matchPoints": 0,
+          "matchesSummary": {
+            "w": 0,
+            "l": 2,
+            "d": 0
+          },
+          "gamesSummary": {
+            "w": 0,
+            "l": 4,
+            "d": 0
+          },
+          "omwp": 0.5,
+          "gwp": 0.33,
+          "ogwp": 0.55,
+          "mwp": 0.33
+        }
+      }
+    ],
+    "matches": [
+      {
+        "playerOne": {
+          "id": "61eff057a79d1ae92a16015e",
+          "nickname": "user_0",
+          "name": "usuário 0",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_0"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ed4d83860d482bacd9",
+          "nickname": "user_1",
+          "name": "usuário 1",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_1"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "active": false,
+        "matchNumber": 1,
+        "round": 1,
+        "result": {
+          "p1": 0,
+          "p2": 2,
+          "d": 0
+        }
+      },
+      {
+        "playerOne": {
+          "id": "61ca77ed4d83860d482bace7",
+          "nickname": "user_2",
+          "name": "user_2",
+          "etc": {
+            "deckId": "61d372b886cc67caa79e8e0a",
+            "arenaAlias": "user_2"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ee4d83860d482bacf5",
+          "nickname": "user_3",
+          "etc": {
+            "deckId": "61d47d80288407f46ecbc323",
+            "arenaAlias": "user_3"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "active": false,
+        "matchNumber": 2,
+        "round": 1,
+        "result": {
+          "p1": 0,
+          "p2": 2,
+          "d": 0
+        }
+      },
+      {
+        "playerOne": {
+          "id": "61ca77ee4d83860d482bad03",
+          "nickname": "user_4",
+          "etc": {
+            "deckId": "61d47982288407f46ecbacc1",
+            "arenaAlias": "user_4"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "playerTwo": {
+          "id": "61dc72c8e0904c8221c846a1",
+          "nickname": "user_5",
+          "etc": {
+            "deckId": "61dc85c7e0904c8221c8b25b",
+            "arenaAlias": "user_5"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "active": false,
+        "matchNumber": 3,
+        "round": 1,
+        "result": {
+          "p1": 2,
+          "p2": 0,
+          "d": 0
+        }
+      },
+      {
+        "playerOne": {
+          "id": "61eff057a79d1ae92a16017c",
+          "nickname": "user_6",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_6"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "playerTwo": {
+          "id": "61eff058a79d1ae92a16018b",
+          "nickname": "user_7",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_7"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "active": false,
+        "matchNumber": 4,
+        "round": 1,
+        "result": {
+          "p1": 1,
+          "p2": 2,
+          "d": 0
+        }
+      },
+      {
+        "playerOne": {
+          "id": "61eff059a79d1ae92a16019a",
+          "nickname": "user_8",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_8"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "playerTwo": {
+          "id": "61eff059a79d1ae92a1601a9",
+          "nickname": "user_9",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_9"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "gamesSummary": {
+              "d": 0,
+              "l": 0,
+              "w": 0
+            },
+            "omwp": 0,
+            "gwp": 0,
+            "ogwp": 0,
+            "mwp": 0
+          }
+        },
+        "active": false,
+        "matchNumber": 5,
+        "round": 1,
+        "result": {
+          "p1": 1,
+          "p2": 2,
+          "d": 0
+        }
+      },
+      {
+        "active": false,
+        "matchNumber": 6,
+        "playerOne": {
+          "id": "61ca77ee4d83860d482bad03",
+          "nickname": "user_4",
+          "etc": {
+            "deckId": "61d47982288407f46ecbacc1",
+            "arenaAlias": "user_4"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "omwp": 0.33,
+            "gwp": 1,
+            "ogwp": 0.33,
+            "mwp": 1
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ee4d83860d482bacf5",
+          "nickname": "user_3",
+          "etc": {
+            "deckId": "61d47d80288407f46ecbc323",
+            "arenaAlias": "user_3"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "omwp": 0.33,
+            "gwp": 1,
+            "ogwp": 0.33,
+            "mwp": 1
+          }
+        },
+        "round": 2,
+        "result": {
+          "p1": 0,
+          "p2": 2,
+          "d": 0
+        }
+      },
+      {
+        "active": false,
+        "matchNumber": 7,
+        "playerOne": {
+          "id": "61ca77ed4d83860d482bacd9",
+          "nickname": "user_1",
+          "name": "usuário 1",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_1"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "omwp": 0.33,
+            "gwp": 1,
+            "ogwp": 0.33,
+            "mwp": 1
+          }
+        },
+        "playerTwo": {
+          "id": "61eff059a79d1ae92a1601a9",
+          "nickname": "user_9",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_9"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 1,
+              "d": 0
+            },
+            "omwp": 0.33,
+            "gwp": 0.6666666666666666,
+            "ogwp": 0.3333333333333333,
+            "mwp": 1
+          }
+        },
+        "round": 2,
+        "result": {
+          "p1": 2,
+          "p2": 0,
+          "d": 0
+        }
+      },
+      {
+        "active": false,
+        "matchNumber": 8,
+        "playerOne": {
+          "id": "61eff058a79d1ae92a16018b",
+          "nickname": "user_7",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_7"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 1,
+              "d": 0
+            },
+            "omwp": 0.33,
+            "gwp": 0.6666666666666666,
+            "ogwp": 0.3333333333333333,
+            "mwp": 1
+          }
+        },
+        "playerTwo": {
+          "id": "61eff059a79d1ae92a16019a",
+          "nickname": "user_8",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_8"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 3,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 1,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 1,
+            "gwp": 0.3333333333333333,
+            "ogwp": 0.6666666666666666,
+            "mwp": 0.33
+          }
+        },
+        "round": 2,
+        "result": {
+          "p1": 2,
+          "p2": 1,
+          "d": 0
+        }
+      },
+      {
+        "active": false,
+        "matchNumber": 9,
+        "playerOne": {
+          "id": "61eff057a79d1ae92a16017c",
+          "nickname": "user_6",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_6"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 3,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 1,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 1,
+            "gwp": 0.3333333333333333,
+            "ogwp": 0.6666666666666666,
+            "mwp": 0.33
+          }
+        },
+        "playerTwo": {
+          "id": "61dc72c8e0904c8221c846a1",
+          "nickname": "user_5",
+          "etc": {
+            "deckId": "61dc85c7e0904c8221c8b25b",
+            "arenaAlias": "user_5"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 0,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 1,
+            "gwp": 0.33,
+            "ogwp": 1,
+            "mwp": 0.33
+          }
+        },
+        "round": 2,
+        "result": {
+          "p1": 2,
+          "p2": 0,
+          "d": 0
+        }
+      },
+      {
+        "active": false,
+        "matchNumber": 10,
+        "playerOne": {
+          "id": "61ca77ed4d83860d482bace7",
+          "nickname": "user_2",
+          "name": "user_2",
+          "etc": {
+            "deckId": "61d372b886cc67caa79e8e0a",
+            "arenaAlias": "user_2"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 0,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 1,
+            "gwp": 0.33,
+            "ogwp": 1,
+            "mwp": 0.33
+          }
+        },
+        "playerTwo": {
+          "id": "61eff057a79d1ae92a16015e",
+          "nickname": "user_0",
+          "name": "usuário 0",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_0"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 0,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 1,
+            "gwp": 0.33,
+            "ogwp": 1,
+            "mwp": 0.33
+          }
+        },
+        "round": 2,
+        "result": {
+          "p1": 2,
+          "p2": 0,
+          "d": 0
+        }
+      },
+      {
+        "active": true,
+        "matchNumber": 11,
+        "playerOne": {
+          "id": "61ca77ee4d83860d482bacf5",
+          "nickname": "user_3",
+          "etc": {
+            "deckId": "61d47d80288407f46ecbc323",
+            "arenaAlias": "user_3"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 12,
+            "matchPoints": 6,
+            "matchesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 4,
+              "l": 0,
+              "d": 0
+            },
+            "omwp": 0.5,
+            "gwp": 1,
+            "ogwp": 0.5,
+            "mwp": 1
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ed4d83860d482bacd9",
+          "nickname": "user_1",
+          "name": "usuário 1",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_1"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 12,
+            "matchPoints": 6,
+            "matchesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 4,
+              "l": 0,
+              "d": 0
+            },
+            "omwp": 0.41500000000000004,
+            "gwp": 1,
+            "ogwp": 0.365,
+            "mwp": 1
+          }
+        },
+        "round": 3
+      },
+      {
+        "active": true,
+        "matchNumber": 12,
+        "playerOne": {
+          "id": "61eff058a79d1ae92a16018b",
+          "nickname": "user_7",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_7"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 12,
+            "matchPoints": 6,
+            "matchesSummary": {
+              "w": 2,
+              "l": 0,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 4,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 0.41500000000000004,
+            "gwp": 0.6666666666666666,
+            "ogwp": 0.4666666666666667,
+            "mwp": 1
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ed4d83860d482bace7",
+          "nickname": "user_2",
+          "name": "user_2",
+          "etc": {
+            "deckId": "61d372b886cc67caa79e8e0a",
+            "arenaAlias": "user_2"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 0.665,
+            "gwp": 0.5,
+            "ogwp": 0.665,
+            "mwp": 0.5
+          }
+        },
+        "round": 3
+      },
+      {
+        "active": true,
+        "matchNumber": 13,
+        "playerOne": {
+          "id": "61eff057a79d1ae92a16017c",
+          "nickname": "user_6",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_6"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 9,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 3,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 0.665,
+            "gwp": 0.6,
+            "ogwp": 0.4983333333333333,
+            "mwp": 0.5
+          }
+        },
+        "playerTwo": {
+          "id": "61ca77ee4d83860d482bad03",
+          "nickname": "user_4",
+          "etc": {
+            "deckId": "61d47982288407f46ecbacc1",
+            "arenaAlias": "user_4"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 2,
+              "d": 0
+            },
+            "omwp": 0.665,
+            "gwp": 0.5,
+            "ogwp": 0.665,
+            "mwp": 0.5
+          }
+        },
+        "round": 3
+      },
+      {
+        "active": true,
+        "matchNumber": 14,
+        "playerOne": {
+          "id": "61eff059a79d1ae92a1601a9",
+          "nickname": "user_9",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_9"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 6,
+            "matchPoints": 3,
+            "matchesSummary": {
+              "w": 1,
+              "l": 1,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 3,
+              "d": 0
+            },
+            "omwp": 0.665,
+            "gwp": 0.4,
+            "ogwp": 0.6666666666666666,
+            "mwp": 0.5
+          }
+        },
+        "playerTwo": {
+          "id": "61eff057a79d1ae92a16015e",
+          "nickname": "user_0",
+          "name": "usuário 0",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_0"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 0,
+            "gamePoints": 0,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 2,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 0,
+              "l": 4,
+              "d": 0
+            },
+            "omwp": 0.75,
+            "gwp": 0.33,
+            "ogwp": 0.75,
+            "mwp": 0.33
+          }
+        },
+        "round": 3
+      },
+      {
+        "active": false,
+        "playerOne": {
+          "id": "61eff059a79d1ae92a16019a",
+          "nickname": "user_8",
+          "etc": {
+            "deckId": null,
+            "arenaAlias": "user_8"
+          },
+          "active": true,
+          "tiebreakers": {
+            "byes": 1,
+            "gamePoints": 6,
+            "matchPoints": 0,
+            "matchesSummary": {
+              "w": 0,
+              "l": 2,
+              "d": 0
+            },
+            "gamesSummary": {
+              "w": 2,
+              "l": 4,
+              "d": 0
+            },
+            "omwp": 0.75,
+            "gwp": 0.3333333333333333,
+            "ogwp": 0.5333333333333333,
+            "mwp": 0.33
+          }
+        },
+        "playerTwo": {
+          "bye": true
+        },
+        "matchNumber": 15,
+        "result": {
+          "p1": 2,
+          "p2": 0,
+          "d": 0
+        },
+        "round": 3,
+        "etc": {
+  
+        }
+      }
+    ]
+  }

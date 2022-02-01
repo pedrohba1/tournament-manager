@@ -12,7 +12,7 @@
   "include": [  
     "src/**/*.ts",  
     "tests/**/*.ts"  
-
+, "src/utils/blossom.ts"
   ],  
   "exclude": [  
     "node_modules"  

@@ -2,8 +2,9 @@ import { nextRound, Player } from '..';
 import { Match, Matches } from '../types/Match';
 import { Tournament } from '../types/Tournament';
 import getForbiddenPairings from './getForbbidenPairings';
+import getPossiblePairings from './getPossiblePairings';
 import getStandings from './getStandings';
-
+import choosePossibility from './choosePossibilty';
 const DEBUG = false;
 
 function debug(...args) {
@@ -13,25 +14,23 @@ function debug(...args) {
 }
 
 export default function pairOpponents(tourney: Tournament): Tournament {
-  let pairingPlayers = tourney.players;
+  const pairingPlayers = tourney.players;
 
   // first, removes from the array the players that have been dropped:
-  pairingPlayers = pairingPlayers.filter((p) => p.active === true);
 
   // then orders players in descending order (first is best last is worst)
-  pairingPlayers = getStandings(pairingPlayers);
-
-  // from pairingPlayers, create new matches were the best are paired with the best and the worst with the worst
-  const bests = pairingPlayers.slice(0, Math.floor(pairingPlayers.length / 2));
-  const worsts = pairingPlayers.slice(
-    Math.floor(pairingPlayers.length / 2),
-    pairingPlayers.length
-  );
-
-  const orderedByGreatness = [...bests, ...worsts];
+  let orderedByGreatness = getStandings(pairingPlayers);
+  orderedByGreatness = orderedByGreatness.filter((p) => p.active === true);
 
   //pair the players (bests against bests and worst against worsts)
   // pairing needs to respect forbidden pairings rules.
+
+  const possiblePairings = getPossiblePairings(tourney);
+  // if (tourney.currentRound === 3) {
+  //   console.log('ordenado por greatness');
+  //   readableStandings(orderedByGreatness);
+  // }
+  choosePossibility(possiblePairings);
 
   for (const player of orderedByGreatness) {
     debug('pairing of ', player.id);
@@ -75,7 +74,7 @@ export default function pairOpponents(tourney: Tournament): Tournament {
 
   if (orderedByGreatness.length % 2 !== 0) {
     debug('giving bye to left players');
-    const worstMapByes = worsts
+    const worstMapByes = orderedByGreatness
       .map((player, index) => {
         const byes = tourney.matches.reduce((acc, m) => {
           if (m.playerOne.id === player.id || m.playerTwo.id === player.id) {

@@ -15,7 +15,7 @@ export default function getForbiddenPairings(
       m.playerOne.id === player.id ||
       (m.playerTwo.id === player.id && m.round < tourney.currentRound)
   );
-  //put all his opponents into the forbidden pairings
+  //put all his past opponents into the forbidden pairings
   for (const match of allPlayerPastMatches) {
     if (match.playerOne.id !== player.id && !match.playerOne.bye)
       forbiddenPairings.add(match.playerOne.id);
@@ -24,7 +24,6 @@ export default function getForbiddenPairings(
   }
 
   //get all players from current round matches, they cant be paired with:
-
   const currentMatchPairs = tourney.matches.filter(
     (m) => m.round === tourney.currentRound
   );
