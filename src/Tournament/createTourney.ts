@@ -11,6 +11,7 @@ export default function createTourney(
   tourney.options = options;
   tourney.lastMatchNumber = 1;
   tourney.currentRound = 1;
+  tourney.ended = false;
   tourney.etc = {};
   tourney.players = players.map((p, index) => ({
     ...p,

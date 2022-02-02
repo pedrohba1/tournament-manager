@@ -17,7 +17,7 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
     tourney.players[playerIndex] = calculateTiebreakers(player, tourney);
   }
-
+  tourney.ended = true;
   const standings = getStandings(tourney.players);
   return standings;
 }

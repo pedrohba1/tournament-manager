@@ -7,6 +7,7 @@ export type Tournament = {
   players: Player[];
   matches: Match[];
   options: Options;
+  ended: boolean;
   currentRound: number;
   etc: any;
 };

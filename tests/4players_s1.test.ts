@@ -48,6 +48,7 @@ describe('Filter function', () => {
     }
 
     tourney = createTourney(options, players);
+    expect(tourney.ended).toBe(false);
     expect(tourney.players.length).toBe(4);
   });
 
@@ -110,6 +111,7 @@ describe('Filter function', () => {
   it('should get final standings', () => {
     console.log('final standings');
     const standings = tournamentEnd(tourney);
+    expect(tourney.ended).toBe(true);
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
