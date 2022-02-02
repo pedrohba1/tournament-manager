@@ -6,7 +6,7 @@ export type Player = {
   active: boolean;
   nickname: string;
   tiebreakers: TieBreakers;
-  etc: unknown;
+  etc: any;
   bye: boolean;
 };
 
