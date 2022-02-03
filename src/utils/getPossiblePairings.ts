@@ -1,16 +1,17 @@
 import { Player, Tournament } from '..';
+import { debug } from './debug';
 import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
 import readableStandings from './readableStandings';
+import checkInActiveMatch from './checkInActiveMatch';
 
 export default function getPossiblePairngs(tourney: Tournament) {
   const possible = [];
-  const standings = getStandings(tourney.players);
-
-  // readableStandings(getStandings(tourney.players));
+  const standings = getStandings(tourney.players).filter((p) => p.active);
 
   for (const player of tourney.players) {
     if (!player.active) continue;
+    if (checkInActiveMatch(tourney, player.id)) continue;
     const forbidden = getForbiddenPairings(player, tourney);
     for (const opponent of standings) {
       if (!opponent.active) continue;
@@ -44,10 +45,10 @@ export default function getPossiblePairngs(tourney: Tournament) {
           ? opponent.tiebreakers.matchPoints + opponent.tiebreakers.gamePoints
           : 1;
 
-      const min =
-        Math.abs(100 / (playerIndex - opponentIndex)) * 20 +
-        player.tiebreakers.byes * 10 +
-        (pScore + oppScore);
+      const pHeight = Math.abs(playerIndex - standings.length);
+      const oppHeight = Math.abs(opponentIndex - standings.length);
+
+      const min = pHeight * oppHeight;
 
       possible.push([player.blossomId, opponent.blossomId, min]);
     }

@@ -5,30 +5,53 @@ import getForbiddenPairings from './getForbbidenPairings';
 import getPossiblePairings from './getPossiblePairings';
 import getStandings from './getStandings';
 import choosePossibility from './choosePossibilty';
-const DEBUG = false;
-
-function debug(...args) {
-  if (DEBUG) {
-    console.log.apply(this, args);
-  }
-}
+import { debug } from './debug';
 
 export default function pairOpponents(tourney: Tournament): Tournament {
   const pairingPlayers = tourney.players;
 
-  // first, removes from the array the players that have been dropped:
-
   // then orders players in descending order (first is best last is worst)
+  // this also filters only active players
   let orderedByGreatness = getStandings(pairingPlayers);
   orderedByGreatness = orderedByGreatness.filter((p) => p.active === true);
 
+  // already assign bye to worst player that received less byes, and amount of possible players
+  // is odd
+  const paired = <Match[]>[];
+  if (orderedByGreatness.length % 2 !== 0) {
+    const worsts = orderedByGreatness
+      .splice(
+        Math.ceil(orderedByGreatness.length / 2),
+        orderedByGreatness.length
+      )
+      .reverse();
+    let chosen = worsts[0];
+    for (const worst of worsts) {
+      if (worst.tiebreakers.byes < chosen.tiebreakers.byes) {
+        chosen = worst;
+      }
+    }
+    tourney.matches.push(<Match>{
+      active: false,
+      playerOne: chosen,
+      playerTwo: <Player>{ bye: true },
+      matchNumber: tourney.lastMatchNumber,
+      round: tourney.currentRound,
+      etc: {},
+      result: {
+        d: 0,
+        p1: 2,
+        p2: 0,
+      },
+    });
+    tourney.lastMatchNumber += 1;
+  }
   //pair the players (bests against bests and worst against worsts)
   // pairing needs to respect forbidden pairings rules.
-
   const possiblePairings = getPossiblePairings(tourney);
 
+  debug(possiblePairings);
   const pairings = choosePossibility(possiblePairings);
-  const paired = <Match[]>[];
   const added = new Set();
   pairings.forEach((item, index) => {
     if (added.has(item) && added.has(index)) return;

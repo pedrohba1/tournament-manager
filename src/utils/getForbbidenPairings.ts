@@ -29,8 +29,8 @@ export default function getForbiddenPairings(
     (m) => m.round === tourney.currentRound
   );
   for (const match of currentMatchPairs) {
-    forbiddenPairings.add(match.playerOne.blossomId);
-    forbiddenPairings.add(match.playerTwo.blossomId);
+    if (!match.playerOne.bye) forbiddenPairings.add(match.playerOne.blossomId);
+    if (!match.playerTwo.bye) forbiddenPairings.add(match.playerTwo.blossomId);
   }
 
   return forbiddenPairings;
