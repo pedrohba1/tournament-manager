@@ -5,11 +5,10 @@ import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
-import { Tournament } from '../src';
+import { dropPlayer, Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
-import isPair from './utils/isPair';
 
 describe('Filter function', () => {
   beforeEach(() => {
@@ -37,10 +36,10 @@ describe('Filter function', () => {
     };
 
     const players = <Player[]>[];
-    const amount = 8;
+    const amount = 10;
     for (let i = 0; i < amount; i++) {
       const player = <Player>{
-        id: `${i}`,
+        id: `ID_${i}`,
         nickname: `user_${i}`,
         name: `name_${i}`,
       };
@@ -48,19 +47,21 @@ describe('Filter function', () => {
     }
 
     tourney = createTourney(options, players);
-    expect(tourney.players.length).toBe(8);
+    expect(tourney.ended).toBe(false);
   });
 
-  it('hould start tourney and assign matches', () => {
+  it('should start tourney and assign matches', () => {
     tourney = startTourney(tourney);
   });
 
-  it('should assign results', () => {
-    tourney = setResult(tourney, 1, { p1: 2, p2: 0, d: 0 });
-    tourney = setResult(tourney, 2, { p1: 1, p2: 1, d: 1 });
-    tourney = setResult(tourney, 3, { p1: 2, p2: 1, d: 0 });
-    tourney = setResult(tourney, 4, { p1: 0, p2: 2, d: 0 });
-    console.log('pairings with assdigned results');
+  it('should set results', () => {
+    tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
+    tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 0 });
+    tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 0 });
+
+    console.log('first round results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
@@ -78,24 +79,22 @@ describe('Filter function', () => {
     tourney = nextRound(tourney);
   });
 
-  it('should get standings for round 1', () => {
+  it('should get partial standings', () => {
     const standings = getStandings(tourney.players);
     console.log('round 1 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-    expect(standings[0].nickname).toBe('user_7');
-    expect(standings[1].nickname).toBe('user_0');
-    expect(standings[2].nickname).toBe('user_4');
-    expect(standings[3].nickname).toBe('user_3');
-    expect(standings[4].nickname).toBe('user_2');
-    expect(standings[5].nickname).toBe('user_5');
-    expect(standings[6].nickname).toBe('user_6');
-    expect(standings[7].nickname).toBe('user_1');
   });
 
-  it('should get the correct pairings for round 2', () => {
-    console.log('round 2 pairings');
+  it('should set results for round 2', () => {
+    tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 7, { d: 0, p1: 1, p2: 2 });
+    tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
+    tourney = setResult(tourney, 9, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 10, { d: 0, p1: 2, p2: 0 });
+
+    console.log('second round matches with results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
@@ -107,40 +106,30 @@ describe('Filter function', () => {
         results: match.result,
       });
     }
-    expect(isPair('7', '0', tourney)).toBe(true);
-    expect(isPair('4', '3', tourney) || isPair('4', '2', tourney)).toBe(true);
-    expect(isPair('2', '5', tourney) || isPair('3', '5', tourney)).toBe(true);
-    expect(isPair('6', '1', tourney)).toBe(true);
   });
 
-  it('should set results for round 2', () => {
-    //user7 2x0 user5
-    tourney = setResult(tourney, 5, { p1: 2, p2: 0, d: 0 });
-    //user1 1x1 1draw user2
-    tourney = setResult(tourney, 6, { p1: 2, p2: 0, d: 0 });
-    //user3 2x1 user0
-    tourney = setResult(tourney, 7, { p1: 2, p2: 0, d: 0 });
-    //user6 0x2 user4
-    tourney = setResult(tourney, 8, { p1: 0, p2: 2, d: 0 });
+  it('should drop user 1 before round 3', () => {
+    tourney = dropPlayer(tourney, 'ID_1');
   });
 
-  it('should start next round', () => {
+  it('should start next round 3', () => {
     tourney = nextRound(tourney);
   });
 
-  it('should get standings for round 1', () => {
+  it('should get partial standings round 3', () => {
+    console.log('final standings');
     const standings = getStandings(tourney.players);
-    console.log('round 2 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
   });
 
-  it('should get the correct pairings for round 2', () => {
-    const activeMatches = tourney.matches.filter(
+  it('should see pairings of round 3', () => {
+    console.log('round 3 pairings');
+    const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    for (const match of activeMatches) {
+    for (const match of currentMatches) {
       console.table({
         '#': match.matchNumber,
         playerOne: match.playerOne.nickname,
