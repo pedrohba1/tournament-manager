@@ -138,4 +138,30 @@ describe('Filter function', () => {
       });
     }
   });
+
+  it('should assign results for round 3', () => {
+    tourney = setResult(tourney, 12, { p1: 0, p2: 2, d: 0 });
+    tourney = setResult(tourney, 13, { p1: 0, p2: 2, d: 0 });
+    tourney = setResult(tourney, 14, { p1: 2, p2: 0, d: 0 });
+    tourney = setResult(tourney, 15, { p1: 0, p2: 2, d: 0 });
+  });
+
+  it('shoudl start next round', () => {
+    tourney = nextRound(tourney);
+  });
+
+  it('should see pairings of round 4', () => {
+    console.log('round  pairings');
+    const currentMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+    for (const match of currentMatches) {
+      console.table({
+        '#': match.matchNumber,
+        playerOne: match.playerOne.nickname,
+        playerTwo: match.playerTwo.nickname,
+        results: match.result,
+      });
+    }
+  });
 });

@@ -12,6 +12,7 @@ export default function setPlayersPoints(tourney: Tournament) {
 
     let gamePoints = 0;
     let matchPoints = 0;
+    let byes = 0;
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
     for (const match of matchesOfPlayer) {
       const {
@@ -23,7 +24,9 @@ export default function setPlayersPoints(tourney: Tournament) {
         gWin += p1;
         gLose += p2;
         gDraw += d;
-
+        if (match.playerTwo.bye) {
+          byes += 1;
+        }
         if (p1 > p2) {
           matchPoints += 3;
           mWin += 1;
@@ -44,6 +47,9 @@ export default function setPlayersPoints(tourney: Tournament) {
         gWin += p2;
         gLose += p1;
         gDraw += d;
+        if (match.playerOne.bye) {
+          byes += 1;
+        }
         if (p2 > p1) {
           matchPoints += 3;
           mWin += 1;
@@ -63,6 +69,7 @@ export default function setPlayersPoints(tourney: Tournament) {
       ...player,
       tiebreakers: {
         ...player.tiebreakers,
+        byes,
         matchesSummary: {
           w: mWin,
           l: mLose,
