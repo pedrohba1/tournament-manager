@@ -172,4 +172,19 @@ describe('Filter function', () => {
       });
     }
   });
+
+  it('should assign results for round 4', () => {
+    tourney = setResult(tourney, 17, { p1: 0, p2: 2, d: 0 });
+    tourney = setResult(tourney, 18, { p1: 0, p2: 2, d: 0 });
+    tourney = setResult(tourney, 19, { p1: 2, p2: 0, d: 0 });
+    tourney = setResult(tourney, 20, { p1: 0, p2: 2, d: 0 });
+  });
+
+  it('should end tournament', () => {
+    const standings = tournamentEnd(tourney);
+    console.log('logging final stnadings');
+    for (const standing of standings) {
+      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
+    }
+  });
 });
