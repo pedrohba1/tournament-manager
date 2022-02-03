@@ -76,22 +76,24 @@ describe('Filter function', () => {
     tourney = nextRound(tourney);
   });
 
-  // it('should get partial standings', () => {
-  //   const standings = getStandings(tourney.players);
-  //   console.log('round 1 standings:');
-  //   for (const standing of standings) {
-  //     console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-  //   }
-  //   expect(standings[0].nickname).toBe('user_2');
-  //   expect(standings[1].nickname).toBe('user_0');
-  //   expect(standings[2].nickname).toBe('user_4');
-  //   expect(standings[3].nickname).toBe('user_3');
-  //   expect(standings[4].nickname).toBe('user_1');
-  // });
+  it('should show matches of second round', () => {
+    console.log('second round matches');
+    const currentMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+    for (const match of currentMatches) {
+      console.table({
+        '#': match.matchNumber,
+        playerOne: match.playerOne.nickname,
+        playerTwo: match.playerTwo.nickname,
+        results: match.result,
+      });
+    }
+  });
 
   it('should set results for round 2', () => {
-    tourney = setResult(tourney, 4, { d: 0, p1: 0, p2: 2 });
-    tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 5, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 6, { d: 0, p1: 2, p2: 1 });
 
     console.log('second round matches with results setted');
     const currentMatches = tourney.matches.filter(
@@ -112,8 +114,8 @@ describe('Filter function', () => {
   });
 
   it('should set reuslts for round 3', () => {
-    tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
-    tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 1 });
+    tourney = setResult(tourney, 8, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 9, { d: 0, p1: 2, p2: 1 });
     console.log('third round matches with results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
@@ -135,10 +137,10 @@ describe('Filter function', () => {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
     expect(standings[0].nickname).toBe('user_2');
-    expect(standings[1].nickname).toBe('user_1');
-    expect(standings[2].nickname).toBe('user_3');
-    expect(standings[3].nickname).toBe('user_4');
-    expect(standings[4].nickname).toBe('user_0');
+    expect(standings[1].nickname).toBe('user_3');
+    expect(standings[2].nickname).toBe('user_1');
+    expect(standings[3].nickname).toBe('user_0');
+    expect(standings[4].nickname).toBe('user_4');
   });
 });
 

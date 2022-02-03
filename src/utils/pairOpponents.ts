@@ -52,8 +52,10 @@ export default function pairOpponents(tourney: Tournament): Tournament {
 
   debug(possiblePairings);
   const pairings = choosePossibility(possiblePairings);
+  debug(pairings);
   const added = new Set();
   pairings.forEach((item, index) => {
+    if (item === -1) return;
     if (added.has(item) && added.has(index)) return;
     const player1 = tourney.players.find((p) => Number(p.blossomId) === index);
     let player2 = tourney.players.find((p) => Number(p.blossomId) === item);
@@ -64,19 +66,12 @@ export default function pairOpponents(tourney: Tournament): Tournament {
       added.add(index);
     }
     paired.push(<Match>{
-      active: player2.bye ? false : true,
+      active: true,
       playerOne: player1,
       playerTwo: player2,
       matchNumber: tourney.lastMatchNumber,
       round: tourney.currentRound,
       etc: {},
-      result: player2.bye
-        ? {
-            d: 0,
-            p1: 2,
-            p2: 0,
-          }
-        : undefined,
     });
     tourney.lastMatchNumber += 1;
   });
