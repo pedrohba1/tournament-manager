@@ -9,6 +9,5 @@ export default function dropPlayer(
   if (tourney.players[playerIndex].active === false)
     throw Error('player already dropped');
   tourney.players[playerIndex].active = false;
-  tourney = setMaxRound(tourney);
   return tourney;
 }
