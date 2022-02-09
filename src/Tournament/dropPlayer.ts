@@ -9,5 +9,6 @@ export default function dropPlayer(
   if (tourney.players[playerIndex].active === false)
     throw Error('player already dropped');
   tourney.players[playerIndex].active = false;
+  tourney.players[playerIndex].roundOfDrop = tourney.currentRound;
   return tourney;
 }
