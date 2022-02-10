@@ -5,8 +5,8 @@ export default function setMaxRound(tourney: Tournament): Tournament {
   let maxRounds = 0;
   if (playersAmount === 2) maxRounds = 1;
   if (playersAmount >= 3 && playersAmount <= 4) maxRounds = 2;
-  if (playersAmount >= 5 && playersAmount <= 8) maxRounds = 3;
-  if (playersAmount >= 9 && playersAmount <= 16) maxRounds = 4;
+  if (playersAmount >= 5 && playersAmount <= 7) maxRounds = 3;
+  if (playersAmount >= 8 && playersAmount <= 16) maxRounds = 4;
   if (playersAmount >= 17 && playersAmount <= 32) maxRounds = 5;
   if (playersAmount >= 33 && playersAmount <= 64) maxRounds = 6;
   if (playersAmount >= 65 && playersAmount <= 128) maxRounds = 7;
