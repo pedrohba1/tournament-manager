@@ -1,3 +1,4 @@
+import { Match } from '..';
 import { Tournament } from '../types/Tournament';
 import getCurrentRoundMatch from '../utils/getCurrentRoundMatch';
 import setMaxRound from './setMaxRound';
@@ -5,7 +6,7 @@ import setMaxRound from './setMaxRound';
 export default function dropPlayer(
   tourney: Tournament,
   playerId: string
-): Tournament {
+): [Tournament, Match] {
   const playerIndex = tourney.players.findIndex((p) => p.id === playerId);
   if (tourney.players[playerIndex].active === false)
     throw Error('player already dropped');
@@ -49,5 +50,5 @@ export default function dropPlayer(
   activeMatch.active = false;
 
   tourney.matches[matchIndex] = activeMatch;
-  return tourney;
+  return [tourney, activeMatch];
 }

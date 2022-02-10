@@ -72,8 +72,8 @@ describe('Filter function', () => {
   });
 
   it('should drop 2 players', () => {
-    tourney = dropPlayer(tourney, '1');
-    tourney = dropPlayer(tourney, '2');
+    [tourney] = dropPlayer(tourney, '1');
+    [tourney] = dropPlayer(tourney, '2');
   });
 
   it('should start next round', () => {

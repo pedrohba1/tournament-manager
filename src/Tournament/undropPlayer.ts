@@ -1,3 +1,4 @@
+import { Match } from '..';
 import { Tournament } from '../types/Tournament';
 import getCurrentRoundMatch from '../utils/getCurrentRoundMatch';
 import setMaxRound from './setMaxRound';
@@ -5,7 +6,7 @@ import setMaxRound from './setMaxRound';
 export default function undropPlayer(
   tourney: Tournament,
   playerId: string
-): Tournament {
+): [Tournament, Match] {
   const playerIndex = tourney.players.findIndex((p) => p.id === playerId);
 
   if (tourney.players[playerIndex].roundOfDrop !== tourney.currentRound)
@@ -33,5 +34,5 @@ export default function undropPlayer(
   tourney.matches[matchIndex] = activeMatch;
   tourney.players[playerIndex].active = true;
   tourney.players[playerIndex].roundOfDrop = undefined;
-  return tourney;
+  return [tourney, activeMatch];
 }

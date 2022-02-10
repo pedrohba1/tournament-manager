@@ -65,7 +65,7 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 4, { p1: 2, p2: 0, d: 0 });
 
     //drop user 7
-    tourney = dropPlayer(tourney, '7');
+    [tourney] = dropPlayer(tourney, '7');
   });
 
   it('should start next round', () => {

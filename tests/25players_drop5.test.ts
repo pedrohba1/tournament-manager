@@ -83,13 +83,13 @@ describe('25 players dropping 5', () => {
   });
 
   it('should drop 5 players before next round', () => {
-    tourney = dropPlayer(tourney, '5');
-    tourney = dropPlayer(tourney, '6');
-    tourney = dropPlayer(tourney, '7');
-    tourney = dropPlayer(tourney, '8');
-    tourney = dropPlayer(tourney, '22');
-    tourney = dropPlayer(tourney, '23');
-    tourney = dropPlayer(tourney, '10');
+    [tourney] = dropPlayer(tourney, '5');
+    [tourney] = dropPlayer(tourney, '6');
+    [tourney] = dropPlayer(tourney, '7');
+    [tourney] = dropPlayer(tourney, '8');
+    [tourney] = dropPlayer(tourney, '22');
+    [tourney] = dropPlayer(tourney, '23');
+    [tourney] = dropPlayer(tourney, '10');
   });
 
   it('should start next round', () => {

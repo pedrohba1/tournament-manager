@@ -109,7 +109,7 @@ describe('Filter function', () => {
   });
 
   it('should drop user 1 before round 3', () => {
-    tourney = dropPlayer(tourney, 'ID_1');
+    [tourney] = dropPlayer(tourney, 'ID_1');
   });
 
   it('should start next round 3', () => {

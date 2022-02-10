@@ -90,7 +90,7 @@ describe('Filter function', () => {
   });
 
   it('should drop player5 ', () => {
-    tourney = dropPlayer(tourney, '5');
+    [tourney] = dropPlayer(tourney, '5');
   });
 
   it('get standings before rund 3 ', () => {

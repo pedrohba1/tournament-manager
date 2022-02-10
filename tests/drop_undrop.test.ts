@@ -74,7 +74,7 @@ describe('Filter function', () => {
   });
 
   it('should drop player', () => {
-    tourney = dropPlayer(tourney, '2');
+    [tourney] = dropPlayer(tourney, '2');
     const playerIndex = tourney.players.findIndex((p) => p.id === '2');
     const player = tourney.players[playerIndex];
     expect(player.active).toBe(false);
@@ -91,7 +91,7 @@ describe('Filter function', () => {
   });
 
   it('should drop another player, but playerTwo this time', () => {
-    tourney = dropPlayer(tourney, '5');
+    [tourney] = dropPlayer(tourney, '5');
     const playerIndex = tourney.players.findIndex((p) => p.id === '5');
     const player = tourney.players[playerIndex];
     expect(player.active).toBe(false);
@@ -109,7 +109,7 @@ describe('Filter function', () => {
   });
 
   it(`should undrop a player`, () => {
-    tourney = undropPlayer(tourney, '2');
+    [tourney] = undropPlayer(tourney, '2');
     const playerIndex = tourney.players.findIndex((p) => p.id === '2');
     const player = tourney.players[playerIndex];
     expect(player.active).toBe(true);
