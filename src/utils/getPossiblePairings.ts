@@ -3,7 +3,7 @@ import { debug } from './debug';
 import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
 import readableStandings from './readableStandings';
-import checkInActiveMatch from './checkInActiveMatch';
+import getCurrentRoundMatch from './getCurrentRoundMatch';
 
 export default function getPossiblePairngs(tourney: Tournament) {
   const possible = [];
@@ -11,7 +11,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
 
   for (const player of tourney.players) {
     if (!player.active) continue;
-    if (checkInActiveMatch(tourney, player.id)) continue;
+    if (getCurrentRoundMatch(tourney, player.id)) continue;
     const forbidden = getForbiddenPairings(player, tourney);
     for (const opponent of standings) {
       if (!opponent.active) continue;

@@ -1,6 +1,6 @@
 import { Tournament } from '..';
 
-export default function checkInActiveMatch(
+export default function getCurrentRoundMatch(
   tourney: Tournament,
   playerId: string
 ) {
