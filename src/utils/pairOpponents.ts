@@ -50,8 +50,11 @@ export default function pairOpponents(tourney: Tournament): Tournament {
   // pairing needs to respect forbidden pairings rules.
   const possiblePairings = getPossiblePairings(tourney);
 
+  debug('possible pairings');
   debug(possiblePairings);
   const pairings = choosePossibility(possiblePairings);
+
+  debug('chosen pairings');
   debug(pairings);
   const added = new Set();
   pairings.forEach((item, index) => {

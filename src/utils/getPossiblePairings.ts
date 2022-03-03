@@ -48,7 +48,9 @@ export default function getPossiblePairngs(tourney: Tournament) {
       const pHeight = Math.abs(playerIndex - standings.length);
       const oppHeight = Math.abs(opponentIndex - standings.length);
 
-      const min = pHeight * oppHeight;
+      //const min = pHeight * oppHeight;
+      const playerDiff = Math.abs(pScore - oppScore);
+      const min = 12 * (pScore + oppScore) + 1 / Math.log10(playerDiff + 2);
 
       possible.push([player.blossomId, opponent.blossomId, min]);
     }

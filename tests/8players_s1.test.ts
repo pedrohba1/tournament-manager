@@ -107,7 +107,7 @@ describe('Filter function', () => {
         results: match.result,
       });
     }
-    expect(isPair('7', '0', tourney)).toBe(true);
+    expect(isPair('0', '7', tourney)).toBe(true);
     expect(isPair('4', '3', tourney) || isPair('4', '2', tourney)).toBe(true);
     expect(isPair('2', '5', tourney) || isPair('3', '5', tourney)).toBe(true);
     expect(isPair('6', '1', tourney)).toBe(true);
