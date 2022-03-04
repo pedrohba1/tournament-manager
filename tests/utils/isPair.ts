@@ -15,6 +15,5 @@ export default function isPair(
       (m.playerOne.id === player2Id && m.playerTwo.id === player1Id)
     );
   });
-  console.log(found);
   return found ? true : false;
 }

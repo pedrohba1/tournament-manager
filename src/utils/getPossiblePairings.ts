@@ -24,8 +24,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
       );
 
       //pairings on top need to have a higher value, so they have priority in being paired.
-      for (const standing of standings) {
-      }
+
       if (
         possible.find(
           (ps) =>
@@ -35,22 +34,11 @@ export default function getPossiblePairngs(tourney: Tournament) {
       )
         continue;
 
-      const pScore =
-        player.tiebreakers.matchPoints && player.tiebreakers.gamePoints
-          ? player.tiebreakers.matchPoints + player.tiebreakers.gamePoints
-          : 1;
-
-      const oppScore =
-        opponent.tiebreakers.matchPoints && opponent.tiebreakers.gamePoints
-          ? opponent.tiebreakers.matchPoints + opponent.tiebreakers.gamePoints
-          : 1;
-
       const pHeight = Math.abs(playerIndex - standings.length);
       const oppHeight = Math.abs(opponentIndex - standings.length);
 
-      //const min = pHeight * oppHeight;
-      const playerDiff = Math.abs(pScore - oppScore);
-      const min = 12 * (pScore + oppScore) + 1 / Math.log10(playerDiff + 2);
+      const playerDiff = Math.abs(oppHeight - pHeight);
+      const min = 80 / Math.log10(playerDiff + 2);
 
       possible.push([player.blossomId, opponent.blossomId, min]);
     }
