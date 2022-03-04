@@ -24,8 +24,7 @@ export default function getPossiblePairngs(tourney: Tournament) {
       );
 
       //pairings on top need to have a higher value, so they have priority in being paired.
-      for (const standing of standings) {
-      }
+
       if (
         possible.find(
           (ps) =>
@@ -34,9 +33,6 @@ export default function getPossiblePairngs(tourney: Tournament) {
         )
       )
         continue;
-
-      const pScore = player.tiebreakers.matchPoints + player.tiebreakers.gamePoints
-      const oppScore = opponent.tiebreakers.matchPoints + opponent.tiebreakers.gamePoints
 
       const pHeight = Math.abs(playerIndex - standings.length);
       const oppHeight = Math.abs(opponentIndex - standings.length);
