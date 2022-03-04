@@ -43,7 +43,8 @@ export default function getPossiblePairngs(tourney: Tournament) {
 
       //const min = pHeight * oppHeight;
       // Objetivo função que pareia os mais proximos, porém meio tem que ta mais proximo dos players do topo 
-      const playerDiff = Math.abs(player.tiebreakers.matchPoints - opponent.tiebreakers.matchPoints);
+      //const playerDiff = Math.abs(player.tiebreakers.matchPoints - opponent.tiebreakers.matchPoints);
+      const playerDiff = 10 * Math.abs(player.tiebreakers.gwp - opponent.tiebreakers.gwp)
       const min = 8 / Math.log10(playerDiff + 2);
 
       possible.push([player.blossomId, opponent.blossomId, min]);
