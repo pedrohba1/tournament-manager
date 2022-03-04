@@ -10,6 +10,7 @@ import getStandings from '../src/utils/getStandings';
 import console from 'console';
 import isPair from './utils/isPair';
 import isPairByNick from './utils/isPairByNick';
+import printStandings from '../src/utils/printStandings';
 const jestConsole = console;
 
 describe('13 players scenario 1', () => {
@@ -113,20 +114,11 @@ describe('13 players scenario 1', () => {
     tourney = startTourney(tourney);
   });
 
-  it('should get partial standings', () => {
-    const standings = getStandings(tourney.players);
-    console.log(`round ${tourney.currentRound} standings:`);
-    for (let i = 0; i < standings.length; i++) {
-      console.log(`${i + 1}° - ${standings[i].nickname} (${standings[i].blossomId})`, standings[i].tiebreakers.matchPoints, standings[i].tiebreakers.gamePoints);
-    }
-    console.log();
-  });
-
   it('should show matches', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    console.log(`round ${tourney.currentRound}: matches`);
+    console.log(`(teste13) round ${tourney.currentRound}: matches`);
     for (const match of currentMatches) {
       console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
     }
@@ -144,6 +136,7 @@ describe('13 players scenario 1', () => {
 
   it('should drop leo', () => {
     [tourney] = dropPlayer(tourney, 'ID_1');
+    console.log('Leo is out');
   });
 
   it('should start next round', () => {
@@ -159,20 +152,15 @@ describe('13 players scenario 1', () => {
     // expect(isPairByNick('MBispo', 'Paulo', tourney)).toBe(true);
   });
 
-  it('should get partial standings', () => {
-    const standings = getStandings(tourney.players);
-    console.log(`round ${tourney.currentRound} standings:`);
-    for (let i = 0; i < standings.length; i++) {
-      console.log(`${i + 1}° - ${standings[i].nickname} (${standings[i].blossomId})`, standings[i].tiebreakers.matchPoints, standings[i].tiebreakers.gamePoints);
-    }
-    console.log();
-  });
-
-  it('should show matches', () => {
+  it('should show matches and standings', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    console.log(`round ${tourney.currentRound}: matches`);
+    const standings = getStandings(tourney.players);
+
+    console.log(`round ${tourney.currentRound}: `, '\n');
+    printStandings(standings);
+    console.log();
     for (const match of currentMatches) {
       console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
     }
@@ -191,26 +179,23 @@ describe('13 players scenario 1', () => {
   it('should drop cariane, ibarone', () => {
     [tourney] = dropPlayer(tourney, 'ID_4');
     [tourney] = dropPlayer(tourney, 'ID_10');
+    console.log('cariane is out');
+    console.log('iBarone is out');
   });
 
   it('should start next round', () => {
     tourney = nextRound(tourney);
   });
 
-  it('should get partial standings', () => {
-    const standings = getStandings(tourney.players);
-    console.log(`round ${tourney.currentRound} standings:`);
-    for (let i = 0; i < standings.length; i++) {
-      console.log(`${i + 1}° - ${standings[i].nickname} (${standings[i].blossomId})`, standings[i].tiebreakers.matchPoints, standings[i].tiebreakers.gamePoints);
-    }
-    console.log();
-  });
-
-  it('should show matches', () => {
+  it('should show matches and standings', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    console.log(`round ${tourney.currentRound}: matches`);
+    const standings = getStandings(tourney.players);
+
+    console.log(`round ${tourney.currentRound}: `, '\n');
+    printStandings(standings);
+    console.log();
     for (const match of currentMatches) {
       console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
     }
