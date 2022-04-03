@@ -6,8 +6,6 @@ import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
 import { Tournament } from '../src';
-import getStandings from '../src/utils/getStandings';
-import console from 'console';
 const jestConsole = console;
 
 describe('Filter function', () => {

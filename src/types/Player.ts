@@ -1,4 +1,3 @@
-import { Results } from './Results';
 export type Player = {
   blossomId: number;
   roundOfDrop: number;

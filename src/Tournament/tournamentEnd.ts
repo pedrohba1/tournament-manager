@@ -1,7 +1,4 @@
-import { Match } from '../types/Match';
-import { Options } from '../types/Options';
 import { Player } from '../types/Player';
-import { Result } from '../types/Results';
 import { Tournament } from '../types/Tournament';
 import getStandings from '../utils/getStandings';
 import setPlayersPoints from '../utils/setPlayerPoints';

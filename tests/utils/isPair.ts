@@ -1,4 +1,4 @@
-import { Player, Tournament } from '../../src';
+import { Tournament } from '../../src';
 
 export default function isPair(
   player1Id: string,

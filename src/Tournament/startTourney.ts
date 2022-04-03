@@ -1,5 +1,3 @@
-import { Options } from '../types/Options';
-import { Player } from '../types/Player';
 import { Tournament } from '../types/Tournament';
 import pairOpponentsFirstRound from '../utils/pairOpponentsFirstRound';
 

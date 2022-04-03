@@ -1,7 +1,6 @@
-import { Player } from '../types/Player';
 import { Tournament } from '../types/Tournament';
 
-export default function setPlayersPoints(tourney: Tournament) {
+export default function setPlayersPoints(tourney: Tournament): Tournament {
   for (const player of tourney.players) {
     const matchesOfPlayer = tourney.matches.filter(
       (m) => m.playerOne.id === player.id || m.playerTwo.id === player.id

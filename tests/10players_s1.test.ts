@@ -4,12 +4,10 @@ import setResult from '../src/Tournament/setResult';
 import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
-import tournamentEnd from '../src/Tournament/tournamentEnd';
 import { dropPlayer, Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
-import isPair from './utils/isPair';
 import readableStandings from '../src/utils/readableStandings';
 
 describe('Filter function', () => {

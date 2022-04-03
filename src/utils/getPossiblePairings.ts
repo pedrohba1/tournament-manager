@@ -1,11 +1,10 @@
-import { Player, Tournament } from '..';
+import { Tournament } from '../types/Tournament';
 import { debug } from './debug';
 import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
-import readableStandings from './readableStandings';
 import getCurrentRoundMatch from './getCurrentRoundMatch';
 
-export default function getPossiblePairngs(tourney: Tournament) {
+export default function getPossiblePairings(tourney: Tournament): number[] {
   const possible = [];
   const standings = getStandings(tourney.players).filter((p) => p.active);
 

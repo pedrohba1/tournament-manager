@@ -4,12 +4,9 @@ import setResult from '../src/Tournament/setResult';
 import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
-import tournamentEnd from '../src/Tournament/tournamentEnd';
 import { dropPlayer, Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
-import isPair from './utils/isPair';
-import isPairByNick from './utils/isPairByNick';
 import printStandings from '../src/utils/printStandings';
 const jestConsole = console;
 
@@ -39,7 +36,6 @@ describe('13 players scenario 1', () => {
     };
 
     const players = <Player[]>[];
-    const amount = 13;
     players.push(<Player>{
       id: `ID_1`,
       nickname: `Leo`,
@@ -120,7 +116,11 @@ describe('13 players scenario 1', () => {
     );
     console.log(`(teste13) round ${tourney.currentRound}: matches`);
     for (const match of currentMatches) {
-      console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
+      console.log(
+        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
+        'x',
+        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
+      );
     }
     console.log();
   });
@@ -162,7 +162,11 @@ describe('13 players scenario 1', () => {
     printStandings(standings);
     console.log();
     for (const match of currentMatches) {
-      console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
+      console.log(
+        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
+        'x',
+        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
+      );
     }
     console.log();
   });
@@ -197,7 +201,11 @@ describe('13 players scenario 1', () => {
     printStandings(standings);
     console.log();
     for (const match of currentMatches) {
-      console.log(`${match.playerOne.nickname} (${match.playerOne.blossomId})`, 'x', `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`);
+      console.log(
+        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
+        'x',
+        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
+      );
     }
     console.log();
   });

@@ -1,5 +1,4 @@
 import { Player } from '../types/Player';
-import { Tournament } from '../types/Tournament';
 
 export default function getStandings(players: Player[]): Player[] {
   const sortedPlayers = players;

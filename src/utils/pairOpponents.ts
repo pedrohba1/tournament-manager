@@ -1,7 +1,6 @@
-import { nextRound, Player } from '..';
-import { Match, Matches } from '../types/Match';
+import { Player } from '..';
+import { Match } from '../types/Match';
 import { Tournament } from '../types/Tournament';
-import getForbiddenPairings from './getForbbidenPairings';
 import getPossiblePairings from './getPossiblePairings';
 import getStandings from './getStandings';
 import choosePossibility from './choosePossibilty';

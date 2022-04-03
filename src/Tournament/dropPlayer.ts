@@ -1,7 +1,6 @@
 import { Match } from '..';
 import { Tournament } from '../types/Tournament';
 import getCurrentRoundMatch from '../utils/getCurrentRoundMatch';
-import setMaxRound from './setMaxRound';
 
 export default function dropPlayer(
   tourney: Tournament,

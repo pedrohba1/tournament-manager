@@ -1,24 +1,13 @@
 import { Tournament } from '../types/Tournament';
 import { Player } from '../types/Player';
-
-const DEBUG = false;
-
-function debug(...args) {
-  if (DEBUG) {
-    console.log.apply(this, args);
-  }
-}
+import { debug } from './debug';
 
 export default function calculateTiebreakers(
   player: Player,
   tourney: Tournament
 ): Player {
   const { tiebreakers } = player;
-  const { currentRound } = tourney;
   const { matchPoints, gamePoints } = tiebreakers;
-  const OpponentsMatchWin = [];
-  const OpponentsGameWin = [];
-  const PlayerResults = [];
 
   // filter matches that his player participated
   // filter byes

@@ -1,4 +1,4 @@
-import { Player, Tournament } from '../../src';
+import { Tournament } from '../../src';
 
 export default function isPairByNick(
   player1Nick: string,
