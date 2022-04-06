@@ -1,6 +1,6 @@
 export type Options = {
   seed?: number;
-  format: string; //'swiss';
+  format: string; //'swiss' || 'single-elim' || 'double-elim';
   gameType: string; // 'magic' | 'lol' | 'csgo' | 'pokemon';
   playoffs: boolean;
   cutLimit: number; // 8

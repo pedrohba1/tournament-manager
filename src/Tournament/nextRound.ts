@@ -2,6 +2,7 @@ import { Tournament } from '../types/Tournament';
 import setPlayersPoints from '../utils/setPlayerPoints';
 import calculateTiebreakers from '../utils/calculateTiebreakers';
 import pairOpponents from '../utils/pairOpponents';
+import singleEliminationNextRound from '../utils/single-elimination/singleEliminationNextRound';
 
 export default function nextRound(tourney: Tournament): Tournament {
   // throws error if a match has no result
@@ -28,7 +29,17 @@ export default function nextRound(tourney: Tournament): Tournament {
     tourney.players[playerIndex] = calculateTiebreakers(player, tourney);
   }
 
-  tourney = pairOpponents(tourney);
+  switch (tourney.options.format) {
+    case 'swiss':
+      tourney = pairOpponents(tourney);
+      break;
+    case 'single-elim':
+      tourney = singleEliminationNextRound(tourney);
+      break;
+    // case 'double-elim':
+    //   tourney = pairOpponentsFirstRound(tourney, tourney.options.seed);
+    //   break;
+  }
 
   // increment round
   // pairs players according to
