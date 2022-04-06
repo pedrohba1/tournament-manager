@@ -54,10 +54,6 @@ describe('Single Elimination Tournament Test', () => {
         done();
     });
 
-    it('should start tourney with seed and assing matches with seed', (done) => {
-        done();
-    });
-
     it('should start tourney without seed and assign matches', (done) => {
         tourney = startTourney(tourney);
         const currentMatches = tourney.matches.filter(

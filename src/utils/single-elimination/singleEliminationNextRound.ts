@@ -1,6 +1,7 @@
 import { Tournament } from "../../types/Tournament";
 import { Match, Matches } from "../../types/Match";
 import { Player } from "../../types/Player";
+import createNewMatch from "../createNewMatch";
 
 export default function singleEliminationNextRound(tourney: Tournament): Tournament {
     const lastMaches: Matches = tourney.matches.filter(
@@ -20,24 +21,7 @@ export default function singleEliminationNextRound(tourney: Tournament): Tournam
     const matches: Matches = [];
 
     for (let i = 0; i < totalSlots; i += 2) {
-        const match = <Match>{
-            playerOne: players[i],
-            playerTwo: players[i] ? players[i + 1] : { bye: true },
-            active: true,
-            matchNumber: tourney.lastMatchNumber,
-            round: tourney.currentRound,
-            result: null,
-        };
-        if (match.playerTwo.bye) {
-            match.result = { d: 0, p1: 2, p2: 0 };
-            match.active = false;
-            const playerByIndex = tourney.players.findIndex(
-                (p) => p.id === players[i].id
-            );
-            tourney.players[playerByIndex].tiebreakers.byes += 1;
-        }
-        tourney.lastMatchNumber += 1;
-        matches.push(match);
+        matches.push(createNewMatch(players[i], players[i + 1], tourney));
     }
 
     tourney.matches = matches.concat(tourney.matches);
