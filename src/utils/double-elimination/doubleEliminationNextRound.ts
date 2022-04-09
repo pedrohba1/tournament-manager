@@ -1,10 +1,10 @@
 import { Tournament } from '../../types/Tournament';
 import { Matches } from '../../types/Match';
-import createNewMatch from '../createNewMatch';
 import advanceBracket from '../single-elimination/advanceBracket';
 import getMatchesLosers from '../getMatchesLosers';
 import playersPairing from '../single-elimination/playersPairing';
 import sendToLosersBracket from './sendToLosersBracket';
+import createGrandFinals from './createGrandFinals';
 
 export default function doubleEliminationNextRound(
   tourney: Tournament
@@ -19,27 +19,15 @@ export default function doubleEliminationNextRound(
       (m) => m.round === tourney.currentRound - 1 && m.winners
     );
     const losers = getMatchesLosers(winnersMatches);
-    advanceBracket(matches, winnersMatches, tourney);
 
-    const losersBracketMatches = playersPairing(losers, tourney, false);
-    for (const match of losersBracketMatches) {
-      matches.push(match);
-    }
+    advanceBracket(matches, winnersMatches, tourney);
+    playersPairing(matches, losers, tourney, false);
   } else if (tourney.currentRound == tourney.options.maxRounds) {
     const winnersMatches: Matches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound - 2 && m.winners
     );
 
-    const winnerWb =
-      winnersMatches[0].result.p1 > winnersMatches[0].result.p2
-        ? winnersMatches[0].playerOne
-        : winnersMatches[0].playerTwo;
-    const winnerLb =
-      losersMatches[0].result.p1 > losersMatches[0].result.p2
-        ? losersMatches[0].playerOne
-        : losersMatches[0].playerTwo;
-
-    matches.push(createNewMatch(winnerWb, winnerLb, tourney));
+    matches.push(createGrandFinals(winnersMatches, losersMatches, tourney));
   } else {
     if (tourney.currentRound % 2 != 0) {
       const winnersMatches: Matches = tourney.matches.filter(

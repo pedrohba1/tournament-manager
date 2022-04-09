@@ -1,3 +1,4 @@
+import { Matches } from '../../types/Match';
 import { Tournament } from '../../types/Tournament';
 import shuffle from '../shuffle';
 import playersPairing from './playersPairing';
@@ -8,6 +9,8 @@ export default function createBracket(
   seed?: number
 ): Tournament {
   const players = seed ? shuffle(tourney.players, seed) : tourney.players;
-  tourney.matches = playersPairing(players, tourney);
+  const matches: Matches = [];
+  playersPairing(matches, players, tourney);
+  tourney.matches = matches;
   return tourney;
 }

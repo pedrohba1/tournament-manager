@@ -4,12 +4,11 @@ import { Tournament } from '../../types/Tournament';
 import createNewMatch from '../createNewMatch';
 
 export default function playersPairing(
+  matches: Matches,
   players: Player[],
   tourney: Tournament,
   winners = true
-): Matches {
-  const matches: Matches = [];
-
+): void {
   const exponent = Math.ceil(Math.log2(players.length));
   const bracket = [0, 3, 1, 2];
 
@@ -31,6 +30,4 @@ export default function playersPairing(
       );
     }
   }
-
-  return matches;
 }
