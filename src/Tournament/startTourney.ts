@@ -13,9 +13,9 @@ export default function startTourney(tourney: Tournament): Tournament {
     case 'single-elim':
       tourney = createBracket(tourney, tourney.options.seed);
       break;
-    // case 'double-elim':
-    //   tourney = pairOpponentsFirstRound(tourney, tourney.options.seed);
-    //   break;
+    case 'double-elim':
+      tourney = createBracket(tourney, tourney.options.seed);
+      break;
   }
 
   return tourney;
