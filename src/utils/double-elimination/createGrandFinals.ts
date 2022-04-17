@@ -16,5 +16,6 @@ export default function createGrandFinals(
       ? losersMatches[0].playerOne
       : losersMatches[0].playerTwo;
 
+  // Player One must come from winners bracket and player two must como from losers
   return createNewMatch(winnerWb, winnerLb, tourney);
 }

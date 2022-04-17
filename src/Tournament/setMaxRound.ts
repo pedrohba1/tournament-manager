@@ -21,8 +21,7 @@ export default function setMaxRound(tourney: Tournament): Tournament {
       maxRounds = Math.ceil(Math.log2(playersAmount));
       break;
     case 'double-elim':
-      // Está errado vai ser algo tipo
-      maxRounds = 2 * Math.ceil(Math.log2(playersAmount / 2)) + 2;
+      maxRounds = 2 * Math.ceil(Math.log2(playersAmount)) + 1;
       break;
   }
 

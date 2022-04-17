@@ -4,11 +4,18 @@ import calculateTiebreakers from '../utils/calculateTiebreakers';
 import pairOpponents from '../utils/pairOpponents';
 import singleEliminationNextRound from '../utils/single-elimination/singleEliminationNextRound';
 import doubleEliminationNextRound from '../utils/double-elimination/doubleEliminationNextRound';
+import grandFinalReset from '../utils/double-elimination/grandFinalReset';
 
 export default function nextRound(tourney: Tournament): Tournament {
   // throws error if a match has no result
   if (tourney.matches.find((m) => m.result === null))
     throw Error('cant start next round if match has no result');
+
+  if (
+    tourney.options.format === 'double-elim' &&
+    tourney.currentRound === tourney.options.maxRounds - 1
+  )
+    return grandFinalReset(tourney);
 
   if (tourney.currentRound === tourney.options.maxRounds)
     throw Error('tourney ended already');

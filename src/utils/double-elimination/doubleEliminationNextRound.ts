@@ -22,7 +22,7 @@ export default function doubleEliminationNextRound(
 
     advanceBracket(matches, winnersMatches, tourney);
     playersPairing(matches, losers, tourney, false);
-  } else if (tourney.currentRound == tourney.options.maxRounds) {
+  } else if (tourney.currentRound == tourney.options.maxRounds - 1) {
     const winnersMatches: Matches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound - 2 && m.winners
     );
@@ -48,28 +48,3 @@ export default function doubleEliminationNextRound(
   tourney.matches = matches.concat(tourney.matches);
   return tourney;
 }
-
-// 1 Primeira rodada
-//      winners é jogada
-//      losers bracket é montado com perdedores
-//      winners bracket é avançada
-// 2 Segunda rodada
-//      winners é jogada
-//      losers é jogada
-//      winners bracket é avançada
-//      perdedores da winners são adicionadas a losers
-// 3 Terceira rodada
-//      losers é jogada
-//      vencedores da losers são pareados entre si
-// 4 Quarta rodada
-//      winners é jogada
-//      losers é jogada
-//      winners bracket é avançada
-//      perdedores da winners são adicionadas a losers
-// 5 Quinta rodada
-//      losers é jogada
-//      vencedores da losers são pareados entre si
-// ...
-// Grande final
-//      ultimo player que sobrar da winners
-//      ultimo player que sobrar da losers

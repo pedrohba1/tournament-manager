@@ -180,8 +180,36 @@ describe('Single Elimination Tournament Test', () => {
     done();
   });
 
-  it('should assing matches result and not go to next round', (done) => {
-    tourney = setResult(tourney, 13, { d: 0, p1: 2, p2: 0 });
+  it('should not end tourney', (done) => {
+    expect(() => {
+      tournamentEnd(tourney);
+    }).toThrow('not in final round');
+    done();
+  });
+
+  it('should reset grand final', (done) => {
+    tourney = setResult(tourney, 13, { d: 0, p1: 0, p2: 2 });
+    const currentMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+
+    for (const match of currentMatches) {
+      console.table({
+        '#': match.matchNumber,
+        playerOne: match.playerOne.nickname,
+        playerTwo: match.playerTwo.nickname,
+        results: match.result,
+        round: tourney.currentRound,
+      });
+    }
+
+    tourney = nextRound(tourney);
+    expect(tourney.currentRound).toBe(7);
+    done();
+  });
+
+  it('should assing grand finals and not go to next round', (done) => {
+    tourney = setResult(tourney, 14, { d: 0, p1: 0, p2: 2 });
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
