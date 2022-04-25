@@ -1,17 +1,16 @@
-import { Tournament } from '../src';
-import { Options } from '../src/types/Options';
-import { Player } from '../src/types/Player';
 import createTourney from '../src/Tournament/createTourney';
 import startTourney from '../src/Tournament/startTourney';
 import setResult from '../src/Tournament/setResult';
+import { Options } from '../src/types/Options';
+import { Player } from '../src/types/Player';
 import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
+import { Tournament } from '../src';
+import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
 
-describe('Single Elimination Tournament Test', () => {
-  let tourney: Tournament;
-
+describe('Filter function', () => {
   beforeEach(() => {
     global.console = require('console');
   });
@@ -20,27 +19,29 @@ describe('Single Elimination Tournament Test', () => {
     global.console = jestConsole;
   });
 
-  it('should create tournament', (done) => {
+  let tourney: Tournament;
+
+  it('should configurate a tournament', () => {
     const options = <Options>{
       seed: 10,
-      format: 'single-elim',
+      format: 'swiss',
       gameType: 'magic',
-      playoffs: false,
-      cutLimit: 8,
+      playoffs: true,
+      cutLimit: 2,
       maxRounds: null,
       bestOf: 3,
       winValue: 3,
       maxRound: null,
       drawValue: 1,
       lossValue: 0,
-      playoffsFormat: '',
+      playoffsFormat: 'single-elim',
     };
 
     const players = <Player[]>[];
-    const amount = 5;
+    const amount = 4;
     for (let i = 0; i < amount; i++) {
       const player = <Player>{
-        id: `${i}`,
+        id: `testest${i}`,
         nickname: `user_${i}`,
         name: `name_${i}`,
       };
@@ -49,28 +50,21 @@ describe('Single Elimination Tournament Test', () => {
 
     tourney = createTourney(options, players);
     expect(tourney.ended).toBe(false);
-    expect(tourney.players.length).toBe(amount);
-    expect(tourney.options.format).toBe('single-elim');
-    done();
+    expect(tourney.players.length).toBe(4);
   });
 
-  it('should start tourney without seed and assign matches', (done) => {
+  it('should start tourney and assign matches', () => {
     tourney = startTourney(tourney);
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    expect(currentMatches).toHaveLength(4);
-    expect(currentMatches[1].result).toBeNull();
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
-    tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
+  it('should set results', () => {
+    tourney = setResult(tourney, 1, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 1 });
+
+    console.log('first round results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-
     for (const match of currentMatches) {
       console.table({
         '#': match.matchNumber,
@@ -79,28 +73,20 @@ describe('Single Elimination Tournament Test', () => {
         results: match.result,
       });
     }
+  });
 
+  it('should start next round', () => {
     tourney = nextRound(tourney);
-    expect(tourney.currentRound).toBe(2);
-    done();
   });
 
-  it('should calculate right the next matches', (done) => {
+  it('should set results for round 2', () => {
+    tourney = setResult(tourney, 3, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 1 });
+
+    console.log('second round matches with results setted');
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-
-    expect(currentMatches).toHaveLength(2);
-    done();
-  });
-
-  it('should assing matches result and go to next round', (done) => {
-    tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 1 });
-    tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
     for (const match of currentMatches) {
       console.table({
         '#': match.matchNumber,
@@ -109,27 +95,30 @@ describe('Single Elimination Tournament Test', () => {
         results: match.result,
       });
     }
-
-    tourney = nextRound(tourney);
-    expect(tourney.currentRound).toBe(3);
-    done();
   });
 
-  it('should calculate right the next matches', (done) => {
+  it('should not end tourney', () => {
+    expect(() => {
+      tournamentEnd(tourney);
+    }).toThrowError('not in final round');
+  });
+
+  it('should start the playoffs', () => {
+    tourney = nextRound(tourney);
+
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
 
     expect(currentMatches).toHaveLength(1);
-    done();
   });
 
-  it('should assing matches result and not go to next round', (done) => {
-    tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
+  it('should not start next round', () => {
+    tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 1 });
+
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-
     for (const match of currentMatches) {
       console.table({
         '#': match.matchNumber,
@@ -139,21 +128,15 @@ describe('Single Elimination Tournament Test', () => {
       });
     }
 
-    expect(() => {
-      nextRound(tourney);
-    }).toThrow('tourney ended already');
-    done();
+    expect(() => nextRound(tourney)).toThrowError('tourney ended already');
   });
 
-  it('should end tourney', (done) => {
+  it('should get final standings', () => {
+    console.log('final standings');
     const standings = tournamentEnd(tourney);
+    expect(tourney.ended).toBe(true);
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
-
-    expect(tourney.ended).toBe(true);
-    expect(standings[0].tiebreakers.matchesSummary.l).toBe(0);
-    expect(standings[1].tiebreakers.matchesSummary.l).toBe(1);
-    done();
   });
 });

@@ -32,6 +32,7 @@ describe('Single Elimination Tournament Test', () => {
       maxRound: null,
       drawValue: 1,
       lossValue: 0,
+      playoffsFormat: '',
     };
 
     const players = <Player[]>[];
