@@ -57,6 +57,6 @@ export default function doubleEliminationNextRound(
     }
   }
 
-  tourney.matches = matches.concat(tourney.matches);
+  tourney.matches = tourney.matches.concat(matches);
   return tourney;
 }

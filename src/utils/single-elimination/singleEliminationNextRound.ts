@@ -26,6 +26,6 @@ export default function singleEliminationNextRound(
     matches.push(createNewMatch(players[i], players[i + 1], tourney));
   }
 
-  tourney.matches = matches.concat(tourney.matches);
+  tourney.matches = tourney.matches.concat(matches);
   return tourney;
 }
