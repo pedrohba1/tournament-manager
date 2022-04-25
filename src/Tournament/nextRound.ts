@@ -13,7 +13,8 @@ export default function nextRound(tourney: Tournament): Tournament {
     throw Error('cant start next round if match has no result');
 
   if (
-    tourney.options.format === 'double-elim' &&
+    (tourney.options.playoffsFormat === 'double-elim' ||
+      tourney.options.format === 'double-elim') &&
     tourney.currentRound === tourney.options.maxRounds - 1
   )
     return grandFinalReset(tourney);
@@ -59,25 +60,21 @@ export default function nextRound(tourney: Tournament): Tournament {
           }
           break;
         case 'double-elim':
-          if (
-            tourney.currentRound - 1 <
+          const swissRoundsDoubleElim =
             tourney.options.maxRounds -
-              2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
-              1
-          ) {
+            2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
+            1;
+          if (tourney.currentRound - 1 < swissRoundsDoubleElim) {
+            // Case playoffs havent started yet
             tourney = pairOpponents(tourney);
-          } else if (
-            tourney.currentRound - 1 ===
-            tourney.options.maxRounds -
-              2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
-              1
-          ) {
+          } else if (tourney.currentRound - 1 === swissRoundsDoubleElim) {
+            // Case init the playoffs
             tourney = createPlayoffsBracket(tourney);
           } else {
+            // Case running playoffs
             tourney = doubleEliminationNextRound(
               tourney,
-              tourney.currentRound -
-                2 * Math.ceil(Math.log2(tourney.options.cutLimit))
+              tourney.currentRound - swissRoundsDoubleElim
             );
           }
           break;
