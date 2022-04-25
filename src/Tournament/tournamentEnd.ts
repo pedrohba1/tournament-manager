@@ -9,11 +9,16 @@ import getStandingsSingleElim from '../utils/single-elimination/getStandingsSing
 export default function tournamentEnd(tourney: Tournament): Player[] {
   if (
     tourney.options.format !== 'double-elim' &&
+    tourney.options.playoffsFormat !== 'double-elim' &&
     tourney.currentRound !== tourney.options.maxRounds
   )
     throw Error('not in final round');
 
-  if (tourney.options.format === 'double-elim' && notEndedDoubleElim(tourney))
+  if (
+    (tourney.options.format === 'double-elim' ||
+      tourney.options.playoffsFormat === 'double-elim') &&
+    notEndedDoubleElim(tourney)
+  )
     throw Error('not in final round');
 
   tourney = setPlayersPoints(tourney);

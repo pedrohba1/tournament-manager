@@ -5,6 +5,7 @@ import pairOpponents from '../utils/pairOpponents';
 import singleEliminationNextRound from '../utils/single-elimination/singleEliminationNextRound';
 import doubleEliminationNextRound from '../utils/double-elimination/doubleEliminationNextRound';
 import grandFinalReset from '../utils/double-elimination/grandFinalReset';
+import createPlayoffsBracket from '../utils/swiss/createPlayoffsBracket';
 
 export default function nextRound(tourney: Tournament): Tournament {
   // throws error if a match has no result
@@ -39,7 +40,51 @@ export default function nextRound(tourney: Tournament): Tournament {
 
   switch (tourney.options.format) {
     case 'swiss':
-      tourney = pairOpponents(tourney);
+      switch (tourney.options.playoffsFormat) {
+        case 'single-elim':
+          if (
+            tourney.currentRound - 1 <
+            tourney.options.maxRounds -
+              Math.ceil(Math.log2(tourney.options.cutLimit))
+          ) {
+            tourney = pairOpponents(tourney);
+          } else if (
+            tourney.currentRound - 1 ===
+            tourney.options.maxRounds -
+              Math.ceil(Math.log2(tourney.options.cutLimit))
+          ) {
+            tourney = createPlayoffsBracket(tourney);
+          } else {
+            tourney = singleEliminationNextRound(tourney);
+          }
+          break;
+        case 'double-elim':
+          if (
+            tourney.currentRound - 1 <
+            tourney.options.maxRounds -
+              2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
+              1
+          ) {
+            tourney = pairOpponents(tourney);
+          } else if (
+            tourney.currentRound - 1 ===
+            tourney.options.maxRounds -
+              2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
+              1
+          ) {
+            tourney = createPlayoffsBracket(tourney);
+          } else {
+            tourney = doubleEliminationNextRound(
+              tourney,
+              tourney.currentRound -
+                2 * Math.ceil(Math.log2(tourney.options.cutLimit))
+            );
+          }
+          break;
+        default:
+          tourney = pairOpponents(tourney);
+          break;
+      }
       break;
     case 'single-elim':
       tourney = singleEliminationNextRound(tourney);
@@ -48,9 +93,6 @@ export default function nextRound(tourney: Tournament): Tournament {
       tourney = doubleEliminationNextRound(tourney);
       break;
   }
-
-  // increment round
-  // pairs players according to
 
   return tourney;
 }

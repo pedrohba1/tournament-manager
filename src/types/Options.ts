@@ -9,4 +9,5 @@ export type Options = {
   maxRounds: null | number;
   drawValue: number; //1
   lossValue: number; //0
+  playoffsFormat?: string; // 'single-elim' || 'double-elim';
 };

@@ -10,9 +10,9 @@ export default function playersPairing(
   winners = true
 ): void {
   const exponent = Math.ceil(Math.log2(players.length));
-  const bracket = [0, 3, 1, 2];
+  const bracket = [0, 1];
 
-  for (let i = 3; i <= Math.floor(exponent); i++) {
+  for (let i = 2; i <= Math.floor(exponent); i++) {
     for (let j = 0; j < bracket.length; j += 2) {
       bracket.splice(j + 1, 0, 2 ** i - 1 - bracket[j]);
     }
