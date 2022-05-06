@@ -9,6 +9,7 @@ export type Match = {
   result: Result;
   active: boolean;
   etc: unknown;
+  winners: boolean;
 };
 
 export type Matches = Match[];
