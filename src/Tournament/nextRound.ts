@@ -45,20 +45,20 @@ export default function nextRound(tourney: Tournament): Tournament {
     case 'swiss':
       switch (tourney.options.playoffsFormat) {
         case 'single-elim':
-          if (isInSwissRounds(tourney)) {
-            tourney = pairOpponents(tourney);
-          } else if (hasSwissEnded(tourney)) {
+          if (hasSwissEnded(tourney)) {
+            tourney.playoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else {
+          } else if (tourney.playoffs) {
             tourney = singleEliminationNextRound(tourney);
+          } else {
+            tourney = pairOpponents(tourney);
           }
           break;
         case 'double-elim':
-          if (isInSwissRounds(tourney)) {
-            tourney = pairOpponents(tourney);
-          } else if (hasSwissEnded(tourney)) {
+          if (hasSwissEnded(tourney)) {
+            tourney.playoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else {
+          } else if (tourney.playoffs) {
             const swissRoundsDoubleElim =
               tourney.options.maxRounds -
               2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
@@ -67,6 +67,8 @@ export default function nextRound(tourney: Tournament): Tournament {
               tourney,
               tourney.currentRound - swissRoundsDoubleElim
             );
+          } else {
+            tourney = pairOpponents(tourney);
           }
           break;
         default:
