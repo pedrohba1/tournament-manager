@@ -6,6 +6,8 @@ import singleEliminationNextRound from '../utils/single-elimination/singleElimin
 import doubleEliminationNextRound from '../utils/double-elimination/doubleEliminationNextRound';
 import grandFinalReset from '../utils/double-elimination/grandFinalReset';
 import createPlayoffsBracket from '../utils/swiss/createPlayoffsBracket';
+import isInSwissRounds from '../utils/swiss/isInSwissRounds';
+import hasSwissEnded from '../utils/swiss/hasSwissEnded';
 
 export default function nextRound(tourney: Tournament): Tournament {
   // throws error if a match has no result
@@ -43,39 +45,30 @@ export default function nextRound(tourney: Tournament): Tournament {
     case 'swiss':
       switch (tourney.options.playoffsFormat) {
         case 'single-elim':
-          if (
-            tourney.currentRound - 1 <
-            tourney.options.maxRounds -
-              Math.ceil(Math.log2(tourney.options.cutLimit))
-          ) {
-            tourney = pairOpponents(tourney);
-          } else if (
-            tourney.currentRound - 1 ===
-            tourney.options.maxRounds -
-              Math.ceil(Math.log2(tourney.options.cutLimit))
-          ) {
+          if (hasSwissEnded(tourney)) {
+            tourney.playoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else {
+          } else if (tourney.playoffs) {
             tourney = singleEliminationNextRound(tourney);
+          } else {
+            tourney = pairOpponents(tourney);
           }
           break;
         case 'double-elim':
-          const swissRoundsDoubleElim =
-            tourney.options.maxRounds -
-            2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
-            1;
-          if (tourney.currentRound - 1 < swissRoundsDoubleElim) {
-            // Case playoffs havent started yet
-            tourney = pairOpponents(tourney);
-          } else if (tourney.currentRound - 1 === swissRoundsDoubleElim) {
-            // Case init the playoffs
+          if (hasSwissEnded(tourney)) {
+            tourney.playoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else {
-            // Case running playoffs
+          } else if (tourney.playoffs) {
+            const swissRoundsDoubleElim =
+              tourney.options.maxRounds -
+              2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
+              1;
             tourney = doubleEliminationNextRound(
               tourney,
               tourney.currentRound - swissRoundsDoubleElim
             );
+          } else {
+            tourney = pairOpponents(tourney);
           }
           break;
         default:

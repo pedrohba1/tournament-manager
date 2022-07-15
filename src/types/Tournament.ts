@@ -10,4 +10,5 @@ export type Tournament = {
   ended: boolean;
   currentRound: number;
   etc: any;
+  playoffs: boolean = false;
 };
