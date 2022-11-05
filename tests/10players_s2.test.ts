@@ -80,7 +80,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings', () => {
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     console.log('round 1 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
@@ -118,7 +118,7 @@ describe('Filter function', () => {
 
   it('should get partial standings round 2', () => {
     console.log('round 2 standings');
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
@@ -152,7 +152,7 @@ describe('Filter function', () => {
 
   it('should get partial standings round 3', () => {
     console.log('round 3 final standings');
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }

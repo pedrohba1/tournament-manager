@@ -7,11 +7,9 @@ import choosePossibility from './choosePossibilty';
 import { debug } from './debug';
 
 export default function pairOpponents(tourney: Tournament): Tournament {
-  const pairingPlayers = tourney.players;
-
   // then orders players in descending order (first is best last is worst)
   // this also filters only active players
-  let orderedByGreatness = getStandings(pairingPlayers);
+  let orderedByGreatness = getStandings(tourney);
   orderedByGreatness = orderedByGreatness.filter((p) => p.active === true);
 
   // already assign bye to worst player that received less byes, and amount of possible players

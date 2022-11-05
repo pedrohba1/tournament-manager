@@ -4,7 +4,7 @@ import getStandings from '../getStandings';
 import playersPairing from '../single-elimination/playersPairing';
 
 export default function createPlayoffsBracket(tourney: Tournament): Tournament {
-  const classificados = getStandings(tourney.players).slice(
+  const classificados = getStandings(tourney).slice(
     0,
     tourney.options.cutLimit
   );

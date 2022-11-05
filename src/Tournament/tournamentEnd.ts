@@ -38,7 +38,7 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
     return standings;
   }
 
-  const standings = getStandings(tourney.players);
+  const standings = getStandings(tourney);
 
   return standings;
 }

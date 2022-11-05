@@ -78,7 +78,7 @@ describe('Filter function', () => {
   });
 
   it('should get standings for round 1', () => {
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     console.log('round 1 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
@@ -128,7 +128,7 @@ describe('Filter function', () => {
   });
 
   it('should get standings for round 1', () => {
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     console.log('round 2 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });

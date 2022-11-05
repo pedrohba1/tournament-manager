@@ -90,7 +90,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings', () => {
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     console.log('round 1 standings:');
     for (const standing of standings) {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });

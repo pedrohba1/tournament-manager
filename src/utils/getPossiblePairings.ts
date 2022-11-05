@@ -6,7 +6,7 @@ import getCurrentRoundMatch from './getCurrentRoundMatch';
 
 export default function getPossiblePairings(tourney: Tournament): number[] {
   const possible = [];
-  const standings = getStandings(tourney.players).filter((p) => p.active);
+  const standings = getStandings(tourney).filter((p) => p.active);
 
   for (const player of tourney.players) {
     if (!player.active) continue;

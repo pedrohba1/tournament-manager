@@ -156,7 +156,7 @@ describe('13 players scenario 1', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
 
     console.log(`round ${tourney.currentRound}: `, '\n');
     printStandings(standings);
@@ -195,7 +195,7 @@ describe('13 players scenario 1', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
 
     console.log(`round ${tourney.currentRound}: `, '\n');
     printStandings(standings);

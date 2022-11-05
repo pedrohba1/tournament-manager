@@ -93,7 +93,7 @@ describe('Filter function', () => {
 
   it('get standings before rund 3 ', () => {
     console.log('before round 3 standings');
-    const standings = getStandings(tourney.players);
+    const standings = getStandings(tourney);
     readableStandings(standings);
   });
 
