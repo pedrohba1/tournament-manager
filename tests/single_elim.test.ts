@@ -65,7 +65,7 @@ describe('Single Elimination Tournament Test', () => {
 
     const standings = getStandings(tourney);
 
-    expect(currentMatches[1].result).toStrictEqual({ p1: 0, p2: 0, d: 0 });
+    expect(currentMatches[1].result).toBeNull();
     done();
   });
 
