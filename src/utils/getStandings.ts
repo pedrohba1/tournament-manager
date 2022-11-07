@@ -6,5 +6,5 @@ import getStandingsSwiss from './swiss/getStandingsSwiss';
 
 export default function getStandings(tournament: Tournament): Player[] {
   const { players } = tournament;
-  if (tournament.options.format === 'swiss') return getStandingsSwiss(players);
+  return getStandingsSwiss(players);
 }
