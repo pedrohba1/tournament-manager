@@ -8,7 +8,7 @@ export default function getStandingsSingleElim(
   const standings: any[] = [];
   const grandFinal: Match = matches.shift();
 
-  if (grandFinal.result.p1 > grandFinal.result.p1) {
+  if (grandFinal.result.p1 > grandFinal.result.p2) {
     standings.push(grandFinal.playerOne.id);
     standings.push(grandFinal.playerTwo.id);
   } else {

@@ -7,6 +7,7 @@ import setResult from '../src/Tournament/setResult';
 import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
 import console from 'console';
+import getStandings from '../src/utils/getStandings';
 const jestConsole = console;
 
 describe('Single Elimination Tournament Test', () => {
@@ -61,7 +62,10 @@ describe('Single Elimination Tournament Test', () => {
     );
 
     expect(currentMatches).toHaveLength(4);
-    expect(currentMatches[1].result).toBeNull();
+
+    const standings = getStandings(tourney);
+
+    expect(currentMatches[1].result).toStrictEqual({ p1: 0, p2: 0, d: 0 });
     done();
   });
 
@@ -71,14 +75,14 @@ describe('Single Elimination Tournament Test', () => {
       (m) => m.round === tourney.currentRound
     );
 
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    // for (const match of currentMatches) {
+    //   console.table({
+    //     '#': match.matchNumber,
+    //     playerOne: match.playerOne.nickname,
+    //     playerTwo: match.playerTwo.nickname,
+    //     results: match.result,
+    //   });
+    // }
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(2);
@@ -101,14 +105,14 @@ describe('Single Elimination Tournament Test', () => {
       (m) => m.round === tourney.currentRound
     );
 
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    // for (const match of currentMatches) {
+    //   console.table({
+    //     '#': match.matchNumber,
+    //     playerOne: match.playerOne.nickname,
+    //     playerTwo: match.playerTwo.nickname,
+    //     results: match.result,
+    //   });
+    // }
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(3);
@@ -130,14 +134,14 @@ describe('Single Elimination Tournament Test', () => {
       (m) => m.round === tourney.currentRound
     );
 
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    // for (const match of currentMatches) {
+    //   console.table({
+    //     '#': match.matchNumber,
+    //     playerOne: match.playerOne.nickname,
+    //     playerTwo: match.playerTwo.nickname,
+    //     results: match.result,
+    //   });
+    // }
 
     expect(() => {
       nextRound(tourney);
