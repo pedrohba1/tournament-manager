@@ -7,7 +7,7 @@ export default function getStandingsDoubleElim(
   players: Player[]
 ): Player[] {
   const eliminationMatches: Matches = [];
-  const grandFinal: Match = matches.pop();
+  const grandFinal: Match = matches.at(-1);
 
   for (const match of matches) {
     if (!match.winners) {

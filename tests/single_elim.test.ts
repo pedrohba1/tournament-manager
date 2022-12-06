@@ -155,6 +155,9 @@ describe('Single Elimination Tournament Test', () => {
       console.table({ ...standing.tiebreakers, nickname: standing.nickname });
     }
 
+    const firstRoundMatches = tourney.matches.filter((m) => m.round === 1);
+    expect(firstRoundMatches).toHaveLength(4);
+
     expect(tourney.ended).toBe(true);
     expect(standings[0].tiebreakers.matchesSummary.l).toBe(0);
     expect(standings[1].tiebreakers.matchesSummary.l).toBe(1);
