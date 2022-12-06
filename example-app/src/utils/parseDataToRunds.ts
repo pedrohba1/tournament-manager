@@ -1,5 +1,5 @@
 
-import { Match } from "@testing-library/react";
+import {} from 'tournament-manager'
 import { IRoundProps } from "react-brackets";
 
 export const parseDataToRounds = (matches?: Match[]): IRoundProps[] => {

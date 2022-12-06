@@ -10,6 +10,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "engines": {
+    "node": "^14.0.0"
+  },
   "keywords": [],
   "author": "Pedro Henrique Bufulin de Almeida",
   "license": "ISC",

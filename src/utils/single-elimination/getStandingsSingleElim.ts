@@ -6,7 +6,7 @@ export default function getStandingsSingleElim(
   players: Player[]
 ): Player[] {
   const standings: any[] = [];
-  const grandFinal: Match = matches.at(-1);
+  const grandFinal: Match = matches[matches.length - 1];
 
   if (grandFinal.result.p1 > grandFinal.result.p2) {
     standings.push(grandFinal.playerOne.id);
