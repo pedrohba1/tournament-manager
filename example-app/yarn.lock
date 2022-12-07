@@ -8610,10 +8610,10 @@ tough-cookie@^4.0.0:
     universalify "^0.2.0"
     url-parse "^1.5.3"
 
-tournament-manager@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/tournament-manager/-/tournament-manager-1.1.0.tgz#3475944ea8fe93e9374ed2c45f7f16783da8534f"
-  integrity sha512-PJsqzCW0iB+e949XD7oBkM/M78nS+z28pFhnNhBYnHo9uyy5XkFobUDErUhcxcz9KFYpPGIIniofsYFrfKveqQ==
+tournament-manager@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tournament-manager/-/tournament-manager-1.2.0.tgz#9b0122b58aae950caff5fe940d217d259eb49cbe"
+  integrity sha512-X04UYHSWf7Wks4NP5zKlzeiKRqPQELzzsCdLHMQvepR+rfPVhbUdoG/RrwrDNmd3iOzCMMtWxiyEPNpdq7iPGA==
   dependencies:
     edmonds-blossom "^1.0.0"
 
