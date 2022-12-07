@@ -25,7 +25,7 @@ describe('tournament with single-elim playoffs', () => {
       format: 'swiss',
       gameType: 'magic',
       hasPlayoffs: true,
-      playoffsFormat: 'sigle-elim',
+      playoffsFormat: 'single-elim',
       cutLimit: 8,
       bestOf: 3,
       winValue: 3,
@@ -52,10 +52,7 @@ describe('tournament with single-elim playoffs', () => {
 
   it('should start tourney and assign matches', () => {
     tourney = startTourney(tourney);
-  });
-
-  it('should get maxRounds in 4', () => {
-    expect(tourney.options.maxRounds).toBe(4);
+    expect(tourney.currentRound).toBe(1);
   });
 
   it('should assign all results and the tournament should end in 4 rounds', () => {
@@ -71,13 +68,12 @@ describe('tournament with single-elim playoffs', () => {
           d: 0,
         });
       }
-      if (tourney.currentRound === tourney.options.maxRounds) break;
       tourney = nextRound(tourney);
     }
-    expect(tourney.currentRound).toBe(4);
+    expect(tourney.currentRound).toBe(5);
   });
 
   it('should start a single eliminatino playoffs', () => {
-    console.log('aqui');
+    expect(tourney.inPlayoffs).toBe(true);
   });
 });
