@@ -25,7 +25,7 @@ describe('Filter function', () => {
       seed: 10,
       format: 'swiss',
       gameType: 'magic',
-      playoffs: true,
+      hasPlayoffs: true,
       cutLimit: 4,
       maxRounds: null,
       bestOf: 3,

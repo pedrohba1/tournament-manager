@@ -24,7 +24,7 @@ describe('25 players dropping 5', () => {
     const options = <Options>{
       format: 'swiss',
       gameType: 'magic',
-      playoffs: false,
+      hasPlayoffs: false,
       cutLimit: 8,
       maxRounds: null,
       bestOf: 3,

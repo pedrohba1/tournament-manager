@@ -24,7 +24,7 @@ describe('Single Elimination Tournament Test', () => {
     const options = <Options>{
       format: 'double-elim',
       gameType: 'magic',
-      playoffs: false,
+      hasPlayoffs: false,
       cutLimit: 8,
       maxRounds: null,
       bestOf: 3,

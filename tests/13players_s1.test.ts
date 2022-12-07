@@ -25,7 +25,7 @@ describe('13 players scenario 1', () => {
     const options = <Options>{
       format: 'swiss',
       gameType: 'magic',
-      playoffs: false,
+      hasPlayoffs: false,
       cutLimit: 8,
       maxRounds: null,
       bestOf: 3,
