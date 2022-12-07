@@ -26,7 +26,7 @@ describe('Single Elimination Tournament Test', () => {
       seed: 10,
       format: 'single-elim',
       gameType: 'magic',
-      hasPlayoffs: false,
+      playoffs: false,
       cutLimit: 8,
       maxRounds: null,
       bestOf: 3,

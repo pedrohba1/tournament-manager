@@ -24,7 +24,7 @@ describe('tournament with single-elim playoffs', () => {
       seed: 10,
       format: 'swiss',
       gameType: 'magic',
-      hasPlayoffs: true,
+      playoffs: true,
       playoffsFormat: 'single-elim',
       cutLimit: 8,
       bestOf: 3,

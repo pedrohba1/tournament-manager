@@ -15,7 +15,7 @@ const options = <Options>{
   seed: 10,
   format: 'swiss',
   gameType: 'magic',
-  hasPlayoffs: false,
+  playoffs: false,
   cutLimit: 8,
   maxRounds: null,
   bestOf: 3,

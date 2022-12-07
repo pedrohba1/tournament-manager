@@ -25,7 +25,7 @@ describe('Filter function', () => {
     const options = <Options>{
       format: 'swiss',
       gameType: 'magic',
-      hasPlayoffs: false,
+      playoffs: false,
       cutLimit: 8,
       maxRounds: null,
       bestOf: 3,
