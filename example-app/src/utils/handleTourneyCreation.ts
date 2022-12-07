@@ -5,7 +5,7 @@ export const handleTourneyCreation = () =>{
         seed: 10,
         format: 'single-elim',
         gameType: 'magic',
-        playoffs: false,
+        hasPlayoffs: false,
         cutLimit: 8,
         maxRounds: 40,
         bestOf: 3,

@@ -46,9 +46,9 @@ export default function nextRound(tourney: Tournament): Tournament {
       switch (tourney.options.playoffsFormat) {
         case 'single-elim':
           if (hasSwissEnded(tourney)) {
-            tourney.playoffs = true;
+            tourney.inPlayoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else if (tourney.playoffs) {
+          } else if (tourney.inPlayoffs) {
             tourney = singleEliminationNextRound(tourney);
           } else {
             tourney = pairOpponents(tourney);
@@ -56,9 +56,9 @@ export default function nextRound(tourney: Tournament): Tournament {
           break;
         case 'double-elim':
           if (hasSwissEnded(tourney)) {
-            tourney.playoffs = true;
+            tourney.inPlayoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else if (tourney.playoffs) {
+          } else if (tourney.inPlayoffs) {
             const swissRoundsDoubleElim =
               tourney.options.maxRounds -
               2 * Math.ceil(Math.log2(tourney.options.cutLimit)) -
