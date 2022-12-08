@@ -15,7 +15,7 @@ export default function createNewMatch(
     matchNumber: tourney.lastMatchNumber,
     round: tourney.currentRound,
     result: null,
-    isPlayoff: tourney.inPlayoffs ? true : false,
+    isPlayoff: tourney.inPlayoffs || false,
     winners: winners,
   };
   if (match.playerTwo.bye) {
