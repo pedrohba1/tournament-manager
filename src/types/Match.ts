@@ -9,6 +9,7 @@ export type Match = {
   result: Result;
   active: boolean;
   etc: unknown;
+  isPlayoff?: boolean;
 
   // this variable is actually used to check if
   // in a dobule elimination, the match is in a winners bracket (winners:true)
