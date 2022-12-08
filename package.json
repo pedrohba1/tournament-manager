@@ -2,7 +2,7 @@
   "name": "tournament-manager",
   "version": "1.2.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc",
@@ -11,10 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "engines": {
-    "node": "^14.0.0"
-  },
-  "keywords": [],
+  "keywords": ["tournament", "manager", "tournament manager", "manage tournaments", "manage", "tournaments"],
   "author": "Pedro Henrique Bufulin de Almeida",
   "license": "ISC",
   "devDependencies": {
