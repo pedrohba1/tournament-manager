@@ -20,6 +20,10 @@ export default function startTourney(tourney: Tournament): Tournament {
       break;
     case 'remote':
       tourney = createBlankMatches(tourney, tourney.options.seed);
+      break;
+    default:
+      throw Error('format is incorret');
+      break;
   }
 
   return tourney;

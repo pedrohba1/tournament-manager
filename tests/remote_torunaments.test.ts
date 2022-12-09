@@ -69,13 +69,19 @@ describe('remote tournament test', () => {
     done();
   });
 
-
-  it('should allow to set up standings orders for players', (done) => {
-  
-  
+  it('should not allow tos set result', (done) => {
     done();
   });
 
+  it('should allow to set up standings orders for players', (done) => {
+    done();
+  });
 
+  it('should not allow to set next round', (done) => {
+    done();
+  });
 
+  it('it should allow to end only if all players are positioned in the standings', (done) => {
+    done();
+  });
 });

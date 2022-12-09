@@ -10,6 +10,10 @@ import isInSwissRounds from '../utils/swiss/isInSwissRounds';
 import hasSwissEnded from '../utils/swiss/hasSwissEnded';
 
 export default function nextRound(tourney: Tournament): Tournament {
+  if (tourney.options.format === 'remote') {
+    throw Error('tournament is remote');
+  }
+
   // throws error if a match has no result
   if (tourney.matches.find((m) => m.result === null))
     throw Error('cant start next round if match has no result');

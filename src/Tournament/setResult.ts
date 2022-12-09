@@ -6,6 +6,10 @@ export default function setResult(
   matchNumber: number,
   result: Result
 ): Tournament {
+  if (tourney.options.format === 'remote') {
+    throw Error('tournament is remote');
+  }
+
   // fetch match to
   const matchIndex = tourney.matches.findIndex(
     (m) => m.matchNumber === matchNumber

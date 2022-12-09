@@ -5,6 +5,7 @@ import setPlayersPoints from '../utils/setPlayerPoints';
 import calculateTiebreakers from '../utils/calculateTiebreakers';
 import notEndedDoubleElim from '../utils/double-elimination/notEndedDoubleElim';
 import getStandingsSingleElim from '../utils/single-elimination/getStandingsSingleElim';
+import getStandingsDoubleElim from '../utils/double-elimination/getStandingsDoubleElim';
 
 export default function tournamentEnd(tourney: Tournament): Player[] {
   if (
@@ -27,18 +28,24 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
     tourney.players[playerIndex] = calculateTiebreakers(player, tourney);
   }
+
   tourney.ended = true;
 
-  if (tourney.options.format == 'single-elim') {
-    const standings = getStandingsSingleElim(tourney.matches, tourney.players);
-    return standings;
-  }
-  if (tourney.options.format == 'double-elim') {
-    const standings = getStandingsSingleElim(tourney.matches, tourney.players);
-    return standings;
-  }
+  let standings: Player[] = [];
+  switch (tourney.options.format) {
+    case 'single-elim':
+      standings = getStandingsSingleElim(tourney.matches, tourney.players);
+      return standings;
+    case 'double-elim':
+      standings = getStandingsDoubleElim(tourney.matches, tourney.players);
+      return standings;
+    case 'swiss':
+      standings = getStandings(tourney);
+      return standings;
+    case 'remote':
 
-  const standings = getStandings(tourney);
-
-  return standings;
+    default:
+      throw Error('no format specified');
+      break;
+  }
 }

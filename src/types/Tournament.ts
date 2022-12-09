@@ -7,6 +7,14 @@ export type Tournament = {
   players: Player[];
   matches: Match[];
   options: Options;
+  /**
+   * @Param  remoteStandings
+   *
+   *  Remote standings is optional, it will be used to make a tournament that
+   *  will not run in this lib, but can receive the parameters of winners here
+   *  for compatibility.
+   **/
+  remoteStandings?: Player[];
   ended: boolean;
   currentRound: number;
   etc: any;

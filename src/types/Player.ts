@@ -18,6 +18,11 @@ export type TieBreakers = {
   gwp: number;
   matchPoints: number;
   gamePoints: number;
+  /**
+   * @Param position - it will be used only in remote tournaments, to assign
+   * each player position in the standings
+   */
+  position?: number;
   matchesSummary: { w: number; d: number; l: number };
   gamesSummary: { w: number; d: number; l: number };
 };
