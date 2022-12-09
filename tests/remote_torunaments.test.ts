@@ -69,11 +69,22 @@ describe('remote tournament test', () => {
     done();
   });
 
-  it('should not allow tos set result', (done) => {
+  it('should not allow to set result', (done) => {
     done();
   });
 
   it('should allow to set up standings orders for players', (done) => {
+    done();
+  });
+
+  it(`When writting a position to a player, and another player already has that 
+  position, it should set the player with that position to undefined and assign the position 
+  to the new player positioned`, (done) => {
+    done();
+  });
+
+  it(`When writting a position of a player that already has a position, 
+    it should keep the same position`, (done) => {
     done();
   });
 

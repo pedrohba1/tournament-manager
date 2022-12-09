@@ -22,7 +22,7 @@ export default function startTourney(tourney: Tournament): Tournament {
       tourney = createBlankMatches(tourney, tourney.options.seed);
       break;
     default:
-      throw Error('format is incorret');
+      throw Error('format is incorrect');
       break;
   }
 

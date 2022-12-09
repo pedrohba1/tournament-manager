@@ -6,6 +6,7 @@ import calculateTiebreakers from '../utils/calculateTiebreakers';
 import notEndedDoubleElim from '../utils/double-elimination/notEndedDoubleElim';
 import getStandingsSingleElim from '../utils/single-elimination/getStandingsSingleElim';
 import getStandingsDoubleElim from '../utils/double-elimination/getStandingsDoubleElim';
+import getRemoteStandings from '../utils/remote/getRemoteStandings';
 
 export default function tournamentEnd(tourney: Tournament): Player[] {
   if (
@@ -43,9 +44,11 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
       standings = getStandings(tourney);
       return standings;
     case 'remote':
-
+      standings = getRemoteStandings(tourney);
+      return standings;
     default:
       throw Error('no format specified');
       break;
   }
+  return standings;
 }
