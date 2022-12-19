@@ -5,7 +5,7 @@ export default function setPlayerStanding(
   tournament: Tournament,
   playerId: string,
   position: number
-): void {
+): Player[] {
   const playerIndex = tournament.players.findIndex((p) => p.id === playerId);
   if (position <= 0 || position > tournament.players.length)
     throw Error('position must be a number between 1 and the total of players');
@@ -20,4 +20,6 @@ export default function setPlayerStanding(
   if (playerPositionedIndex !== -1)
     tournament.players[playerPositionedIndex].tiebreakers.position = undefined;
   tournament.players[playerIndex].tiebreakers.position = position;
+
+  return tournament.players;
 }
