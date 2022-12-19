@@ -13,7 +13,7 @@
   }
 
   .seed:nth-child(odd):not(:last-child)::after{
-    top: calc(52.5px + 12.5px) !important;
+    top: calc(50% - 12.5px) !important;
   }
 
   .seed:nth-child(even)::before {
