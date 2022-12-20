@@ -26,38 +26,38 @@ export const parseDataToRounds = (matches?: Match[]): IRoundProps[] => {
   });
 
   // NOTE manually pushing rounds to represent a full tourney, remove it if you need
-  rounds.push({
-    title: "Round 2",
-    seeds: [
-      {
-        id: 1,
-        date: new Date().toDateString(),
-        teams: [{ name: 'user_2' }, { name: 'user_0' }],
-      },
-      {
-        id: 2,
-        date: new Date().toDateString(),
-        teams: [{ name: 'user_1' }, { name: 'user_4' }],
-      },
-    ]
-  })
+  // rounds.push({
+  //   title: "Round 2",
+  //   seeds: [
+  //     {
+  //       id: 1,
+  //       date: new Date().toDateString(),
+  //       teams: [{ name: 'user_2' }, { name: 'user_0' }],
+  //     },
+  //     {
+  //       id: 2,
+  //       date: new Date().toDateString(),
+  //       teams: [{ name: 'user_1' }, { name: 'user_4' }],
+  //     },
+  //   ]
+  // })
 
-  rounds.push({
-    title: "Round 3",
-    seeds: [
-      {
-        id: 1,
-        date: new Date().toDateString(),
-        teams: [{ name: 'user_2' }, { name: 'user_1' }],
-      }
-    ]
-  })
+  // rounds.push({
+  //   title: "Round 3",
+  //   seeds: [
+  //     {
+  //       id: 1,
+  //       date: new Date().toDateString(),
+  //       teams: [{ name: 'user_2' }, { name: 'user_1' }],
+  //     }
+  //   ]
+  // })
 
   const filteredRounds = rounds.filter(round => {
     if (round.seeds.length <= 8) {
       return round;
     }
-    return undefined;
+    return round;
   });
 
   return filteredRounds;
