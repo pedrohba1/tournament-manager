@@ -2,7 +2,7 @@
   "name": "tournament-manager",
   "version": "2.4.3",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc",

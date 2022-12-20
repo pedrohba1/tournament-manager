@@ -1,38 +1,30 @@
-.App {
-  text-align: center;
-}
+@media screen and (min-width: 993px){
+  .seed::before {
+    border-color: #384050 !important;
+    right: -1.3rem !important;
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  .seed::after{
+    border-color: #384050 !important;
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .seed:nth-child(even)::after {
+    top: -12.5px !important;
+  }
+
+  .seed:nth-child(odd):not(:last-child)::after{
+    top: calc(50% - 12.5px) !important;
+  }
+
+  .seed:nth-child(even)::before {
+    top: -12.5px !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.seed-team:nth-child(odd) {
+  border-bottom: 1px solid #384050;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.seed-team:nth-child(even){
+  border-bottom: 1px solid transparent;
 }

@@ -16,17 +16,18 @@ export const handleTourneyCreation = () =>{
         playoffsFormat: '',
       } as Options;
   
-      const players = <Player[]>[];
+      const players = [] as Player[];
       const amount = 5;
       for (let i = 0; i < amount; i++) {
-        const player = <Player>{
+        const player = {
           id: `${i}`,
           nickname: `user_${i}`,
           name: `name_${i}`,
-        };
+        } as Player;
         players.push(player);
-      }
+      };
   
-      const tourney = createTourney(options, players)
+      const tourney = createTourney(options, players);
+
       return startTourney(tourney);
 }
