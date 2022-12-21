@@ -87,7 +87,7 @@ export const handleTourneyCreation = () =>{
 
       tourney = setResult(tourney, 63, { d: 0, p1: 2, p2: 0 }); //UmPlayerMediano
 
-      console.log(tournamentEnd(tourney));
+      tournamentEnd(tourney);
 
       return tourney;
 }
