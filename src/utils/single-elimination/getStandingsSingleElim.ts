@@ -1,34 +1,35 @@
-import { Match, Matches } from '../../types/Match';
+import { Matches } from '../../types/Match';
 import { Player } from '../../types/Player';
 
 export default function getStandingsSingleElim(
   matches: Matches,
   players: Player[]
 ): Player[] {
-  const standings: any[] = [];
-  const grandFinal: Match = matches[matches.length - 1];
-
-  if (grandFinal.result.p1 > grandFinal.result.p2) {
-    standings.push(grandFinal.playerOne.id);
-    standings.push(grandFinal.playerTwo.id);
-  } else {
-    standings.push(grandFinal.playerTwo.id);
-    standings.push(grandFinal.playerOne.id);
-  }
+  const standings: string[] = [];
+  const lastIndex = matches.length - 1;
 
   for (let i = 0; i < matches.length; i++) {
     if (matches[i].result.p1 > matches[i].result.p2) {
       if (!matches[i].playerTwo.bye) {
         standings.push(matches[i].playerTwo.id);
+        if (lastIndex === i) {
+          standings.push(matches[i].playerOne.id);
+        }
       }
     } else {
       standings.push(matches[i].playerOne.id);
+      if (lastIndex === i) {
+        standings.push(matches[i].playerTwo.id);
+      }
     }
   }
 
   const sortedPlayers = players;
+
+  console.log(standings);
+
   sortedPlayers.sort(
-    (a, b) => standings.indexOf(a.id) - standings.indexOf(b.id)
+    (a, b) => standings.indexOf(b.id) - standings.indexOf(a.id)
   );
 
   return sortedPlayers;
