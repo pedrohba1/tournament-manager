@@ -26,8 +26,6 @@ export default function getStandingsSingleElim(
 
   const sortedPlayers = players;
 
-  console.log(standings);
-
   sortedPlayers.sort(
     (a, b) => standings.indexOf(b.id) - standings.indexOf(a.id)
   );
