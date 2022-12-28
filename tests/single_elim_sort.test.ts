@@ -106,7 +106,8 @@ describe('Sort function', () => {
 
     // TODO: aqui na última partida, deve ter uma partida entre o terceiro e o quarto
     // lugar, para que seja feito o desempate.
-    tourney = setResult(tourney, 63, { d: 0, p1: 2, p2: 0 }); //UmPlayerMediano
+    tourney = setResult(tourney, 63, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 64, { d: 0, p1: 2, p2: 0 }); //UmPlayerMediano
 
     players = tournamentEnd(tourney);
   });

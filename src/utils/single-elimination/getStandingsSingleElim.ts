@@ -1,33 +1,47 @@
 import { Matches } from '../../types/Match';
 import { Player } from '../../types/Player';
+import getBracketStandings from '../getBracketStandings';
 
 export default function getStandingsSingleElim(
   matches: Matches,
   players: Player[]
 ): Player[] {
-  const standings: string[] = [];
-  const lastIndex = matches.length - 1;
+  const partialStandings: string[] = [];
+  const totalMatches = 2 ** Math.ceil(Math.log2(players.length));
 
-  for (let i = 0; i < matches.length; i++) {
-    if (matches[i].result.p1 > matches[i].result.p2) {
-      if (!matches[i].playerTwo.bye) {
-        standings.push(matches[i].playerTwo.id);
-        if (lastIndex === i) {
-          standings.push(matches[i].playerOne.id);
-        }
-      }
+  if (matches.length >= totalMatches - 1) {
+    const final = matches[matches.length - 1];
+    const decider = matches[matches.length - 2];
+
+    if (final.result.p1 > final.result.p2) {
+      partialStandings.push(final.playerOne.id);
+      partialStandings.push(final.playerTwo.id);
     } else {
-      standings.push(matches[i].playerOne.id);
-      if (lastIndex === i) {
-        standings.push(matches[i].playerTwo.id);
-      }
+      partialStandings.push(final.playerTwo.id);
+      partialStandings.push(final.playerOne.id);
+    }
+
+    if (decider.result.p1 > decider.result.p2) {
+      partialStandings.push(decider.playerOne.id);
+      partialStandings.push(decider.playerTwo.id);
+    } else {
+      partialStandings.push(decider.playerTwo.id);
+      partialStandings.push(decider.playerOne.id);
     }
   }
 
+  const standings = partialStandings.concat(
+    getBracketStandings(
+      matches.slice(
+        0,
+        matches.length < totalMatches ? matches.length : totalMatches - 4
+      )
+    )
+  );
   const sortedPlayers = players;
 
   sortedPlayers.sort(
-    (a, b) => standings.indexOf(b.id) - standings.indexOf(a.id)
+    (a, b) => standings.indexOf(a.id) - standings.indexOf(b.id)
   );
 
   return sortedPlayers;

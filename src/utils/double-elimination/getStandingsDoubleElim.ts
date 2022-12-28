@@ -1,6 +1,6 @@
 import { Match, Matches } from '../../types/Match';
 import { Player } from '../../types/Player';
-import getStandingsSingleElim from '../single-elimination/getStandingsSingleElim';
+import getBracketStandings from '../getBracketStandings';
 
 export default function getStandingsDoubleElim(
   matches: Matches,
@@ -16,5 +16,12 @@ export default function getStandingsDoubleElim(
   }
 
   eliminationMatches.push(grandFinal);
-  return getStandingsSingleElim(eliminationMatches, players);
+  const standings = getBracketStandings(eliminationMatches);
+  const sortedPlayers = players;
+
+  sortedPlayers.sort(
+    (a, b) => standings.indexOf(a.id) - standings.indexOf(b.id)
+  );
+
+  return sortedPlayers;
 }
