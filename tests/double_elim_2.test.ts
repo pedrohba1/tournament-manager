@@ -21,7 +21,7 @@ describe('Double elimination tournament test', () => {
     global.console = jestConsole;
   });
 
-  it('should attempt to run nextorund of  tournament', (done) => {
+  it('should attempt to run next orund of  tournament but fail because it already ended', (done) => {
     const tourney = tourneyExample as Tournament;
 
     //TODO: precisamos saber o que está travando esse torneio
@@ -40,7 +40,7 @@ describe('Double elimination tournament test', () => {
     //  Quando a partida for setada se o cara da losers ganhar tem outro round
     console.log(tourney.matches[tourney.matches.length - 1]);
 
-    tourney = nextRound(tourney);
+    expect(() => nextRound(tourney)).toThrow('tourney ended already');
 
     const standings = tournamentEnd(tourney);
     for (const standing of standings) {
