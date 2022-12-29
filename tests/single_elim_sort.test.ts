@@ -12,6 +12,15 @@ const jestConsole = console;
 describe('Sort function', () => {
   let tourney: Tournament;
   let players: Player[] = [];
+
+  beforeEach(() => {
+    global.console = require('console');
+  });
+
+  afterEach(() => {
+    global.console = jestConsole;
+  });
+
   beforeAll(() => {
     const options: Options = {
       seed: 830,
@@ -95,17 +104,12 @@ describe('Sort function', () => {
 
     tourney = nextRound(tourney);
 
-    tourney = setResult(tourney, 63, { d: 0, p1: 2, p2: 0 }); //UmPlayerMediano
+    // TODO: aqui na última partida, deve ter uma partida entre o terceiro e o quarto
+    // lugar, para que seja feito o desempate.
+    tourney = setResult(tourney, 63, { d: 0, p1: 0, p2: 2 });
+    tourney = setResult(tourney, 64, { d: 0, p1: 2, p2: 0 }); //UmPlayerMediano
 
     players = tournamentEnd(tourney);
-  });
-
-  beforeEach(() => {
-    global.console = require('console');
-  });
-
-  afterEach(() => {
-    global.console = jestConsole;
   });
 
   it('should get sorted standings', () => {

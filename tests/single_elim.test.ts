@@ -71,19 +71,6 @@ describe('Single Elimination Tournament Test', () => {
 
   it('should assing matches result and go to next round', (done) => {
     tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    // for (const match of currentMatches) {
-    //   console.table({
-    //     '#': match.matchNumber,
-    //     playerOne: match.playerOne.nickname,
-    //     playerTwo: match.playerTwo.nickname,
-    //     results: match.result,
-    //   });
-    // }
-
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(2);
     done();
@@ -101,19 +88,6 @@ describe('Single Elimination Tournament Test', () => {
   it('should assing matches result and go to next round', (done) => {
     tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 1 });
     tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    // for (const match of currentMatches) {
-    //   console.table({
-    //     '#': match.matchNumber,
-    //     playerOne: match.playerOne.nickname,
-    //     playerTwo: match.playerTwo.nickname,
-    //     results: match.result,
-    //   });
-    // }
-
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(3);
     done();
@@ -124,25 +98,13 @@ describe('Single Elimination Tournament Test', () => {
       (m) => m.round === tourney.currentRound
     );
 
-    expect(currentMatches).toHaveLength(1);
+    expect(currentMatches).toHaveLength(2);
     done();
   });
 
   it('should assing matches result and not go to next round', (done) => {
-    tourney = setResult(tourney, 7, { d: 0, p1: 0, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    // for (const match of currentMatches) {
-    //   console.table({
-    //     '#': match.matchNumber,
-    //     playerOne: match.playerOne.nickname,
-    //     playerTwo: match.playerTwo.nickname,
-    //     results: match.result,
-    //   });
-    // }
-
+    tourney = setResult(tourney, 7, { d: 0, p1: 2, p2: 0 });
+    tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
     expect(() => {
       nextRound(tourney);
     }).toThrow('tourney ended already');
@@ -159,6 +121,9 @@ describe('Single Elimination Tournament Test', () => {
     expect(firstRoundMatches).toHaveLength(4);
 
     expect(tourney.ended).toBe(true);
+    expect(standings[0].id).toBe('2');
+    expect(standings[1].id).toBe('4');
+    expect(standings[2].id).toBe('3');
     expect(standings[0].tiebreakers.matchesSummary.l).toBe(0);
     expect(standings[1].tiebreakers.matchesSummary.l).toBe(1);
     done();
