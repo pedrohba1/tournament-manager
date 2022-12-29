@@ -8,6 +8,7 @@ import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
 import console from 'console';
 import getStandings from '../src/utils/getStandings';
+import setPlayerStanding from '../src/utils/remote/setPlayerStanding';
 const jestConsole = console;
 
 describe('remote tournament test', () => {
@@ -55,7 +56,7 @@ describe('remote tournament test', () => {
     done();
   });
 
-  it('should start tourney with matches', (done) => {
+  it('should start tourney with blank matches', (done) => {
     tourney = startTourney(tourney);
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
@@ -65,34 +66,77 @@ describe('remote tournament test', () => {
 
     const standings = getStandings(tourney);
 
-    expect(currentMatches[1].result).toBeNull();
+    // in this case, matches start with zero values
+    expect(currentMatches[1].result).toEqual({ d: 0, p1: 0, p2: 0 });
     done();
   });
 
   it('should not allow to set result', (done) => {
+    const currentMatches = tourney.matches.filter(
+      (m) => m.round === tourney.currentRound
+    );
+
+    expect(() =>
+      setResult(tourney, currentMatches[0].matchNumber, { d: 0, p1: 2, p2: 0 })
+    ).toThrow('tournament is remote');
+
     done();
   });
 
-  it('should allow to set up standings orders for players', (done) => {
+  it('should have already some player standings setted', (done) => {
+    for (const player of tourney.players) {
+      console.log(
+        `player id: ${player.id}, position: ${player.tiebreakers.position}`
+      );
+      expect(player.tiebreakers.position).toBeDefined();
+    }
+
     done();
   });
 
-  it(`When writting a position to a player, and another player already has that 
-  position, it should set the player with that position to undefined and assign the position 
-  to the new player positioned`, (done) => {
+  it('should allow to set up position for players and it should swap for the player that is in that position', (done) => {
+    tourney = setPlayerStanding(tourney, tourney.players[0].id, 3);
+    expect(
+      tourney.players.find((player) => player.id === '3').tiebreakers.position
+    ).toBe(3);
+    expect(
+      tourney.players.find((player) => player.id === '0').tiebreakers.position
+    ).toBe(4);
+
+    console.log('after changing positions');
+    for (const player of tourney.players) {
+      console.log(
+        `player id: ${player.id}, position: ${player.tiebreakers.position}`
+      );
+      expect(player.tiebreakers.position).toBeDefined();
+    }
+
     done();
   });
 
-  it(`When writting a position of a player that already has a position, 
-    it should keep the same position`, (done) => {
+  it('should not allow to set player in a position that does not exist', (done) => {
+    expect(() => setPlayerStanding(tourney, tourney.players[0].id, 10)).toThrow(
+      'position must be a number between 0 and the total of players -1'
+    );
+
     done();
   });
 
   it('should not allow to set next round', (done) => {
+    expect(() => nextRound(tourney)).toThrow('tournament is remote');
+
     done();
   });
 
   it('it should allow to end only if all players are positioned in the standings', (done) => {
+    const finalStandings = tournamentEnd(tourney);
+
+    for (let i = 0; i < finalStandings.length; i++) {
+      const player = finalStandings[i];
+      expect(player.tiebreakers.position).toBe(i);
+    }
+
+    expect(tourney.ended).toBe(true);
     done();
   });
 });

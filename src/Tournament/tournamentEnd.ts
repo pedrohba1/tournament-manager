@@ -11,6 +11,7 @@ import getRemoteStandings from '../utils/remote/getRemoteStandings';
 export default function tournamentEnd(tourney: Tournament): Player[] {
   if (
     tourney.options.format !== 'double-elim' &&
+    tourney.options.format !== 'remote' &&
     tourney.options.playoffsFormat !== 'double-elim' &&
     tourney.currentRound !== tourney.options.maxRounds
   )

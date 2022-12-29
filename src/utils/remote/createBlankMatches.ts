@@ -11,6 +11,16 @@ export default function createBlankMatches(
   const players = seed ? shuffle(tourney.players, seed) : tourney.players;
   const matches: Matches = [];
   playersPairing(matches, players, tourney);
+  for (const match of matches) {
+    match.result = { d: 0, p1: 0, p2: 0 };
+  }
+
   tourney.matches = matches;
+
+  // set some player pairings just to be sure that they all already have one
+  for (let i = 0; i < tourney.players.length; i++) {
+    tourney.players[i].tiebreakers.position = i;
+  }
+
   return tourney;
 }
