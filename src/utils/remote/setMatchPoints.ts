@@ -1,7 +1,7 @@
 import { Player } from '../../types/Player';
 import { Tournament } from '../../types/Tournament';
 
-export default function setMatchPoints(
+export function setMatchPoints(
   tournament: Tournament,
   playerId: string,
   points: number

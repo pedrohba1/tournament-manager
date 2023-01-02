@@ -1,7 +1,7 @@
 import { Player } from '../../types/Player';
 import { Tournament } from '../../types/Tournament';
 
-export default function setPlayerStanding(
+export function setPlayerStanding(
   tournament: Tournament,
   playerId: string,
   position: number

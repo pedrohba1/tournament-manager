@@ -8,8 +8,8 @@ import nextRound from '../src/Tournament/nextRound';
 import tournamentEnd from '../src/Tournament/tournamentEnd';
 import console from 'console';
 import getStandings from '../src/utils/getStandings';
-import setPlayerStanding from '../src/utils/remote/setPlayerStanding';
-import setMatchPoints from '../src/utils/remote/setMatchPoints';
+import { setPlayerStanding } from '../src/utils/remote/setPlayerStanding';
+import { setMatchPoints } from '../src/utils/remote/setMatchPoints';
 const jestConsole = console;
 
 describe('remote tournament test', () => {
