@@ -6,7 +6,10 @@ export default function setPlayerStanding(
   playerId: string,
   position: number
 ): Tournament {
+  if (tournament.options.format !== 'remote')
+    throw Error('tournament is not remote');
   const playerIndex = tournament.players.findIndex((p) => p.id === playerId);
+
   if (position <= 0 || position > tournament.players.length - 1)
     throw Error(
       'position must be a number between 0 and the total of players -1'

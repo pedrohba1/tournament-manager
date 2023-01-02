@@ -9,6 +9,7 @@ import tournamentEnd from '../src/Tournament/tournamentEnd';
 import console from 'console';
 import getStandings from '../src/utils/getStandings';
 import setPlayerStanding from '../src/utils/remote/setPlayerStanding';
+import setMatchPoints from '../src/utils/remote/setMatchPoints';
 const jestConsole = console;
 
 describe('remote tournament test', () => {
@@ -110,6 +111,18 @@ describe('remote tournament test', () => {
       );
       expect(player.tiebreakers.position).toBeDefined();
     }
+
+    done();
+  });
+
+  it('should allow to set matchPoints that will be used to rank players', (done) => {
+    for (const player of tourney.players) {
+      expect(player.tiebreakers.matchPoints).toBe(0);
+    }
+
+    setMatchPoints(tourney, tourney.players[0].id, 3);
+
+    expect(tourney.players[0].tiebreakers.matchPoints).toBe(3);
 
     done();
   });
