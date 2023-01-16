@@ -86,9 +86,6 @@ describe('remote tournament test', () => {
 
   it('should have already some player standings setted', (done) => {
     for (const player of tourney.players) {
-      console.log(
-        `player id: ${player.id}, position: ${player.tiebreakers.position}`
-      );
       expect(player.tiebreakers.position).toBeDefined();
     }
 
@@ -104,11 +101,7 @@ describe('remote tournament test', () => {
       tourney.players.find((player) => player.id === '0').tiebreakers.position
     ).toBe(4);
 
-    console.log('after changing positions');
     for (const player of tourney.players) {
-      console.log(
-        `player id: ${player.id}, position: ${player.tiebreakers.position}`
-      );
       expect(player.tiebreakers.position).toBeDefined();
     }
 
@@ -118,11 +111,11 @@ describe('remote tournament test', () => {
   it('should allow to set matchPoints that will be used to rank players', (done) => {
     for (const player of tourney.players) {
       expect(player.tiebreakers.matchPoints).toBe(0);
+
+      setMatchPoints(tourney, player.id, 3);
+
+      expect(player.tiebreakers.matchPoints).toBe(3);
     }
-
-    setMatchPoints(tourney, tourney.players[0].id, 3);
-
-    expect(tourney.players[0].tiebreakers.matchPoints).toBe(3);
 
     done();
   });
@@ -137,16 +130,18 @@ describe('remote tournament test', () => {
 
   it('should not allow to set next round', (done) => {
     expect(() => nextRound(tourney)).toThrow('tournament is remote');
-
     done();
   });
 
-  it('it should allow to end only if all players are positioned in the standings', (done) => {
+  it(`it should allow to end only if all players are positioned in the standings
+  and the matchPoints should be the ones set before
+  `, (done) => {
     const finalStandings = tournamentEnd(tourney);
 
     for (let i = 0; i < finalStandings.length; i++) {
       const player = finalStandings[i];
       expect(player.tiebreakers.position).toBe(i);
+      expect(player.tiebreakers.matchPoints).toBe(3);
     }
 
     expect(tourney.ended).toBe(true);

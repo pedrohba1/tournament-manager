@@ -24,7 +24,7 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
   )
     throw Error('not in final round');
 
-  tourney = setPlayersPoints(tourney);
+  if (tourney.options.format !== 'remote') tourney = setPlayersPoints(tourney);
   // calculate tiebreakers for each player based on points set
   for (const player of tourney.players) {
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
