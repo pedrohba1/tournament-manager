@@ -66,19 +66,6 @@ describe('25 players dropping 5', () => {
     tourney = setResult(tourney, 10, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 11, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 12, { d: 0, p1: 2, p2: 0 });
-
-    console.log('first round results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should drop 5 players before next round', () => {
@@ -105,19 +92,6 @@ describe('25 players dropping 5', () => {
     tourney = setResult(tourney, 20, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 21, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 22, { d: 0, p1: 2, p2: 0 });
-
-    console.log('round 2 results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -134,19 +108,6 @@ describe('25 players dropping 5', () => {
     tourney = setResult(tourney, 29, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 30, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 31, { d: 0, p1: 2, p2: 0 });
-
-    console.log('round 3 results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -163,19 +124,6 @@ describe('25 players dropping 5', () => {
     tourney = setResult(tourney, 38, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 39, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 40, { d: 0, p1: 2, p2: 0 });
-
-    console.log('round 4 results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -192,26 +140,9 @@ describe('25 players dropping 5', () => {
     tourney = setResult(tourney, 47, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 48, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 49, { d: 0, p1: 2, p2: 0 });
-
-    console.log('round 5 results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should get final standings', () => {
-    console.log('final standings');
-    const standings = tournamentEnd(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+    tournamentEnd(tourney);
   });
 });

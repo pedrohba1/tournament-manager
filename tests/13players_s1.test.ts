@@ -7,7 +7,6 @@ import nextRound from '../src/Tournament/nextRound';
 import { dropPlayer, Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
-import printStandings from '../src/utils/printStandings';
 const jestConsole = console;
 
 describe('13 players scenario 1', () => {
@@ -110,21 +109,6 @@ describe('13 players scenario 1', () => {
     tourney = startTourney(tourney);
   });
 
-  it('should show matches', () => {
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    console.log(`(teste13) round ${tourney.currentRound}: matches`);
-    for (const match of currentMatches) {
-      console.log(
-        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
-        'x',
-        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
-      );
-    }
-    console.log();
-  });
-
   it('should set results', () => {
     tourney = setResult(tourney, 1, { d: 0, p1: 0, p2: 2 });
     tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
@@ -136,7 +120,6 @@ describe('13 players scenario 1', () => {
 
   it('should drop leo', () => {
     [tourney] = dropPlayer(tourney, 'ID_1');
-    console.log('Leo is out');
   });
 
   it('should start next round', () => {
@@ -153,22 +136,7 @@ describe('13 players scenario 1', () => {
   });
 
   it('should show matches and standings', () => {
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    const standings = getStandings(tourney);
-
-    console.log(`round ${tourney.currentRound}: `, '\n');
-    printStandings(standings);
-    console.log();
-    for (const match of currentMatches) {
-      console.log(
-        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
-        'x',
-        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
-      );
-    }
-    console.log();
+    getStandings(tourney);
   });
 
   it('should set results for round 2', () => {
@@ -183,8 +151,6 @@ describe('13 players scenario 1', () => {
   it('should drop cariane, ibarone', () => {
     [tourney] = dropPlayer(tourney, 'ID_4');
     [tourney] = dropPlayer(tourney, 'ID_10');
-    console.log('cariane is out');
-    console.log('iBarone is out');
   });
 
   it('should start next round', () => {
@@ -192,50 +158,6 @@ describe('13 players scenario 1', () => {
   });
 
   it('should show matches and standings', () => {
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    const standings = getStandings(tourney);
-
-    console.log(`round ${tourney.currentRound}: `, '\n');
-    printStandings(standings);
-    console.log();
-    for (const match of currentMatches) {
-      console.log(
-        `${match.playerOne.nickname} (${match.playerOne.blossomId})`,
-        'x',
-        `${match.playerTwo.nickname} (${match.playerTwo.blossomId})`
-      );
-    }
-    console.log();
+    getStandings(tourney);
   });
-
-  it('should get expected pairings', () => {
-    // mbispo vs judebiasi
-    // paulo vs lucasgiggs
-    // black72 vs garrido
-    // mateus34 vs  caiogivanni
-    // Viralata vs remoto
-  });
-
-  // it('should set results for round 3', () => {
-  //   console.log('round 3 matches with results setted');
-  //   const currentMatches = tourney.matches.filter(
-  //     (m) => m.round === tourney.currentRound
-  //   );
-  //   for (const match of currentMatches) {
-  //     console.table({
-  //       '#': match.matchNumber,
-  //       playerOne: {
-  //         nickname: match.playerOne.nickname,
-  //         blossomId: match.playerOne.blossomId,
-  //       },
-  //       playerTwo: {
-  //         nickname: match.playerTwo.nickname,
-  //         blossomId: match.playerTwo.blossomId,
-  //       },
-  //       results: match.result,
-  //     });
-  //   }
-  // });
 });

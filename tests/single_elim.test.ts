@@ -22,7 +22,7 @@ describe('Single Elimination Tournament Test', () => {
   });
 
   it('should create tournament', (done) => {
-    const options = <Options>{
+    const options = {
       seed: 10,
       format: 'single-elim',
       gameType: 'magic',
@@ -31,20 +31,19 @@ describe('Single Elimination Tournament Test', () => {
       maxRounds: null,
       bestOf: 3,
       winValue: 3,
-      maxRound: null,
       drawValue: 1,
       lossValue: 0,
       playoffsFormat: '',
-    };
+    } as Options;
 
-    const players = <Player[]>[];
+    const players: Player[] = [];
     const amount = 5;
     for (let i = 0; i < amount; i++) {
-      const player = <Player>{
+      const player = {
         id: `${i}`,
         nickname: `user_${i}`,
         name: `name_${i}`,
-      };
+      } as Player;
       players.push(player);
     }
 
@@ -63,7 +62,7 @@ describe('Single Elimination Tournament Test', () => {
 
     expect(currentMatches).toHaveLength(4);
 
-    const standings = getStandings(tourney);
+    getStandings(tourney);
 
     expect(currentMatches[1].result).toBeNull();
     done();
@@ -113,9 +112,6 @@ describe('Single Elimination Tournament Test', () => {
 
   it('should end tourney', (done) => {
     const standings = tournamentEnd(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
 
     const firstRoundMatches = tourney.matches.filter((m) => m.round === 1);
     expect(firstRoundMatches).toHaveLength(4);

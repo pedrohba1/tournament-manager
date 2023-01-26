@@ -55,19 +55,6 @@ describe('Filter function', () => {
 
   it('should set results', () => {
     tourney = setResult(tourney, 1, { d: 0, p1: 0, p2: 2 });
-
-    console.log('first round results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should drop player', () => {

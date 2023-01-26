@@ -2,6 +2,7 @@ import { Matches } from '../../types/Match';
 import { Player } from '../../types/Player';
 import { Tournament } from '../../types/Tournament';
 import createNewMatch from '../createNewMatch';
+import { calculateSingleElimMaxRounds } from '../calculateSingleElimMaxRounds';
 
 export default function playersPairing(
   matches: Matches,
@@ -9,7 +10,7 @@ export default function playersPairing(
   tourney: Tournament,
   winners = true
 ): void {
-  const exponent = Math.ceil(Math.log2(players.length));
+  const exponent = calculateSingleElimMaxRounds(players.length);
   const bracket = [0, 1];
 
   for (let i = 2; i <= Math.floor(exponent); i++) {

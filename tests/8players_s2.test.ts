@@ -68,10 +68,4 @@ describe('Filter function', () => {
   it('should start next round', () => {
     tourney = nextRound(tourney);
   });
-
-  it('should get next matches pairings', () => {
-    console.log(
-      tourney.matches.filter((m) => m.round === tourney.currentRound)
-    );
-  });
 });

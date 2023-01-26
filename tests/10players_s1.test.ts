@@ -8,7 +8,6 @@ import { dropPlayer, Tournament } from '../src';
 import getStandings from '../src/utils/getStandings';
 import console from 'console';
 const jestConsole = console;
-import readableStandings from '../src/utils/readableStandings';
 
 describe('Filter function', () => {
   beforeEach(() => {
@@ -65,20 +64,6 @@ describe('Filter function', () => {
     tourney = nextRound(tourney);
   });
 
-  it('should get next matches pairings', () => {
-    const activeMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of activeMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
-  });
-
   it('should assign results for round2', () => {
     tourney = setResult(tourney, 6, { p1: 0, p2: 2, d: 0 });
     tourney = setResult(tourney, 7, { p1: 2, p2: 0, d: 0 });
@@ -92,26 +77,10 @@ describe('Filter function', () => {
   });
 
   it('get standings before rund 3 ', () => {
-    console.log('before round 3 standings');
-    const standings = getStandings(tourney);
-    readableStandings(standings);
+    getStandings(tourney);
   });
 
   it('should start next round', () => {
     tourney = nextRound(tourney);
-  });
-
-  it('should get next matches pairings', () => {
-    const activeMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of activeMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 });

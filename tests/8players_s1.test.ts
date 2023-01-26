@@ -59,18 +59,6 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 2, { p1: 1, p2: 1, d: 1 });
     tourney = setResult(tourney, 3, { p1: 2, p2: 1, d: 0 });
     tourney = setResult(tourney, 4, { p1: 0, p2: 2, d: 0 });
-    console.log('pairings with assdigned results');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -79,10 +67,7 @@ describe('Filter function', () => {
 
   it('should get standings for round 1', () => {
     const standings = getStandings(tourney);
-    console.log('round 1 standings:');
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+
     expect(standings[0].nickname).toBe('user_7');
     expect(standings[1].nickname).toBe('user_0');
     expect(standings[2].nickname).toBe('user_4');
@@ -94,18 +79,6 @@ describe('Filter function', () => {
   });
 
   it('should get the correct pairings for round 2', () => {
-    console.log('round 2 pairings');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
     expect(isPair('0', '7', tourney)).toBe(true);
     expect(isPair('4', '3', tourney) || isPair('4', '2', tourney)).toBe(true);
     expect(isPair('2', '5', tourney) || isPair('3', '5', tourney)).toBe(true);
@@ -128,24 +101,6 @@ describe('Filter function', () => {
   });
 
   it('should get standings for round 1', () => {
-    const standings = getStandings(tourney);
-    console.log('round 2 standings:');
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
-  });
-
-  it('should get the correct pairings for round 2', () => {
-    const activeMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of activeMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    getStandings(tourney);
   });
 });
