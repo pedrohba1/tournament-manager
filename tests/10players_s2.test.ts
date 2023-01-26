@@ -60,19 +60,6 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 3, { d: 0, p1: 2, p2: 1 });
     tourney = setResult(tourney, 4, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 0 });
-
-    console.log('first round results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -80,11 +67,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings', () => {
-    const standings = getStandings(tourney);
-    console.log('round 1 standings:');
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+    getStandings(tourney);
   });
 
   it('should set results for round 2', () => {
@@ -93,19 +76,6 @@ describe('Filter function', () => {
     tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 9, { d: 0, p1: 0, p2: 2 });
     tourney = setResult(tourney, 10, { d: 0, p1: 2, p2: 0 });
-
-    console.log('second round matches with results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should drop user 1 before round 3', () => {
@@ -117,26 +87,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings round 2', () => {
-    console.log('round 2 standings');
-    const standings = getStandings(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
-  });
-
-  it('should see pairings of round 3', () => {
-    console.log('round 3 pairings');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    getStandings(tourney);
   });
 
   it('should assign results for round 3', () => {
@@ -151,26 +102,7 @@ describe('Filter function', () => {
   });
 
   it('should get partial standings round 3', () => {
-    console.log('round 3 final standings');
-    const standings = getStandings(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
-  });
-
-  it('should see pairings of round 4', () => {
-    console.log('round  pairings');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    getStandings(tourney);
   });
 
   it('should assign results for round 4', () => {
@@ -181,10 +113,6 @@ describe('Filter function', () => {
   });
 
   it('should end tournament', () => {
-    const standings = tournamentEnd(tourney);
-    console.log('logging final stnadings');
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+    tournamentEnd(tourney);
   });
 });

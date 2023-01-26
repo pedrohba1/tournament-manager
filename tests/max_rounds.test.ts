@@ -42,7 +42,7 @@ describe('Filter function', () => {
     }
 
     tourney = createTourney(options, players);
-    console.log(tourney.options);
+
     expect(tourney.options.maxRounds).toBe(2);
   });
 });

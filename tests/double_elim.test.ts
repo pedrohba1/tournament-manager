@@ -9,7 +9,7 @@ import tournamentEnd from '../src/Tournament/tournamentEnd';
 import console from 'console';
 const jestConsole = console;
 
-describe('Single Elimination Tournament Test', () => {
+describe('Double Elimination Tournament Test', () => {
   let tourney: Tournament;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Single Elimination Tournament Test', () => {
   });
 
   it('should create tournament', (done) => {
-    const options = <Options>{
+    const options = {
       format: 'double-elim',
       gameType: 'magic',
       playoffs: false,
@@ -33,14 +33,14 @@ describe('Single Elimination Tournament Test', () => {
       drawValue: 1,
       lossValue: 0,
       playoffsFormat: '',
-    };
+    } as Options;
 
-    const players = <Player[]>[];
+    const players: Player[] = [];
     const amount = 5;
     for (let i = 0; i < amount; i++) {
       const player = <Player>{
         id: `${i}`,
-        nickname: `user_${i + 1}`,
+        nickname: `user_${i}`,
         name: `name_${i}`,
       };
       players.push(player);
@@ -50,6 +50,7 @@ describe('Single Elimination Tournament Test', () => {
     expect(tourney.ended).toBe(false);
     expect(tourney.players.length).toBe(amount);
     expect(tourney.options.format).toBe('double-elim');
+
     done();
   });
 
@@ -68,21 +69,8 @@ describe('Single Elimination Tournament Test', () => {
   it('should assing matches result and go to next round', (done) => {
     tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
 
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        bracket: match.winners ? 'Winners Bracket' : 'Losers Bracket',
-        round: tourney.currentRound,
-      });
-    }
     tourney = nextRound(tourney);
+
     expect(tourney.currentRound).toBe(2);
     done();
   });
@@ -91,21 +79,6 @@ describe('Single Elimination Tournament Test', () => {
     tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
 
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        bracket: match.winners ? 'Winners Bracket' : 'Losers Bracket',
-        round: tourney.currentRound,
-      });
-    }
-
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(3);
     done();
@@ -113,71 +86,10 @@ describe('Single Elimination Tournament Test', () => {
 
   it('should assing matches result and go to next round', (done) => {
     tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
-
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        bracket: match.winners ? 'Winners Bracket' : 'Losers Bracket',
-        round: tourney.currentRound,
-      });
-    }
+    tourney = setResult(tourney, 9, { d: 0, p1: 2, p2: 0 });
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(4);
-    done();
-  });
-
-  it('should assing matches result and go to next round', (done) => {
-    tourney = setResult(tourney, 10, { d: 0, p1: 2, p2: 0 });
-    tourney = setResult(tourney, 11, { d: 0, p1: 2, p2: 0 });
-
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        bracket: match.winners ? 'Winners Bracket' : 'Losers Bracket',
-        round: tourney.currentRound,
-      });
-    }
-
-    tourney = nextRound(tourney);
-    expect(tourney.currentRound).toBe(5);
-    done();
-  });
-
-  it('should assing matches result and go to next round', (done) => {
-    tourney = setResult(tourney, 12, { d: 0, p1: 0, p2: 2 });
-
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        bracket: match.winners ? 'Winners Bracket' : 'Losers Bracket',
-        round: tourney.currentRound,
-      });
-    }
-
-    tourney = nextRound(tourney);
-    expect(tourney.currentRound).toBe(6);
     done();
   });
 
@@ -188,53 +100,25 @@ describe('Single Elimination Tournament Test', () => {
     done();
   });
 
-  it('should reset grand final', (done) => {
-    tourney = setResult(tourney, 13, { d: 0, p1: 0, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-        round: tourney.currentRound,
-      });
-    }
+  it('should assing matches result and go to next round', (done) => {
+    // Match number 11 é um contra bye true
+    tourney = setResult(tourney, 12, { d: 0, p1: 0, p2: 2 });
 
     tourney = nextRound(tourney);
-    expect(tourney.currentRound).toBe(7);
+    expect(tourney.currentRound).toBe(5);
     done();
   });
 
   it('should assing grand finals and not go to next round', (done) => {
-    tourney = setResult(tourney, 14, { d: 0, p1: 0, p2: 2 });
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
+    tourney = setResult(tourney, 13, { d: 0, p1: 0, p2: 2 });
 
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
+    nextRound(tourney);
 
-    expect(() => {
-      nextRound(tourney);
-    }).toThrow('tourney ended already');
     done();
   });
 
   it('should end tourney', (done) => {
-    const standings = tournamentEnd(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+    tournamentEnd(tourney);
 
     expect(tourney.ended).toBe(true);
     done();

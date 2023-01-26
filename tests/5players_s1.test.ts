@@ -55,56 +55,15 @@ describe('Filter function', () => {
   it('should set results', () => {
     tourney = setResult(tourney, 1, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 2, { d: 0, p1: 2, p2: 0 });
-
-    console.log('first round results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
     tourney = nextRound(tourney);
   });
 
-  it('should show matches of second round', () => {
-    console.log('second round matches');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
-  });
-
   it('should set results for round 2', () => {
     tourney = setResult(tourney, 5, { d: 0, p1: 0, p2: 2 });
     tourney = setResult(tourney, 6, { d: 0, p1: 2, p2: 1 });
-
-    console.log('second round matches with results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should start next round', () => {
@@ -114,26 +73,11 @@ describe('Filter function', () => {
   it('should set reuslts for round 3', () => {
     tourney = setResult(tourney, 8, { d: 0, p1: 0, p2: 2 });
     tourney = setResult(tourney, 9, { d: 0, p1: 2, p2: 1 });
-    console.log('third round matches with results setted');
-    const currentMatches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound
-    );
-    for (const match of currentMatches) {
-      console.table({
-        '#': match.matchNumber,
-        playerOne: match.playerOne.nickname,
-        playerTwo: match.playerTwo.nickname,
-        results: match.result,
-      });
-    }
   });
 
   it('should get final standings', () => {
-    console.log('final standings');
     const standings = tournamentEnd(tourney);
-    for (const standing of standings) {
-      console.table({ ...standing.tiebreakers, nickname: standing.nickname });
-    }
+
     expect(standings[0].nickname).toBe('user_2');
     expect(standings[1].nickname).toBe('user_3');
     expect(standings[2].nickname).toBe('user_1');

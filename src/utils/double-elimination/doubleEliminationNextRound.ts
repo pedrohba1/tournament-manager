@@ -10,53 +10,40 @@ export default function doubleEliminationNextRound(
   tourney: Tournament,
   playoffsRelativeRound?: number
 ): Tournament {
-  const losersMatches: Matches = tourney.matches.filter(
-    (m) => m.round === tourney.currentRound - 1 && !m.winners
-  );
-  const matches: Matches = [];
+  const winnersMatches: Matches = [];
+  const losersMatches: Matches = [];
+  const newMatches: Matches = [];
+
+  tourney.matches.forEach((m) => {
+    if (m.round === tourney.currentRound - 1) {
+      if (m.winners) winnersMatches.push(m);
+      else losersMatches.push(m);
+    }
+  });
 
   // Segundo round ocorre para montar a losers bracket
   if (
     (playoffsRelativeRound ? playoffsRelativeRound : tourney.currentRound) === 2
   ) {
+    const losers = getMatchesLosers(winnersMatches);
+
+    advanceBracket(newMatches, winnersMatches, tourney);
+    playersPairing(newMatches, losers, tourney, false);
+
+    // Ultimo round cria a grande final
+  } else if (tourney.currentRound === tourney.options.maxRounds) {
     const winnersMatches: Matches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound - 1 && m.winners
     );
-    const losers = getMatchesLosers(winnersMatches);
 
-    advanceBracket(matches, winnersMatches, tourney);
-    playersPairing(matches, losers, tourney, false);
-
-    // Penultimo round cria a grande final
-  } else if (tourney.currentRound == tourney.options.maxRounds - 1) {
-    const winnersMatches: Matches = tourney.matches.filter(
-      (m) => m.round === tourney.currentRound - 2 && m.winners
-    );
-
-    matches.push(createGrandFinals(winnersMatches, losersMatches, tourney));
+    newMatches.push(createGrandFinals(winnersMatches, losersMatches, tourney));
   } else {
-    // Rounds impares roda apenas a loser
-    if (
-      (playoffsRelativeRound ? playoffsRelativeRound : tourney.currentRound) %
-        2 !=
-      0
-    ) {
-      const winnersMatches: Matches = tourney.matches.filter(
-        (m) => m.round === tourney.currentRound - 1 && m.winners
-      );
+    advanceBracket(newMatches, winnersMatches, tourney);
+    sendToLosersBracket(newMatches, winnersMatches, losersMatches, tourney);
 
-      sendToLosersBracket(matches, winnersMatches, losersMatches, tourney);
-      // Rounds pares roda a loser e a winners
-    } else {
-      const winnersMatches: Matches = tourney.matches.filter(
-        (m) => m.round === tourney.currentRound - 2 && m.winners
-      );
-
-      advanceBracket(matches, winnersMatches, tourney);
-      advanceBracket(matches, losersMatches, tourney, false);
-    }
+    // advanceBracket(newMatches, losersMatches, tourney, false);
   }
 
-  tourney.matches = tourney.matches.concat(matches);
+  tourney.matches = tourney.matches.concat(newMatches);
   return tourney;
 }
