@@ -2,11 +2,12 @@ import { Match } from '../../types/Match';
 import { Tournament } from '../../types/Tournament';
 
 export default function notEndedDoubleElim(tourney: Tournament): boolean {
+  const { maxRounds } = tourney.options;
   // Any round before the two last the tournament should not end
-  if (tourney.currentRound < tourney.options.maxRounds - 2) return true;
+  if (maxRounds && tourney.currentRound < maxRounds - 2) return true;
 
   const wbSemiFinal: Match[] = tourney.matches.filter(
-    (match) => match.round === tourney.options.maxRounds - 1 && match.winners
+    (match) => match.round === maxRounds && maxRounds - 1 && match.winners
   );
 
   // If the winners final havent happend yet the tournament should not end
@@ -14,7 +15,7 @@ export default function notEndedDoubleElim(tourney: Tournament): boolean {
 
   // If the result from the grand final was not set the tournament should not end
   const grandFinal: Match[] = tourney.matches.filter(
-    (match) => match.round === tourney.options.maxRounds
+    (match) => match.round === maxRounds
   );
 
   // If the winners final havent happend yet the tournament should not end

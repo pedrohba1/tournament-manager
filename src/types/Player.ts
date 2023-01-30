@@ -1,6 +1,6 @@
 export type Player = {
   blossomId: number;
-  roundOfDrop: number;
+  roundOfDrop?: number;
   id: string;
   name: string;
   active: boolean;

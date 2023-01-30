@@ -11,7 +11,7 @@ export default function pairOpponentsFirstRound(
   // create and assign matches
   const matches: Matches = [];
   for (let i = 0; i < players.length; i += 2) {
-    const match = <Match>{
+    const match = {
       playerOne: players[i],
       // last will contain bye. Assign bye to player.
       playerTwo: players[i + 1] ? players[i + 1] : { bye: true },
@@ -19,7 +19,7 @@ export default function pairOpponentsFirstRound(
       matchNumber: tourney.lastMatchNumber,
       round: 1,
       result: null,
-    };
+    } as Match;
     if (match.playerTwo.bye) {
       match.result = { d: 0, p1: 2, p2: 0 };
       match.active = false;

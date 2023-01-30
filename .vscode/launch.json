@@ -5,7 +5,7 @@
       "type": "node-terminal",
       "name": "Run Script: test",
       "request": "launch",
-      "command": "yarn run test",
+      "command": "yarn run test tests/remote_tournaments.test.ts",
       "cwd": "${workspaceFolder}"
     }
   ]

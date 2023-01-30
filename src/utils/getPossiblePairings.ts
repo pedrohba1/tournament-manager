@@ -4,8 +4,13 @@ import getForbiddenPairings from './getForbbidenPairings';
 import getStandings from './getStandings';
 import getCurrentRoundMatch from './getCurrentRoundMatch';
 
-export default function getPossiblePairings(tourney: Tournament): number[] {
-  const possible = [];
+type ITuple = [number, number, number];
+type IPossibleTuple = [ITuple, ITuple];
+
+export default function getPossiblePairings(
+  tourney: Tournament
+): IPossibleTuple {
+  const possible = ([] as unknown) as IPossibleTuple;
   const standings = getStandings(tourney).filter((p) => p.active);
 
   for (const player of tourney.players) {

@@ -5,7 +5,7 @@ import { Options } from '../src/types/Options';
 import { Player } from '../src/types/Player';
 import { dropPlayer, Tournament } from '../src';
 import console from 'console';
-import undropPlayer from '../src/Tournament/undropPlayer';
+import unDropPlayer from '../src/Tournament/unDropPlayer';
 const jestConsole = console;
 
 describe('Filter function', () => {
@@ -93,7 +93,7 @@ describe('Filter function', () => {
   });
 
   it(`should undrop a player`, () => {
-    [tourney] = undropPlayer(tourney, '2');
+    [tourney] = unDropPlayer(tourney, '2');
     const playerIndex = tourney.players.findIndex((p) => p.id === '2');
     const player = tourney.players[playerIndex];
     expect(player.active).toBe(true);

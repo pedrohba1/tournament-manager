@@ -10,7 +10,10 @@ export default function setMaxRound(tourney: Tournament): Tournament {
     case 'swiss':
       maxRounds = calculateSingleElimMaxRounds(playersAmount);
 
-      if (maxRounds < tourney.options.maxRounds || !tourney.options.maxRounds)
+      if (
+        (tourney.options.maxRounds && maxRounds < tourney.options.maxRounds) ||
+        !tourney.options.maxRounds
+      )
         tourney.options.maxRounds = maxRounds;
 
       if (tourney.options.playoffsFormat === 'single-elim') {

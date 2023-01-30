@@ -1,5 +1,6 @@
 {
-  "compilerOptions": {  
+  "compilerOptions": {
+    "strict": true,
     "target": "es6",  
     "declaration": true,
     "declarationMap": true,

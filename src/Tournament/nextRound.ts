@@ -56,7 +56,7 @@ export default function nextRound(tourney: Tournament): Tournament {
           if (hasSwissEnded(tourney)) {
             tourney.inPlayoffs = true;
             tourney = createPlayoffsBracket(tourney);
-          } else if (tourney.inPlayoffs) {
+          } else if (tourney.inPlayoffs && tourney.options.maxRounds) {
             const swissRoundsDoubleElim =
               tourney.options.maxRounds -
               calculateDoubleElimMaxRounds(tourney.options.cutLimit);

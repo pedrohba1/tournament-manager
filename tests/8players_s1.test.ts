@@ -30,7 +30,6 @@ describe('Filter function', () => {
       maxRounds: null,
       bestOf: 3,
       winValue: 3,
-      maxRound: null,
       drawValue: 1,
       lossValue: 0,
     };

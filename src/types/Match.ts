@@ -6,7 +6,7 @@ export type Match = {
   round: number;
   playerOne: Player;
   playerTwo: Player;
-  result: Result;
+  result: Result | null;
   active: boolean;
   etc: unknown;
   isPlayoff?: boolean;

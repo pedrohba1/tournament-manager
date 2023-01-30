@@ -1,14 +1,5 @@
 {
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
-      },
-      "typescript.validate.enable": false,
-    "cSpell.words": [
-        "Evos",
-        "Staker",
-        "stakers",
-        "tronweb",
-        "unstake",
-        "Unstaked"
-    ]
+    }
 }

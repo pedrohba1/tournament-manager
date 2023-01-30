@@ -5,7 +5,13 @@ export default function getMatchesLosers(matches: Matches): Player[] {
   const losers: Player[] = [];
 
   for (const match of matches) {
-    if (match.result.p1 > match.result.p2) {
+    const currentMatchResult = match.result;
+    if (!currentMatchResult)
+      throw new Error(
+        `Match number ${match.matchNumber} has no result settled.`
+      );
+
+    if (currentMatchResult.p1 > currentMatchResult.p2) {
       if (!match.playerTwo.bye) {
         losers.push(match.playerTwo);
       }
