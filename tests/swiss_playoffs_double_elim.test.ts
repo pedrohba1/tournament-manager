@@ -129,7 +129,6 @@ describe('Filter function', () => {
     const winnersMatches = currentMatches.filter((m) => m.winners);
     expect(winnersMatches).toHaveLength(1);
     expect(losersMatches).toHaveLength(0);
-    tourney = nextRound(tourney);
   });
 
   it('should get final standings', () => {

@@ -13,26 +13,18 @@ export default function nextRound(tourney: Tournament): Tournament {
     throw Error('tournament is remote');
   }
 
-  //checks if there is some match of the current round that does not have a reuslt.
-  // if there is a match without result throw an error:
   const noResult = tourney.matches.some(
     (m) => m.round === tourney.currentRound && !m.result
   );
   if (noResult) throw Error('there are unfinished matches');
 
-  // TODO rever uma forma de refatorar esse guarda que só pode
-  // verificar se o torneio acabou se não for double-elim
-  if (
-    tourney.currentRound === tourney.options.maxRounds &&
-    tourney.options.format !== 'double-elim' &&
-    tourney.options.playoffsFormat !== 'double-elim'
-  )
+  if (tourney.currentRound === tourney.options.maxRounds)
     throw Error('tourney ended already');
 
-  //increment round
   tourney.currentRound += 1;
-  // set points first
+
   tourney = setPlayersPoints(tourney);
+
   // calculate tiebreakers for each player based on points set
   for (const player of tourney.players) {
     const playerIndex = tourney.players.findIndex((p) => p.id === player.id);
