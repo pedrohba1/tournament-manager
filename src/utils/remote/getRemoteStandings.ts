@@ -8,9 +8,15 @@ export default function getRemoteStandings(tournament: Tournament): Player[] {
   if (players.some((p) => p.tiebreakers.position === undefined))
     throw Error('there are players with unset position or position <= 0');
 
-  tournament.remoteStandings = players.sort(
-    (pa, pb) => pa.tiebreakers.position - pb.tiebreakers.position
-  );
+  tournament.remoteStandings = players.sort((pa, pb) => {
+    if (
+      pa.tiebreakers.position !== undefined &&
+      pb.tiebreakers.position !== undefined
+    )
+      return pa.tiebreakers.position - pb.tiebreakers.position;
+
+    return 0;
+  });
 
   return tournament.remoteStandings; //order these players by position
 }

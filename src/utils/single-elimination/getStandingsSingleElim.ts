@@ -13,6 +13,9 @@ export default function getStandingsSingleElim(
     const final = matches[matches.length - 1];
     const decider = matches[matches.length - 2];
 
+    if (!final.result || !decider.result)
+      throw new Error('Final or Decider result are null');
+
     if (final.result.p1 > final.result.p2) {
       partialStandings.push(final.playerOne.id);
       partialStandings.push(final.playerTwo.id);

@@ -7,12 +7,18 @@ export default function createGrandFinals(
   losersMatches: Matches,
   tourney: Tournament
 ): Match {
+  const winnerMatchResult = winnersMatches[0].result;
+  const loserMatchResult = losersMatches[0].result;
+
+  if (!winnerMatchResult || !loserMatchResult)
+    throw new Error("There's no result settled for winners or losers");
+
   const winnerWb =
-    winnersMatches[0].result.p1 > winnersMatches[0].result.p2
+    winnerMatchResult.p1 > winnerMatchResult.p2
       ? winnersMatches[0].playerOne
       : winnersMatches[0].playerTwo;
   const winnerLb =
-    losersMatches[0].result.p1 > losersMatches[0].result.p2
+    loserMatchResult.p1 > loserMatchResult.p2
       ? losersMatches[0].playerOne
       : losersMatches[0].playerTwo;
 

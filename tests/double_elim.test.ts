@@ -20,7 +20,7 @@ describe('Double Elimination Tournament Test', () => {
     global.console = jestConsole;
   });
 
-  it('should create tournament', (done) => {
+  it('should create tournament', () => {
     const options = {
       format: 'double-elim',
       gameType: 'magic',
@@ -50,11 +50,9 @@ describe('Double Elimination Tournament Test', () => {
     expect(tourney.ended).toBe(false);
     expect(tourney.players.length).toBe(amount);
     expect(tourney.options.format).toBe('double-elim');
-
-    done();
   });
 
-  it('should start tourney without seed and assign matches', (done) => {
+  it('should start tourney without seed and assign matches', () => {
     tourney = startTourney(tourney);
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
@@ -63,64 +61,53 @@ describe('Double Elimination Tournament Test', () => {
     expect(currentMatches).toHaveLength(4);
     expect(currentMatches[1].result).toBeNull();
     expect(tourney.currentRound).toBe(1);
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
 
     tourney = nextRound(tourney);
 
     expect(tourney.currentRound).toBe(2);
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(3);
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 9, { d: 0, p1: 2, p2: 0 });
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(4);
-    done();
   });
 
-  it('should not end tourney', (done) => {
+  it('should not end tourney', () => {
     expect(() => {
       tournamentEnd(tourney);
     }).toThrow('not in final round');
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     // Match number 11 é um contra bye true
     tourney = setResult(tourney, 12, { d: 0, p1: 0, p2: 2 });
 
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(5);
-    done();
   });
 
-  it('should assing grand finals and not go to next round', (done) => {
+  it('should assing grand finals and not go to next round', () => {
     tourney = setResult(tourney, 13, { d: 0, p1: 0, p2: 2 });
-
-    nextRound(tourney);
-
-    done();
   });
 
-  it('should end tourney', (done) => {
+  it('should end tourney', () => {
     tournamentEnd(tourney);
 
     expect(tourney.ended).toBe(true);
-    done();
   });
 });

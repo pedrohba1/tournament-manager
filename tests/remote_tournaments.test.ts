@@ -95,10 +95,10 @@ describe('remote tournament test', () => {
   it('should allow to set up position for players and it should swap for the player that is in that position', (done) => {
     tourney = setPlayerStanding(tourney, tourney.players[0].id, 3);
     expect(
-      tourney.players.find((player) => player.id === '3').tiebreakers.position
+      tourney.players.find((player) => player.id === '3')?.tiebreakers.position
     ).toBe(3);
     expect(
-      tourney.players.find((player) => player.id === '0').tiebreakers.position
+      tourney.players.find((player) => player.id === '0')?.tiebreakers.position
     ).toBe(4);
 
     for (const player of tourney.players) {

@@ -21,7 +21,7 @@ describe('Single Elimination Tournament Test', () => {
     global.console = jestConsole;
   });
 
-  it('should create tournament', (done) => {
+  it('should create tournament', () => {
     const options = {
       seed: 10,
       format: 'single-elim',
@@ -51,10 +51,9 @@ describe('Single Elimination Tournament Test', () => {
     expect(tourney.ended).toBe(false);
     expect(tourney.players.length).toBe(amount);
     expect(tourney.options.format).toBe('single-elim');
-    done();
   });
 
-  it('should start tourney without seed and assign matches', (done) => {
+  it('should start tourney without seed and assign matches', () => {
     tourney = startTourney(tourney);
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
@@ -65,52 +64,46 @@ describe('Single Elimination Tournament Test', () => {
     getStandings(tourney);
 
     expect(currentMatches[1].result).toBeNull();
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     tourney = setResult(tourney, 2, { d: 0, p1: 1, p2: 2 });
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(2);
-    done();
   });
 
-  it('should calculate right the next matches', (done) => {
+  it('should calculate right the next matches', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
 
     expect(currentMatches).toHaveLength(2);
-    done();
   });
 
-  it('should assing matches result and go to next round', (done) => {
+  it('should assing matches result and go to next round', () => {
     tourney = setResult(tourney, 5, { d: 0, p1: 2, p2: 1 });
     tourney = setResult(tourney, 6, { d: 0, p1: 0, p2: 2 });
     tourney = nextRound(tourney);
     expect(tourney.currentRound).toBe(3);
-    done();
   });
 
-  it('should calculate right the next matches', (done) => {
+  it('should calculate right the next matches', () => {
     const currentMatches = tourney.matches.filter(
       (m) => m.round === tourney.currentRound
     );
 
     expect(currentMatches).toHaveLength(2);
-    done();
   });
 
-  it('should assing matches result and not go to next round', (done) => {
+  it('should assing matches result and not go to next round', () => {
     tourney = setResult(tourney, 7, { d: 0, p1: 2, p2: 0 });
     tourney = setResult(tourney, 8, { d: 0, p1: 2, p2: 0 });
     expect(() => {
       nextRound(tourney);
     }).toThrow('tourney ended already');
-    done();
   });
 
-  it('should end tourney', (done) => {
+  it('should end tourney', () => {
     const standings = tournamentEnd(tourney);
 
     const firstRoundMatches = tourney.matches.filter((m) => m.round === 1);
@@ -122,6 +115,5 @@ describe('Single Elimination Tournament Test', () => {
     expect(standings[2].id).toBe('3');
     expect(standings[0].tiebreakers.matchesSummary.l).toBe(0);
     expect(standings[1].tiebreakers.matchesSummary.l).toBe(1);
-    done();
   });
 });

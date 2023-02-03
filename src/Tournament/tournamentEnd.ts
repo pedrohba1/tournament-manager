@@ -49,7 +49,5 @@ export default function tournamentEnd(tourney: Tournament): Player[] {
       return standings;
     default:
       throw Error('no format specified');
-      break;
   }
-  return standings;
 }

@@ -14,6 +14,10 @@ export default function dropPlayer(
 
   // assign this player active match an {active: false};
   const currentMatch = getCurrentRoundMatch(tourney, playerId);
+
+  if (!currentMatch)
+    throw new Error(`No match found with the given playerId: ${playerId}`);
+
   if (currentMatch.playerOne.id === playerId) {
     currentMatch.playerOne.active = false;
   }

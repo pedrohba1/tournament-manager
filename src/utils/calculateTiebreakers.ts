@@ -50,14 +50,15 @@ export default function calculateTiebreakers(
     );
 
     // calculate opponent match win percentage and sum in the accumulator
-    const {
-      tiebreakers: { matchPoints },
-    } = tourney.players.find((p) => p.id === opponent.id);
-    debug('result of acc', matchPoints / (opponentMatches.length * 3));
-    acc +=
-      matchPoints / (opponentMatches.length * 3) < 0.33
-        ? 0.33
-        : matchPoints / (opponentMatches.length * 3);
+    const foundPlayer = tourney.players.find((p) => p.id === opponent.id);
+    if (foundPlayer) {
+      const { matchPoints } = foundPlayer.tiebreakers;
+      debug('result of acc', matchPoints / (opponentMatches.length * 3));
+      acc +=
+        matchPoints / (opponentMatches.length * 3) < 0.33
+          ? 0.33
+          : matchPoints / (opponentMatches.length * 3);
+    }
   }
   const omwp = acc / playerMatches.length;
 
@@ -92,21 +93,24 @@ export default function calculateTiebreakers(
       continue;
     }
     // calculate opponent game win percentage and sum in the accumulator
-    const {
-      tiebreakers: { gamesSummary, gamePoints },
-    } = tourney.players.find((p) => p.id === opponent.id);
-    const { w, l, d } = gamesSummary;
-    const allGames = w + l + d;
-    debug('gwp of opponet', opponent.id);
-    acc2 +=
-      gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
-    debug(
-      gamePoints,
-      '/',
-      allGames * 3,
-      '=',
-      gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3)
-    );
+    const foundPlayer = tourney.players.find((p) => p.id === opponent.id);
+    if (foundPlayer) {
+      const {
+        tiebreakers: { gamesSummary, gamePoints },
+      } = foundPlayer;
+      const { w, l, d } = gamesSummary;
+      const allGames = w + l + d;
+      debug('gwp of opponet', opponent.id);
+      acc2 +=
+        gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3);
+      debug(
+        gamePoints,
+        '/',
+        allGames * 3,
+        '=',
+        gamePoints / (allGames * 3) < 0.33 ? 0.33 : gamePoints / (allGames * 3)
+      );
+    }
   }
   const ogwp = acc2 / playerMatches.length;
   debug('ogwp of', player.id, ':', ogwp);

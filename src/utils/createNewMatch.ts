@@ -8,7 +8,7 @@ export default function createNewMatch(
   tourney: Tournament,
   winners = true
 ): Match {
-  const match = <Match>{
+  const match = {
     playerOne: playerOne,
     playerTwo: playerTwo ? playerTwo : { bye: true },
     active: true,
@@ -17,7 +17,7 @@ export default function createNewMatch(
     result: null,
     isPlayoff: tourney.inPlayoffs || false,
     winners: winners,
-  };
+  } as Match;
   if (match.playerTwo.bye) {
     match.result = { d: 0, p1: 2, p2: 0 };
     match.active = false;

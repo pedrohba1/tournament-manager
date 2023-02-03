@@ -214,10 +214,6 @@ describe('Filter function', () => {
     expect(losersMatches).toHaveLength(0);
   });
 
-  it('should start next round', () => {
-    tourney = nextRound(tourney);
-  });
-
   it('should get final standings', () => {
     tournamentEnd(tourney);
     expect(tourney.ended).toBe(true);

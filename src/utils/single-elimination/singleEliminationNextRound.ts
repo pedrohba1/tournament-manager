@@ -16,6 +16,11 @@ export default function singleEliminationNextRound(
     const decider: Player[] = [];
 
     for (const match of lastMaches) {
+      if (!match.result)
+        throw new Error(
+          `Match number ${match.matchNumber} has no result settled.`
+        );
+
       if (match.result.p1 > match.result.p2) {
         final.push(match.playerOne);
         decider.push(match.playerTwo);
@@ -31,6 +36,11 @@ export default function singleEliminationNextRound(
     const players: Player[] = [];
 
     for (const match of lastMaches) {
+      if (!match.result)
+        throw new Error(
+          `Match number ${match.matchNumber} has no result settled.`
+        );
+
       if (match.result.p1 > match.result.p2) {
         players.push(match.playerOne);
       } else {

@@ -2,7 +2,7 @@ import { Match } from '..';
 import { Tournament } from '../types/Tournament';
 import getCurrentRoundMatch from '../utils/getCurrentRoundMatch';
 
-export default function undropPlayer(
+export default function unDropPlayer(
   tourney: Tournament,
   playerId: string
 ): [Tournament, Match] {
@@ -20,6 +20,9 @@ export default function undropPlayer(
   // change results nor reset match as active. Let that for the evo
 
   const currentMatch = getCurrentRoundMatch(tourney, playerId);
+  if (!currentMatch)
+    throw new Error(`No match found with the given playerId: ${playerId}`);
+
   if (currentMatch.playerOne.id === playerId) {
     currentMatch.playerOne.active = true;
   }
