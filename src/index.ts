@@ -8,6 +8,7 @@ import { Tournament } from './types/Tournament';
 import { Results } from './types/Results';
 import { Result } from './types/Results';
 import nextRound from './Tournament/nextRound';
+import unDropPlayer from './Tournament/unDropPlayer';
 import dropPlayer from './Tournament/dropPlayer';
 import tournamentEnd from './Tournament/tournamentEnd';
 import { setMatchPoints } from './utils/remote/setMatchPoints';
@@ -27,5 +28,6 @@ export {
   dropPlayer,
   tournamentEnd,
   setMatchPoints,
+  unDropPlayer,
   setPlayerStanding,
 };
